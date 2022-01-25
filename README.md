@@ -4,7 +4,7 @@
 <p>Sistem peminjaman lab JTI (Jurusan Teknologi Informasi) yang digunakan oleh civitas akademik Politeknik Caltex Riau 👨‍💻</p>
 </div>
 ## 🤖 Powered By Ganjil 2TID
-Fitur!!!!
+## Fitur!!!!
 <ul>
 <li> Mahasiswa </li>
 <li> Kalab  </li>
