@@ -10,6 +10,10 @@
 <li> PIC </li>
 <li> Security </li>
 </ul>
+
+## PROJECT INFO
+ ![Github Badge](https://img.shields.io/github/contributors/FannyLim001/SIMPEL_Ganjil?style=flat-square)
+ ![Github Badge](https://img.shields.io/bitbucket/issues-raw/FannyLim001/SIMPEL_Ganjil?style=flat-square)
 <br>
 <br>
 <div font-size="20px">🤖 Powered By Ganjil 2TID</div>
