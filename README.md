@@ -3,7 +3,7 @@
 ## SIMPEL (Sistem Peminjaman Lab)
 <p>Sistem peminjaman lab JTI (Jurusan Teknologi Informasi) yang digunakan oleh civitas akademik Politeknik Caltex Riau 👨‍💻</p>
 </div>
-<div font-size="20px">Fitur SIMPEL</div>
+<div font-size="20px"><b>Fitur Sistem Peminjaman Lab</b></div>
 <ul>
 <li> Mahasiswa </li>
 <li> Kalab  </li>
