@@ -1,4 +1,4 @@
-<!-- ========== Left Sidebar Start ========== -->
+ <!-- ========== Left Sidebar Start ========== -->
 <div class="leftside-menu">
 
     <!-- LOGO -->
@@ -28,7 +28,7 @@
 
             <li class="side-nav-title side-nav-item text-center">Navigation</li>
             <li class="side-nav-item">
-                <a href="http://localhost:8080/SIMPEL_Ganjil/mahasiswa/beranda_pic.jsp" class="side-nav-link">
+                <a href="http://localhost:8080/SIMPEL_Ganjil/pic/beranda_pic.jsp" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span> Beranda </span>
                 </a>
@@ -57,19 +57,19 @@
                 </div>
             </li>
             <li class="side-nav-item">
-                <a href="http://localhost:8080/SIMPEL_Ganjil/mahasiswa/datalab.jsp" class="side-nav-link">
+                <a href="http://localhost:8080/SIMPEL_Ganjil/pic/datalab.jsp" class="side-nav-link">
                     <i class="mdi mdi-office-building"></i>
                     <span> Data Lab </span>
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="http://localhost:8080/SIMPEL_Ganjil/mahasiswa/laporan.jsp" class="side-nav-link">
+                <a href="http://localhost:8080/SIMPEL_Ganjil/pic/laporan.jsp" class="side-nav-link">
                     <i class="mdi mdi-trophy"></i>
                     <span> Laporan </span>
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="http://localhost:8080/SIMPEL_Ganjil/mahasiswa/panduan.jsp" class="side-nav-link">
+                <a href="http://localhost:8080/SIMPEL_Ganjil/pic/panduan.jsp" class="side-nav-link">
                     <i class="mdi mdi-help-circle"></i>
                     <span> Panduan </span>
                 </a>
