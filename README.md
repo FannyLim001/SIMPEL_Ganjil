@@ -24,6 +24,7 @@
   <li>Egy Dya Hermawan</li>
   <li>Ardiah Pramesti Cahyani</li>
   <li>Indah Setia Ningrum</li>
+  <li>Rayhan Rafif</li>
   <li>Fahrur Rozi</li>
   <li>Pujiarti</li>
   <li>Diana Butar Butar</li>
