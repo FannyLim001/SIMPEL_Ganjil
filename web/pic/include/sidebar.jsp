@@ -45,13 +45,10 @@
                             <a href="http://localhost:8080/SIMPEL_Ganjil/pic/konfirmasi_peminjaman.jsp">Konfirmasi Peminjaman</a>
                         </li>
                         <li>
-                            <a href="http://localhost:8080/SIMPEL_Ganjil/pic/status_peminjaman.jsp">Status Peminjaman</a>
+                            <a href="http://localhost:8080/SIMPEL_Ganjil/pic/daftar_peminjaman.jsp">Daftar Peminjaman</a>
                         </li>
                         <li>
-                            <a href="http://localhost:8080/SIMPEL_Ganjil/pic/kelola_lab.jsp">Kelola Lab</a>
-                        </li>
-                        <li>
-                            <a href="http://localhost:8080/SIMPEL_Ganjil/pic/data_peminjaman.jsp">Data Peminjaman</a>
+                            <a href="http://localhost:8080/SIMPEL_Ganjil/pic/daftar_lab.jsp">Daftar Lab</a>
                         </li>
                     </ul>
                 </div>
