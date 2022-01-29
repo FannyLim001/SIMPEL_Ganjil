@@ -79,19 +79,83 @@
                                         <h4 class="header-title mb-3">Informasi Peminjaman</h4>
                                         <ul class="list-unstyled mb-0">
                                             <li>
-                                                <p class="mb-1"><span class="fw-bold me-2">Ketua Kegiatan:</span>Siska</p>
-                                                <p class="mb-1"><span class="fw-bold me-2">NIM Ketua Kegiatan:</span>2055301067</p>
-                                                <p class="mb-3"><span class="fw-bold me-2">Kontak Ketua:</span>082387655401</p>
-                                                <p class="mb-1"><span class="fw-bold me-2">Lab yang dipinjam:</span>330</p>
-                                                <p class="mb-3"><span class="fw-bold me-2">Level Peminjaman:</span>2</p>
-                                                <p class="mb-1"><span class="fw-bold me-2">Tanggal Peminjaman:</span>20/01/2022</p>
-                                                <p class="mb-1"><span class="fw-bold me-2">Tanggal Mulai:</span>24/01/2022</p>
-                                                <p class="mb-3"><span class="fw-bold me-2">Tanggal Mulai:</span>25/01/2022</p>
-                                                <p class="mb-3"><span class="fw-bold me-2">Keterangan:</span>Memimjam lab untuk pengerjaan Tugas Akhir</p>
+                                                <p class="mb-2">
+                                                    <span class="fw-bold me-2">Ketua Kegiatan:</span>
+                                                    Siska
+                                                </p>
+                                                <p class="mb-2">
+                                                    <span class="fw-bold me-2">NIM Ketua Kegiatan:</span>
+                                                    2055301067
+                                                </p>
+                                                <p class="mb-3">
+                                                    <span class="fw-bold me-2">Kontak Ketua:</span>
+                                                    082387655401
+                                                </p>
+                                                <p class="mb-2">
+                                                    <span class="fw-bold me-2">Lab yang dipinjam:</span>
+                                                    330
+                                                </p>
+                                                <p class="mb-3">
+                                                    <span class="fw-bold me-2">Level Peminjaman:</span>
+                                                    2
+                                                </p>
+                                                <p class="mb-2">
+                                                    <span class="fw-bold me-2">Tanggal Peminjaman:</span>
+                                                    20/01/2022
+                                                </p>
+                                                <p class="mb-2">
+                                                    <span class="fw-bold me-2">Tanggal Mulai:</span>
+                                                    24/01/2022
+                                                </p>
+                                                <p class="mb-3">
+                                                    <span class="fw-bold me-2">Tanggal Selesai:</span>
+                                                    25/01/2022
+                                                </p>
+                                                <p class="mb-3">
+                                                    <span class="fw-bold me-2">Keterangan:</span>
+                                                    Memimjam lab untuk pengerjaan Tugas Akhir
+                                                </p>
                                             </li>
                                         </ul>
+                                        <!-- Button trigger modal -->
                                         <div class="text-center">
-                                            <a href="" class="btn btn-primary mb-0"></i>Lihat Logbook</a>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogbook">
+                                                Lihat Logbook
+                                            </button>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="modalLogbook" tabindex="-1" aria-labelledby="modalLogbookLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Data Logbook</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body px-4 pt-4">
+                                                        <div class="">
+                                                            <img
+                                                                src="http://localhost:8080/SIMPEL_Ganjil/assets/images/bg-auth.jpg"
+                                                                style="
+                                                                width: 100%;
+                                                                border-radius: 8px;
+                                                                "
+                                                            >
+                                                        </div>
+                                                        <ul class="list-unstyled mb-0 mt-3">
+                                                            <li>
+                                                                <p class="mb-2"><span class="fw-bold me-2">Nama Pengisi:</span>Anriana Lusia</p>
+                                                                <p class="mb-2"><span class="fw-bold me-2">Tanggal Pengisian:</span>25-01-2022</p>
+                                                                <p class="mb-2"><span class="fw-bold me-2">Kondisi Lab:</span>Baik</p>
+                                                                <p class="mb-2"><span class="fw-bold me-2">Pengaduan:</span>Keyboard PC 13 Tidak Berfungsi</p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -99,16 +163,30 @@
                             <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title mb-3">Informasi Lab</h4>
-                                        <ul class="list-unstyled mb-0">
-                                            <li>
-                                                <p class="mb-1"><span class="fw-bold me-2">Nomor Lab:</span>330</p>
-                                                <p class="mb-1"><span class="fw-bold me-2">Nama Lab:</span>Lab Programming</p>
-                                                <p class="mb-3"><span class="fw-bold me-2">Kapasitas Lab:</span>36 Mahasiswa</p>
-                                                <p class="mb-1"><span class="fw-bold me-2">Ketua Lab:</span>Ibu Shummaya</p>
-                                                <p class="mb-1"><span class="fw-bold me-2">PIC Lab:</span>Ibu Dwi Listiyanti</p>
-                                            </li>
-                                        </ul>
+                                        <div class="row">
+                                            <h4 class="header-title mb-3">Informasi Lab</h4>
+                                            <div class="col-lg-6">
+                                                <ul class="list-unstyled mb-0">
+                                                    <li>
+                                                        <p class="mb-2"><span class="fw-bold me-2">Nomor Lab:</span>330</p>
+                                                        <p class="mb-2"><span class="fw-bold me-2">Nama Lab:</span>Lab Programming</p>
+                                                        <p class="mb-3"><span class="fw-bold me-2">Kapasitas Lab:</span>36 Mahasiswa</p>
+                                                        <p class="mb-2"><span class="fw-bold me-2">Ketua Lab:</span>Ibu Shummaya</p>
+                                                        <p class="mb-2"><span class="fw-bold me-2">PIC Lab:</span>Ibu Dwi Listiyanti</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <img 
+                                                    class="mt-1"
+                                                    src="http://localhost:8080/SIMPEL_Ganjil/assets/images/bg-auth.jpg"
+                                                    style="
+                                                    width: 100%;
+                                                    border-radius: 8px;
+                                                    "
+                                                >
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div> <!-- end col -->
