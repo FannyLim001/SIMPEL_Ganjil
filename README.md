@@ -14,7 +14,7 @@
 ## PROJECT INFO
  ![Github Badge](https://img.shields.io/github/contributors/FannyLim001/SIMPEL_Ganjil?style=flat-square)
  ![Github Badge](https://img.shields.io/bitbucket/issues-raw/FannyLim001/SIMPEL_Ganjil?style=flat-square)
- ![Github Badge]( https://img.shields.io/github/languages/count/FannyLim001/SIMPEL_Ganjil?style=for-the-badge)
+ ![Github Badge](https://img.shields.io/github/languages/count/FannyLim001/SIMPEL_Ganjil?style=flat-square)
 
 <br>
 <br>
