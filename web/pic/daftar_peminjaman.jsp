@@ -62,10 +62,10 @@
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">SIMPEL</a></li>
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">PIC Lab</a></li>
-                                            <li class="breadcrumb-item active">Data Peminjaman</li>
+                                            <li class="breadcrumb-item active">Daftar Peminjaman</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Data Peminjaman</h4>
+                                    <h4 class="page-title">Daftar Peminjaman</h4>
                                 </div>
                             </div>
                         </div>     
@@ -77,39 +77,46 @@
                                     <div class="card-body">
                                         <div class="tab-content">
                                             <div class="tab-pane show active" id="basic-datatable-preview">
-                                                <table id="basic-datatable" class="table dt-responsive w-100">
+                                                <h5>Peminjaman Dalam Proses</h5>
+                                                <table id="tbl-proses" class="table display nowrap">
                                                     <thead class="table-light">
-                                                        <tr>
-                                                            <th>Peminjaman</th>
-                                                            <th>Penanggung Jawab</th>
-                                                            <th>Jumlah Peminjam</th>
-                                                            <th>Tanggal Pinjam</th>
-                                                            <th>Tanggal Selesai</th>
+                                                        <tr class="text-center">
+                                                            <th>Lab</th>
+                                                            <th>Ketua Kegiatan</th>
+                                                            <th>Kontak Ketua</th>
+                                                            <th>Level</th>
+                                                            <th>Tgl Peminjaman</th>
+                                                            <th>Tgl Mulai</th>
+                                                            <th>Tgl Berakhir</th>
+                                                            <th>Keterangan</th>
                                                             <th>Status</th>
-                                                            <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>LAB 330</td>
-                                                            <td>Siska</td>
-                                                            <td>8 Orang</td>
-                                                            <td>09/12/2018</td>
-                                                            <td>12/12/2018</td>
-                                                            <td><span class="badge bg-success p-2">Selesai</span></td>
-                                                            <td class="table-action">
-                                                                <a href="" class="btn btn-primary mb-2"></i>Detail</a>
+                                                            <td>Lab 329</td>
+                                                            <td>Andre Prisya</td>
+                                                            <td class="text-center">082387655409</td>
+                                                            <td class="text-center">2</td>
+                                                            <td class="text-center">28-01-2022</td>
+                                                            <td class="text-center">31-01-2022</td>
+                                                            <td class="text-center">31-01-2022</td>
+                                                            <td>Kegiatan CSIRT</td>
+                                                            <td class="text-center">
+                                                                <span class="badge bg-warning p-2">Diajukan</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>LAB 317</td>
-                                                            <td>Ridwan</td>
-                                                            <td>3 Orang</td>
-                                                            <td>09/12/2018</td>
-                                                            <td>12/12/2018</td>
-                                                            <td><span class="badge bg-success p-2">Selesai</span></td>
-                                                            <td class="table-action">
-                                                                <a href="" class="btn btn-primary mb-2"></i>Detail</a>
+                                                            <td>Lab 317</td>
+                                                            <td>Ridho Ilahi</td>
+                                                            <td class="text-center">082387655425</td>
+                                                            <td class="text-center">1</td>
+                                                            <td class="text-center">28-01-2022</td>
+                                                            <td class="text-center">31-01-2022</td>
+                                                            <td class="text-center">02-02-2022</td>
+                                                            <td>Kegiatan CSIRT</td>
+                                                            <td class="text-center">
+                                                                <span class="badge bg-secondary p-2">Pending</span>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -120,7 +127,46 @@
                                 </div><!-- end col-->
                             </div>
                             <!-- end row -->        
-
+                        </div> <!-- container -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="basic-datatable-preview">
+                                                <h5>Peminjaman Selesai</h5>
+                                                <table id="tbl-selesai" class="table dt-responsive w-100 display">
+                                                    <thead class="table-light">
+                                                        <tr class="text-center">
+                                                            <th>Lab</th>
+                                                            <th>Ketua Kegiatan</th>
+                                                            <th>Level</th>
+                                                            <th>Tgl Peminjaman</th>
+                                                            <th>Keterangan</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>LAB 330</td>
+                                                            <td>Siska Ananda Putri</td>
+                                                            <td class="text-center">1</td>
+                                                            <td class="text-center">09/12/2018</td>
+                                                            <td>Pengerjaan Tugas Akhir</td>
+                                                            <td class="text-center"><span class="badge bg-success p-2">Selesai</span></td>
+                                                            <td class="table-action text-center">
+                                                                <a href="http://localhost:8080/SIMPEL_Ganjil/pic/detail_peminjaman.jsp" class="btn btn-primary mb-2">Detail</a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>                                           
+                                            </div> <!-- end preview-->
+                                        </div> <!-- end card body-->
+                                    </div> <!-- end card -->
+                                </div><!-- end col-->
+                            </div>
+                            <!-- end row -->        
                         </div> <!-- container -->
 
                     </div> <!-- content -->
@@ -164,6 +210,14 @@
             <!-- demo app -->
             <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.datatable-init.js"></script>
             <!-- end demo js-->
+
+            <script>
+                $(document).ready(function () {
+                    $('table.display').DataTable({
+                        "scrollX": true
+                    });
+                });
+            </script>
 
     </body>
 </html>
