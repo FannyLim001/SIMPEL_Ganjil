@@ -76,4 +76,6 @@ public class database {
             System.out.println("Terjadi kesalahan simpan data : " + x);
         }
     }
+
+
 }
