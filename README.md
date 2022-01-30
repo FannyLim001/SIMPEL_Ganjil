@@ -15,9 +15,9 @@
  ![Github Badge](https://img.shields.io/github/contributors/FannyLim001/SIMPEL_Ganjil?style=flat-square)
  ![Github Badge](https://img.shields.io/bitbucket/issues-raw/FannyLim001/SIMPEL_Ganjil?style=flat-square)
  ![Github Badge](https://img.shields.io/github/languages/count/FannyLim001/SIMPEL_Ganjil?style=flat-square)
+<br>
+<br>
 
-<br>
-<br>
 ## Created With ❤️
 <ul>
   <li><a href="https://github.com/codexsleep">M Firman Raiwan</a></li>
