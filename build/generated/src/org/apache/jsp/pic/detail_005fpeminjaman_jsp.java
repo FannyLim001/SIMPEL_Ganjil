@@ -3,6 +3,9 @@ package org.apache.jsp.pic;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.ArrayList;
+import java.util.List;
+import models.pic.DetailPeminjaman;
 
 public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -51,6 +54,10 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html lang=\"en\">\r\n");
       out.write("    <head>\r\n");
@@ -78,7 +85,13 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("        <link href=\"http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/dataTables.bootstrap5.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n");
       out.write("        <link href=\"http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/responsive.bootstrap5.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n");
       out.write("    </head>\r\n");
+      out.write("    \r\n");
+      out.write("    ");
+
+        Int id_peminjaman = request.getParameter("id_peminjaman");
+    
       out.write("\r\n");
+      out.write("    \r\n");
       out.write("    <body class=\"loading\" data-layout-config='{\"leftSideBarTheme\":\"dark\",\"layoutBoxed\":false, \"leftSidebarCondensed\":false, \"leftSidebarScrollable\":false,\"darkMode\":false, \"showRightSidebarOnStart\": true}'>\r\n");
       out.write("        <!-- Begin page -->\r\n");
       out.write("        <div class=\"wrapper\">\r\n");
@@ -231,51 +244,74 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                            </div>\r\n");
       out.write("                        </div>     \r\n");
       out.write("                        <!-- end page title --> \r\n");
-      out.write("\r\n");
+      out.write("                        \r\n");
       out.write("                        <div class=\"row\">\r\n");
       out.write("                            <div class=\"col-lg-6\">\r\n");
       out.write("                                <div class=\"card\">\r\n");
       out.write("                                    <div class=\"card-body\">\r\n");
       out.write("                                        <h4 class=\"header-title mb-3\">Informasi Peminjaman</h4>\r\n");
       out.write("                                        <ul class=\"list-unstyled mb-0\">\r\n");
+      out.write("                                            ");
+
+                                                DetailPeminjaman detail = new DetailPeminjaman();
+                                                List<DetailPeminjaman> data = new ArrayList<DetailPeminjaman>();
+                                                data = detail.tampilDetailPeminjaman(id_peminjaman);
+                                                for (int i = 0; i < data.size(); i++) {
+                                            
+      out.write("\r\n");
       out.write("                                            <li>\r\n");
       out.write("                                                <p class=\"mb-2\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Ketua Kegiatan:</span>\r\n");
-      out.write("                                                    Siska\r\n");
-      out.write("                                                </p>\r\n");
-      out.write("                                                <p class=\"mb-2\">\r\n");
-      out.write("                                                    <span class=\"fw-bold me-2\">NIM Ketua Kegiatan:</span>\r\n");
-      out.write("                                                    2055301067\r\n");
+      out.write("                                                    ");
+      out.print( data.get(i).getKetua_kegiatan() );
+      out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                                <p class=\"mb-3\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Kontak Ketua:</span>\r\n");
-      out.write("                                                    082387655401\r\n");
+      out.write("                                                    ");
+      out.print( data.get(i).getKontak_ketua() );
+      out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                                <p class=\"mb-2\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Lab yang dipinjam:</span>\r\n");
-      out.write("                                                    330\r\n");
+      out.write("                                                    ");
+      out.print( data.get(i).getNo_lab() );
+      out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                                <p class=\"mb-3\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Level Peminjaman:</span>\r\n");
-      out.write("                                                    2\r\n");
+      out.write("                                                    ");
+      out.print( data.get(i).getLevel() );
+      out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                                <p class=\"mb-2\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Tanggal Peminjaman:</span>\r\n");
-      out.write("                                                    20/01/2022\r\n");
+      out.write("                                                    ");
+      out.print( data.get(i).getTgl_peminjaman() );
+      out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                                <p class=\"mb-2\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Tanggal Mulai:</span>\r\n");
-      out.write("                                                    24/01/2022\r\n");
+      out.write("                                                    ");
+      out.print( data.get(i).getTgl_mulai() );
+      out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                                <p class=\"mb-3\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Tanggal Selesai:</span>\r\n");
-      out.write("                                                    25/01/2022\r\n");
+      out.write("                                                    ");
+      out.print( data.get(i).getTgl_berakhir() );
+      out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                                <p class=\"mb-3\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Keterangan:</span>\r\n");
-      out.write("                                                    Memimjam lab untuk pengerjaan Tugas Akhir\r\n");
+      out.write("                                                    ");
+      out.print( data.get(i).getKeterangan() );
+      out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                            </li>\r\n");
+      out.write("                                            ");
+ } 
+      out.write("\r\n");
       out.write("                                        </ul>\r\n");
       out.write("                                        <!-- Button trigger modal -->\r\n");
       out.write("                                        <div class=\"text-center\">\r\n");

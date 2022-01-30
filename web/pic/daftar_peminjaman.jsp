@@ -4,6 +4,10 @@
     Author     : Egy Dya Hermawan
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="models.pic.DaftarPeminjaman"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,32 +97,40 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <%
+                                                            DaftarPeminjaman dpDalamProses = new DaftarPeminjaman();
+                                                            List<DaftarPeminjaman> dataDalamProses = new ArrayList<DaftarPeminjaman>();
+                                                            dataDalamProses = dpDalamProses.tampilDaftarDalamProses();
+                                                            for (int i = 0; i < dataDalamProses.size(); i++) {
+                                                        %>
                                                         <tr>
-                                                            <td>Lab 329</td>
-                                                            <td>Andre Prisya</td>
-                                                            <td class="text-center">082387655409</td>
-                                                            <td class="text-center">2</td>
-                                                            <td class="text-center">28-01-2022</td>
-                                                            <td class="text-center">31-01-2022</td>
-                                                            <td class="text-center">31-01-2022</td>
-                                                            <td>Kegiatan CSIRT</td>
+                                                            <td><%= dataDalamProses.get(i).getNo_lab() %></td>
+                                                            <td><%= dataDalamProses.get(i).getKetua_kegiatan() %></td>
+                                                            <td class="text-center"><%= dataDalamProses.get(i).getKontak_ketua() %></td>
+                                                            <td class="text-center"><%= dataDalamProses.get(i).getLevel() %></td>
+                                                            <td class="text-center"><%= dataDalamProses.get(i).getTgl_peminjaman() %></td>
+                                                            <td class="text-center"><%= dataDalamProses.get(i).getTgl_mulai() %></td>
+                                                            <td class="text-center"><%= dataDalamProses.get(i).getTgl_berakhir() %></td>
+                                                            <td><%= dataDalamProses.get(i).getKeterangan() %></td>
                                                             <td class="text-center">
-                                                                <span class="badge bg-warning p-2">Diajukan</span>
+                                                                <%
+                                                                    if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("diajukan")) { %>
+                                                                        <span class="badge bg-warning p-2"><%= dataDalamProses.get(i).getStatus() %></span>
+                                                                    <%
+                                                                        }else if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("menunggu")){ %>
+                                                                            <span class="badge bg-secondary p-2"><%= dataDalamProses.get(i).getStatus() %></span>
+                                                                    <%
+                                                                        }else if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("ditolak")){ %>
+                                                                            <span class="badge bg-danger p-2"><%= dataDalamProses.get(i).getStatus() %></span>
+                                                                    <%    
+                                                                        }else if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("disetujui")){ %>
+                                                                            <span class="badge bg-success p-2"><%= dataDalamProses.get(i).getStatus() %></span>
+                                                                    <%    
+                                                                    }
+                                                                %>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>Lab 317</td>
-                                                            <td>Ridho Ilahi</td>
-                                                            <td class="text-center">082387655425</td>
-                                                            <td class="text-center">1</td>
-                                                            <td class="text-center">28-01-2022</td>
-                                                            <td class="text-center">31-01-2022</td>
-                                                            <td class="text-center">02-02-2022</td>
-                                                            <td>Kegiatan CSIRT</td>
-                                                            <td class="text-center">
-                                                                <span class="badge bg-secondary p-2">Pending</span>
-                                                            </td>
-                                                        </tr>
+                                                        <% } %>
                                                     </tbody>
                                                 </table>                                           
                                             </div> <!-- end preview-->
@@ -148,17 +160,27 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <%
+                                                            DaftarPeminjaman dpSelesai = new DaftarPeminjaman();
+                                                            List<DaftarPeminjaman> dataSelesai = new ArrayList<DaftarPeminjaman>();
+                                                            dataSelesai = dpSelesai.tampilDaftarSelesai();
+                                                            for (int i = 0; i < dataSelesai.size(); i++) {
+                                                        %>
                                                         <tr>
-                                                            <td>LAB 330</td>
-                                                            <td>Siska Ananda Putri</td>
-                                                            <td class="text-center">1</td>
-                                                            <td class="text-center">09/12/2018</td>
-                                                            <td>Pengerjaan Tugas Akhir</td>
-                                                            <td class="text-center"><span class="badge bg-success p-2">Selesai</span></td>
+                                                            <td><%= dataSelesai.get(i).getNo_lab() %></td>
+                                                            <td><%= dataSelesai.get(i).getKetua_kegiatan() %></td>
+                                                            <td class="text-center"><%= dataSelesai.get(i).getLevel() %></td>
+                                                            <td class="text-center"><%= dataSelesai.get(i).getTgl_peminjaman()%></td>
+                                                            <td><%= dataSelesai.get(i).getKeterangan() %></td>
+                                                            <td class="text-center">
+                                                                <span class="badge bg-success p-2"><%= dataSelesai.get(i).getStatus() %></span>
+                                                            </td>
                                                             <td class="table-action text-center">
-                                                                <a href="http://localhost:8080/SIMPEL_Ganjil/pic/detail_peminjaman.jsp" class="btn btn-primary mb-2">Detail</a>
+                                                                <a href="http://localhost:8080/SIMPEL_Ganjil/pic/detail_peminjaman.jsp?id_peminjaman=<%= dataSelesai.get(i).getId_peminjaman() %>" 
+                                                                   class="btn btn-primary mb-2">Detail</a>
                                                             </td>
                                                         </tr>
+                                                        <% } %>
                                                     </tbody>
                                                 </table>                                           
                                             </div> <!-- end preview-->

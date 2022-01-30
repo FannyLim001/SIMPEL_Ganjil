@@ -3,6 +3,9 @@ package org.apache.jsp.pic;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.ArrayList;
+import java.util.List;
+import models.pic.DaftarPeminjaman;
 
 public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -48,6 +51,10 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -308,17 +315,44 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                                        </tr>\r\n");
       out.write("                                                    </thead>\r\n");
       out.write("                                                    <tbody>\r\n");
+      out.write("                                                        ");
+
+                                                            DaftarPeminjaman daftarPeminjaman = new DaftarPeminjaman();
+                                                            List<DaftarPeminjaman> data = new ArrayList<DaftarPeminjaman>();
+                                                            data = daftarPeminjaman.tampilDaftarSelesai();
+                                                            for (int i = 0; i < data.size(); i++) {
+                                                        
+      out.write("\r\n");
       out.write("                                                        <tr>\r\n");
-      out.write("                                                            <td>LAB 330</td>\r\n");
-      out.write("                                                            <td>Siska Ananda Putri</td>\r\n");
-      out.write("                                                            <td class=\"text-center\">1</td>\r\n");
-      out.write("                                                            <td class=\"text-center\">09/12/2018</td>\r\n");
-      out.write("                                                            <td>Pengerjaan Tugas Akhir</td>\r\n");
-      out.write("                                                            <td class=\"text-center\"><span class=\"badge bg-success p-2\">Selesai</span></td>\r\n");
+      out.write("                                                            <td>");
+      out.print( data.get(i).getNo_lab() );
+      out.write("</td>\r\n");
+      out.write("                                                            <td>");
+      out.print( data.get(i).getKetua_kegiatan() );
+      out.write("</td>\r\n");
+      out.write("                                                            <td class=\"text-center\">");
+      out.print( data.get(i).getLevel() );
+      out.write("</td>\r\n");
+      out.write("                                                            <td class=\"text-center\">");
+      out.print( data.get(i).getTgl_peminjaman());
+      out.write("</td>\r\n");
+      out.write("                                                            <td>");
+      out.print( data.get(i).getKeterangan() );
+      out.write("</td>\r\n");
+      out.write("                                                            <td class=\"text-center\">\r\n");
+      out.write("                                                                <span class=\"badge bg-success p-2\">");
+      out.print( data.get(i).getStatus() );
+      out.write("</span>\r\n");
+      out.write("                                                            </td>\r\n");
       out.write("                                                            <td class=\"table-action text-center\">\r\n");
       out.write("                                                                <a href=\"http://localhost:8080/SIMPEL_Ganjil/pic/detail_peminjaman.jsp\" class=\"btn btn-primary mb-2\">Detail</a>\r\n");
       out.write("                                                            </td>\r\n");
       out.write("                                                        </tr>\r\n");
+      out.write("                                                        ");
+
+                                                            }
+                                                        
+      out.write("\r\n");
       out.write("                                                    </tbody>\r\n");
       out.write("                                                </table>                                           \r\n");
       out.write("                                            </div> <!-- end preview-->\r\n");
