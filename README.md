@@ -21,7 +21,7 @@
 ## Created With ❤️
 <ul>
   <li><a href="https://github.com/codexsleep">M Firman Raiwan</a></li>
-  <li>Fany</li>
+  <li>Fanny</li>
   <li><a href="https://github.com/andreprisya">Andre Prisya Lubis</a></li>
   <li>Egy Dya Hermawan</li>
   <li>Ardiah Pramesti Cahyani</li>
