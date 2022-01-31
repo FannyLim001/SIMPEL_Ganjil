@@ -15,7 +15,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Data Peminjaman | SIMPEL </title>
+        <title>Detail Peminjaman | SIMPEL </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -95,6 +95,8 @@
                                         <h4 class="header-title mb-3">Informasi Peminjaman</h4>
                                         <ul class="list-unstyled mb-0">
                                             <%
+                                                String tgl_berakhir = null;
+                                                String id_lab = null;
                                                 DetailPeminjaman detail = new DetailPeminjaman();
                                                 List<DetailPeminjaman> data = new ArrayList<DetailPeminjaman>();
                                                 data = detail.tampilDetailPeminjaman(id_peminjaman);
@@ -126,7 +128,7 @@
                                                     <%= data.get(i).getTgl_mulai() %>
                                                 </p>
                                                 <p class="mb-3">
-                                                    <span class="fw-bold me-2">Tanggal Selesai:</span>
+                                                    <span class="fw-bold me-2">Tanggal Berakhir:</span>
                                                     <%= data.get(i).getTgl_berakhir() %>
                                                 </p>
                                                 <p class="mb-3">
@@ -134,7 +136,11 @@
                                                     <%= data.get(i).getKeterangan() %>
                                                 </p>
                                             </li>
-                                            <% } %>
+                                            <%
+                                                tgl_berakhir = data.get(i).getTgl_berakhir();
+                                                id_lab = data.get(i).getNo_lab();
+                                                }
+                                            %>
                                         </ul>
                                         
                                         <!-- Button trigger modal -->
@@ -147,7 +153,7 @@
                                         <%
                                             Logbook lb = new Logbook();
                                             List<Logbook> dataLogbook = new ArrayList<Logbook>();
-                                            dataLogbook = lb.pilihLogbook(id_peminjaman);
+                                            dataLogbook = lb.pilihLogbook(id_lab, tgl_berakhir);
                                             for (int i = 0; i < dataLogbook.size(); i++) {
                                         %>
                                         

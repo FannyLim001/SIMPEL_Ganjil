@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import models.pic.DetailPeminjaman;
 import models.pic.InformasiLab;
+import models.pic.Logbook;
 
 public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -60,11 +61,12 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html lang=\"en\">\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta charset=\"utf-8\" />\r\n");
-      out.write("        <title>Data Peminjaman | SIMPEL</title>\r\n");
+      out.write("        <title>Data Peminjaman | SIMPEL </title>\r\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n");
       out.write("        <meta content=\"A fully featured admin theme which can be used to build CRM, CMS, etc.\" name=\"description\" />\r\n");
       out.write("        <meta content=\"Coderthemes\" name=\"author\" />\r\n");
@@ -325,13 +327,23 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
  } 
       out.write("\r\n");
       out.write("                                        </ul>\r\n");
+      out.write("                                        \r\n");
       out.write("                                        <!-- Button trigger modal -->\r\n");
       out.write("                                        <div class=\"text-center\">\r\n");
       out.write("                                            <button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#modalLogbook\">\r\n");
       out.write("                                                Lihat Logbook\r\n");
       out.write("                                            </button>\r\n");
       out.write("                                        </div>\r\n");
+      out.write("                                        \r\n");
+      out.write("                                        ");
+
+                                            Logbook lb = new Logbook();
+                                            List<Logbook> dataLogbook = new ArrayList<Logbook>();
+                                            dataLogbook = lb.pilihLogbook(id_peminjaman);
+                                            for (int i = 0; i < dataLogbook.size(); i++) {
+                                        
       out.write("\r\n");
+      out.write("                                        \r\n");
       out.write("                                        <!-- Modal -->\r\n");
       out.write("                                        <div class=\"modal fade\" id=\"modalLogbook\" tabindex=\"-1\" aria-labelledby=\"modalLogbookLabel\" aria-hidden=\"true\">\r\n");
       out.write("                                            <div class=\"modal-dialog\">\r\n");
@@ -343,7 +355,9 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                                    <div class=\"modal-body px-4 pt-4\">\r\n");
       out.write("                                                        <div class=\"\">\r\n");
       out.write("                                                            <img\r\n");
-      out.write("                                                                src=\"http://localhost:8080/SIMPEL_Ganjil/assets/images/bg-auth.jpg\"\r\n");
+      out.write("                                                                src=\"http://localhost:8080/SIMPEL_Ganjil/assets/images/");
+      out.print( dataLogbook.get(i).getFoto_lab() );
+      out.write("\"\r\n");
       out.write("                                                                style=\"\r\n");
       out.write("                                                                width: 100%;\r\n");
       out.write("                                                                border-radius: 8px;\r\n");
@@ -352,10 +366,30 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                                        </div>\r\n");
       out.write("                                                        <ul class=\"list-unstyled mb-0 mt-3\">\r\n");
       out.write("                                                            <li>\r\n");
-      out.write("                                                                <p class=\"mb-2\"><span class=\"fw-bold me-2\">Nama Pengisi:</span>Anriana Lusia</p>\r\n");
-      out.write("                                                                <p class=\"mb-2\"><span class=\"fw-bold me-2\">Tanggal Pengisian:</span>25-01-2022</p>\r\n");
-      out.write("                                                                <p class=\"mb-2\"><span class=\"fw-bold me-2\">Kondisi Lab:</span>Baik</p>\r\n");
-      out.write("                                                                <p class=\"mb-2\"><span class=\"fw-bold me-2\">Pengaduan:</span>Keyboard PC 13 Tidak Berfungsi</p>\r\n");
+      out.write("                                                                <p class=\"mb-2\">\r\n");
+      out.write("                                                                    <span class=\"fw-bold me-2\">Nama Pengisi:</span>\r\n");
+      out.write("                                                                    ");
+      out.print( dataLogbook.get(i).getNama_pengisi() );
+      out.write("\r\n");
+      out.write("                                                                </p>\r\n");
+      out.write("                                                                <p class=\"mb-2\">\r\n");
+      out.write("                                                                    <span class=\"fw-bold me-2\">Tanggal Pengisian:</span>\r\n");
+      out.write("                                                                    ");
+      out.print( dataLogbook.get(i).getTgl_pengisian() );
+      out.write("\r\n");
+      out.write("                                                                </p>\r\n");
+      out.write("                                                                <p class=\"mb-2\">\r\n");
+      out.write("                                                                    <span class=\"fw-bold me-2\">Kondisi Lab:</span>\r\n");
+      out.write("                                                                    ");
+      out.print( dataLogbook.get(i).getKondisi_lab() );
+      out.write("\r\n");
+      out.write("                                                                </p>\r\n");
+      out.write("                                                                <p class=\"mb-2\">\r\n");
+      out.write("                                                                    <span class=\"fw-bold me-2\">Pengaduan:</span>\r\n");
+      out.write("                                                                    ");
+      out.print( dataLogbook.get(i).getPengaduan() );
+      out.write("\r\n");
+      out.write("                                                                </p>\r\n");
       out.write("                                                            </li>\r\n");
       out.write("                                                        </ul>\r\n");
       out.write("                                                    </div>\r\n");
@@ -365,6 +399,9 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                                </div>\r\n");
       out.write("                                            </div>\r\n");
       out.write("                                        </div>\r\n");
+      out.write("                                        ");
+ } 
+      out.write("\r\n");
       out.write("                                    </div>\r\n");
       out.write("                                </div>\r\n");
       out.write("                            </div> <!-- end col -->\r\n");

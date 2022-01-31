@@ -70,12 +70,15 @@ public class Logbook {
         this.foto_lab = foto_lab;
     }
     
-    public List pilihLogbook(String id_peminjaman){
+    public List pilihLogbook(String id_lab, String tgl_berakhir){
         List<Logbook> data = new ArrayList<Logbook>();
         ResultSet rs = null;
         try{
-            String sql = "SELECT * FROM tbl_logbook\n" +
-                "WHERE id_peminjaman = '"+id_peminjaman+"'";
+            String sql = "SELECT * FROM tbl_logbook \n" +
+                "WHERE tgl_pengisian = '"+tgl_berakhir+"'" +
+                "AND id_lab = (\n" +
+                "    SELECT id_lab FROM tbl_lab\n" +
+                "    WHERE no_lab = '"+id_lab+"')";
             rs = db.getData(sql);
             while(rs.next()){
                 Logbook lb = new Logbook();
