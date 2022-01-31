@@ -1,0 +1,22 @@
+SMAP
+detail_005fpeminjaman_jsp.java
+JSP
+*S JSP
+*F
++ 0 detail_peminjaman.jsp
+kalab/detail_peminjaman.jsp
++ 1 sidebar.jsp
+kalab/include/sidebar.jsp
++ 2 header.jsp
+kalab/include/header.jsp
++ 3 footer.jsp
+kalab/include/footer.jsp
+*L
+5,36:51
+5#1,60:87
+40#0,12:146
+5#2,36:158
+51#0,151:193
+5#3,23:344
+201#0,42:366
+*E
