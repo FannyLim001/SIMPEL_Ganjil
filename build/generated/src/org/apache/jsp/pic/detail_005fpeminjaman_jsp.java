@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import java.util.ArrayList;
 import java.util.List;
-import models.pic.DetailPeminjaman;
+import models.pic.Peminjaman;
 import models.pic.InformasiLab;
 import models.pic.Logbook;
 
@@ -66,7 +66,7 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("<html lang=\"en\">\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta charset=\"utf-8\" />\r\n");
-      out.write("        <title>Data Peminjaman | SIMPEL </title>\r\n");
+      out.write("        <title>Detail Peminjaman | SIMPEL </title>\r\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n");
       out.write("        <meta content=\"A fully featured admin theme which can be used to build CRM, CMS, etc.\" name=\"description\" />\r\n");
       out.write("        <meta content=\"Coderthemes\" name=\"author\" />\r\n");
@@ -93,6 +93,8 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("    ");
 
         String id_peminjaman = request.getParameter("id_peminjaman");
+        Peminjaman p = new Peminjaman();
+        p = p.peminjamanById(Integer.parseInt(id_peminjaman));
     
       out.write("\r\n");
       out.write("    \r\n");
@@ -145,7 +147,7 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                <div class=\"collapse\" id=\"peminjaman\">\r\n");
       out.write("                    <ul class=\"side-nav-second-level\">\r\n");
       out.write("                        <li>\r\n");
-      out.write("                            <a href=\"http://localhost:8080/SIMPEL_Ganjil/pic/konfirmasi_peminjaman.jsp\">Konfirmasi Peminjaman</a>\r\n");
+      out.write("                            <a href=\"http://localhost:8080/SIMPEL_Ganjil/pic/mengkonfirmasi_peminjaman.jsp\">Konfirmasi Peminjaman</a>\r\n");
       out.write("                        </li>\r\n");
       out.write("                        <li>\r\n");
       out.write("                            <a href=\"http://localhost:8080/SIMPEL_Ganjil/pic/daftar_peminjaman.jsp\">Daftar Peminjaman</a>\r\n");
@@ -249,100 +251,104 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                        </div>     \r\n");
       out.write("                        <!-- end page title --> \r\n");
       out.write("                        \r\n");
-      out.write("                        ");
-
-                            if (id_peminjaman == null) { 
-      out.write("\r\n");
-      out.write("                                <p>Tidak ada data</p>\r\n");
-      out.write("                            ");
- } else{
-                        
-      out.write("\r\n");
-      out.write("                        \r\n");
       out.write("                        <div class=\"row\">\r\n");
       out.write("                            <div class=\"col-lg-6\">\r\n");
       out.write("                                <div class=\"card\">\r\n");
       out.write("                                    <div class=\"card-body\">\r\n");
       out.write("                                        <h4 class=\"header-title mb-3\">Informasi Peminjaman</h4>\r\n");
-      out.write("                                        <ul class=\"list-unstyled mb-0\">\r\n");
-      out.write("                                            ");
+      out.write("                                        \r\n");
+      out.write("                                        ");
 
-                                                DetailPeminjaman detail = new DetailPeminjaman();
-                                                List<DetailPeminjaman> data = new ArrayList<DetailPeminjaman>();
-                                                data = detail.tampilDetailPeminjaman(id_peminjaman);
-                                                for (int i = 0; i < data.size(); i++) {
-                                            
+                                            if (id_peminjaman == null || id_peminjaman == "") { 
       out.write("\r\n");
+      out.write("                                                <p>Tidak ada data</p>\r\n");
+      out.write("                                            ");
+ } else{
+                                        
+      out.write("\r\n");
+      out.write("                                        \r\n");
+      out.write("                                        <ul class=\"list-unstyled mb-0\">\r\n");
       out.write("                                            <li>\r\n");
       out.write("                                                <p class=\"mb-2\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Ketua Kegiatan:</span>\r\n");
       out.write("                                                    ");
-      out.print( data.get(i).getKetua_kegiatan() );
+      out.print( p.getKetua_kegiatan() );
       out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                                <p class=\"mb-3\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Kontak Ketua:</span>\r\n");
       out.write("                                                    ");
-      out.print( data.get(i).getKontak_ketua() );
+      out.print( p.getKontak_ketua() );
       out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                                <p class=\"mb-2\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Lab yang dipinjam:</span>\r\n");
       out.write("                                                    ");
-      out.print( data.get(i).getNo_lab() );
+      out.print( p.getNo_lab() );
       out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                                <p class=\"mb-3\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Level Peminjaman:</span>\r\n");
       out.write("                                                    ");
-      out.print( data.get(i).getLevel() );
+      out.print( p.getLevel() );
       out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                                <p class=\"mb-2\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Tanggal Peminjaman:</span>\r\n");
       out.write("                                                    ");
-      out.print( data.get(i).getTgl_peminjaman() );
+      out.print( p.getTgl_peminjaman() );
       out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                                <p class=\"mb-2\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Tanggal Mulai:</span>\r\n");
       out.write("                                                    ");
-      out.print( data.get(i).getTgl_mulai() );
+      out.print( p.getTgl_mulai() );
       out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                                <p class=\"mb-3\">\r\n");
-      out.write("                                                    <span class=\"fw-bold me-2\">Tanggal Selesai:</span>\r\n");
+      out.write("                                                    <span class=\"fw-bold me-2\">Tanggal Berakhir:</span>\r\n");
       out.write("                                                    ");
-      out.print( data.get(i).getTgl_berakhir() );
+      out.print( p.getTgl_berakhir() );
       out.write("\r\n");
       out.write("                                                </p>\r\n");
-      out.write("                                                <p class=\"mb-3\">\r\n");
+      out.write("                                                <p class=\"mb-2\">\r\n");
       out.write("                                                    <span class=\"fw-bold me-2\">Keterangan:</span>\r\n");
       out.write("                                                    ");
-      out.print( data.get(i).getKeterangan() );
+      out.print( p.getKeterangan() );
+      out.write("\r\n");
+      out.write("                                                </p>\r\n");
+      out.write("                                                <p class=\"mb-3\">\r\n");
+      out.write("                                                    <span class=\"fw-bold me-2\">Status:</span>\r\n");
+      out.write("                                                    ");
+      out.print( p.getStatus_peminjaman() );
       out.write("\r\n");
       out.write("                                                </p>\r\n");
       out.write("                                            </li>\r\n");
       out.write("                                            ");
- } 
+
+                                                }
+                                            
       out.write("\r\n");
       out.write("                                        </ul>\r\n");
       out.write("                                        \r\n");
-      out.write("                                        <!-- Button trigger modal -->\r\n");
+      out.write("                                        ");
+
+                                            String status = p.getStatus_peminjaman();
+                                            if (!status.equalsIgnoreCase("selesai")) { 
+      out.write("\r\n");
+      out.write("                                                <div class=\"text-center\">\r\n");
+      out.write("                                                    <button type=\"button\" class=\"btn btn-primary\" disabled>\r\n");
+      out.write("                                                        Lihat Logbook\r\n");
+      out.write("                                                    </button>\r\n");
+      out.write("                                                </div>  \r\n");
+      out.write("                                            ");
+ } else{ 
+      out.write("\r\n");
       out.write("                                        <div class=\"text-center\">\r\n");
-      out.write("                                            <button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#modalLogbook\">\r\n");
+      out.write("                                            <button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#modalLogbook\" disabled=\"\">\r\n");
       out.write("                                                Lihat Logbook\r\n");
       out.write("                                            </button>\r\n");
       out.write("                                        </div>\r\n");
-      out.write("                                        \r\n");
-      out.write("                                        ");
-
-                                            Logbook lb = new Logbook();
-                                            List<Logbook> dataLogbook = new ArrayList<Logbook>();
-                                            dataLogbook = lb.pilihLogbook(id_peminjaman);
-                                            for (int i = 0; i < dataLogbook.size(); i++) {
-                                        
-      out.write("\r\n");
       out.write("                                        \r\n");
       out.write("                                        <!-- Modal -->\r\n");
       out.write("                                        <div class=\"modal fade\" id=\"modalLogbook\" tabindex=\"-1\" aria-labelledby=\"modalLogbookLabel\" aria-hidden=\"true\">\r\n");
@@ -355,9 +361,7 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                                    <div class=\"modal-body px-4 pt-4\">\r\n");
       out.write("                                                        <div class=\"\">\r\n");
       out.write("                                                            <img\r\n");
-      out.write("                                                                src=\"http://localhost:8080/SIMPEL_Ganjil/assets/images/");
-      out.print( dataLogbook.get(i).getFoto_lab() );
-      out.write("\"\r\n");
+      out.write("                                                                src=\"http://localhost:8080/SIMPEL_Ganjil/assets/images/\"\r\n");
       out.write("                                                                style=\"\r\n");
       out.write("                                                                width: 100%;\r\n");
       out.write("                                                                border-radius: 8px;\r\n");
@@ -368,27 +372,19 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                                            <li>\r\n");
       out.write("                                                                <p class=\"mb-2\">\r\n");
       out.write("                                                                    <span class=\"fw-bold me-2\">Nama Pengisi:</span>\r\n");
-      out.write("                                                                    ");
-      out.print( dataLogbook.get(i).getNama_pengisi() );
-      out.write("\r\n");
+      out.write("                                                                    \r\n");
       out.write("                                                                </p>\r\n");
       out.write("                                                                <p class=\"mb-2\">\r\n");
       out.write("                                                                    <span class=\"fw-bold me-2\">Tanggal Pengisian:</span>\r\n");
-      out.write("                                                                    ");
-      out.print( dataLogbook.get(i).getTgl_pengisian() );
-      out.write("\r\n");
+      out.write("                                                                    \r\n");
       out.write("                                                                </p>\r\n");
       out.write("                                                                <p class=\"mb-2\">\r\n");
       out.write("                                                                    <span class=\"fw-bold me-2\">Kondisi Lab:</span>\r\n");
-      out.write("                                                                    ");
-      out.print( dataLogbook.get(i).getKondisi_lab() );
-      out.write("\r\n");
+      out.write("                                                                    \r\n");
       out.write("                                                                </p>\r\n");
       out.write("                                                                <p class=\"mb-2\">\r\n");
       out.write("                                                                    <span class=\"fw-bold me-2\">Pengaduan:</span>\r\n");
-      out.write("                                                                    ");
-      out.print( dataLogbook.get(i).getPengaduan() );
-      out.write("\r\n");
+      out.write("                                                                    \r\n");
       out.write("                                                                </p>\r\n");
       out.write("                                                            </li>\r\n");
       out.write("                                                        </ul>\r\n");
@@ -409,14 +405,7 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                            <div class=\"col-lg-6\">\r\n");
       out.write("                                <div class=\"card\">\r\n");
       out.write("                                    <div class=\"card-body\">\r\n");
-      out.write("                                        ");
-
-                                            InformasiLab infoLab = new InformasiLab();
-                                            List<InformasiLab> dataLab = new ArrayList<InformasiLab>();
-                                            dataLab = infoLab.tampilInfoLab(id_peminjaman);
-                                            for (int i = 0; i < dataLab.size(); i++) {
-                                        
-      out.write("\r\n");
+      out.write("                                        \r\n");
       out.write("                                        <div class=\"row\">\r\n");
       out.write("                                            <h4 class=\"header-title mb-3\">Informasi Lab</h4>\r\n");
       out.write("                                            <div class=\"col-lg-6\">\r\n");
@@ -424,33 +413,23 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                                    <li>\r\n");
       out.write("                                                        <p class=\"mb-2\">\r\n");
       out.write("                                                            <span class=\"fw-bold me-2\">Nomor Lab:</span>\r\n");
-      out.write("                                                            ");
-      out.print( dataLab.get(i).getNo_lab() );
-      out.write("\r\n");
+      out.write("                                                            \r\n");
       out.write("                                                        </p>\r\n");
       out.write("                                                        <p class=\"mb-2\">\r\n");
       out.write("                                                            <span class=\"fw-bold me-2\">Nama Lab:</span>\r\n");
-      out.write("                                                            ");
-      out.print( dataLab.get(i).getNama_lab() );
-      out.write("\r\n");
+      out.write("                                                            \r\n");
       out.write("                                                        </p>\r\n");
       out.write("                                                        <p class=\"mb-3\">\r\n");
       out.write("                                                            <span class=\"fw-bold me-2\">Kapasitas Lab:</span>\r\n");
-      out.write("                                                            ");
-      out.print( dataLab.get(i).getKapasitas() );
-      out.write(" Orang\r\n");
+      out.write("                                                            \r\n");
       out.write("                                                        </p>\r\n");
       out.write("                                                        <p class=\"mb-2\">\r\n");
       out.write("                                                            <span class=\"fw-bold me-2\">Ketua Lab:</span>\r\n");
-      out.write("                                                            ");
-      out.print( dataLab.get(i).getKetua_lab() );
-      out.write("\r\n");
+      out.write("                                                            \r\n");
       out.write("                                                        </p>\r\n");
       out.write("                                                        <p class=\"mb-2\">\r\n");
       out.write("                                                            <span class=\"fw-bold me-2\">PIC Lab:</span>\r\n");
-      out.write("                                                            ");
-      out.print( dataLab.get(i).getPic_lab() );
-      out.write("\r\n");
+      out.write("                                                            \r\n");
       out.write("                                                        </p>\r\n");
       out.write("                                                    </li>\r\n");
       out.write("                                                </ul>\r\n");
@@ -458,9 +437,7 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                            <div class=\"col-lg-6\">\r\n");
       out.write("                                                <img \r\n");
       out.write("                                                    class=\"mt-1\"\r\n");
-      out.write("                                                    src=\"http://localhost:8080/SIMPEL_Ganjil/assets/images/");
-      out.print( dataLab.get(i).getFoto_lab() );
-      out.write("\"\r\n");
+      out.write("                                                    src=\"http://localhost:8080/SIMPEL_Ganjil/assets/images/\"\r\n");
       out.write("                                                    style=\"\r\n");
       out.write("                                                        width: 100%;\r\n");
       out.write("                                                        border-radius: 8px;\r\n");
@@ -468,17 +445,13 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                                >\r\n");
       out.write("                                            </div>\r\n");
       out.write("                                        </div>\r\n");
-      out.write("                                        ");
- } 
-      out.write("                \r\n");
+      out.write("                                                     \r\n");
       out.write("                                    </div>\r\n");
       out.write("                                </div>\r\n");
       out.write("                            </div> <!-- end col -->\r\n");
       out.write("                        </div>\r\n");
       out.write("                        <!-- end row -->       \r\n");
-      out.write("                        ");
- } 
-      out.write("    \r\n");
+      out.write("                        \r\n");
       out.write("                    </div> <!-- container -->\r\n");
       out.write("\r\n");
       out.write("                </div> <!-- content -->\r\n");

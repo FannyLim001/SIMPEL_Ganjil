@@ -6,7 +6,7 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="models.pic.DetailPeminjaman"%>
+<%@page import="models.pic.Peminjaman"%>
 <%@page import="models.pic.InformasiLab"%>
 <%@page import="models.pic.Logbook"%>
 
@@ -41,6 +41,8 @@
     
     <%
         String id_peminjaman = request.getParameter("id_peminjaman");
+        Peminjaman p = new Peminjaman();
+        p = p.peminjamanById(Integer.parseInt(id_peminjaman));
     %>
     
     <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
@@ -82,80 +84,82 @@
                         </div>     
                         <!-- end page title --> 
                         
-                        <%
-                            if (id_peminjaman == null) { %>
-                                <p>Tidak ada data</p>
-                            <% } else{
-                        %>
-                        
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="header-title mb-3">Informasi Peminjaman</h4>
+                                        
+                                        <%
+                                            if (id_peminjaman == null || id_peminjaman == "") { %>
+                                                <p>Tidak ada data</p>
+                                            <% } else{
+                                        %>
+                                        
                                         <ul class="list-unstyled mb-0">
-                                            <%
-                                                String tgl_berakhir = null;
-                                                String id_lab = null;
-                                                DetailPeminjaman detail = new DetailPeminjaman();
-                                                List<DetailPeminjaman> data = new ArrayList<DetailPeminjaman>();
-                                                data = detail.tampilDetailPeminjaman(id_peminjaman);
-                                                for (int i = 0; i < data.size(); i++) {
-                                            %>
                                             <li>
                                                 <p class="mb-2">
                                                     <span class="fw-bold me-2">Ketua Kegiatan:</span>
-                                                    <%= data.get(i).getKetua_kegiatan() %>
+                                                    <%= p.getKetua_kegiatan() %>
                                                 </p>
                                                 <p class="mb-3">
                                                     <span class="fw-bold me-2">Kontak Ketua:</span>
-                                                    <%= data.get(i).getKontak_ketua() %>
+                                                    <%= p.getKontak_ketua() %>
                                                 </p>
                                                 <p class="mb-2">
                                                     <span class="fw-bold me-2">Lab yang dipinjam:</span>
-                                                    <%= data.get(i).getNo_lab() %>
+                                                    <%= p.getNo_lab() %>
                                                 </p>
                                                 <p class="mb-3">
                                                     <span class="fw-bold me-2">Level Peminjaman:</span>
-                                                    <%= data.get(i).getLevel() %>
+                                                    <%= p.getLevel() %>
                                                 </p>
                                                 <p class="mb-2">
                                                     <span class="fw-bold me-2">Tanggal Peminjaman:</span>
-                                                    <%= data.get(i).getTgl_peminjaman() %>
+                                                    <%= p.getTgl_peminjaman() %>
                                                 </p>
                                                 <p class="mb-2">
                                                     <span class="fw-bold me-2">Tanggal Mulai:</span>
-                                                    <%= data.get(i).getTgl_mulai() %>
+                                                    <%= p.getTgl_mulai() %>
                                                 </p>
                                                 <p class="mb-3">
                                                     <span class="fw-bold me-2">Tanggal Berakhir:</span>
-                                                    <%= data.get(i).getTgl_berakhir() %>
+                                                    <%= p.getTgl_berakhir() %>
+                                                </p>
+                                                <p class="mb-2">
+                                                    <span class="fw-bold me-2">Keterangan:</span>
+                                                    <%= p.getKeterangan() %>
                                                 </p>
                                                 <p class="mb-3">
-                                                    <span class="fw-bold me-2">Keterangan:</span>
-                                                    <%= data.get(i).getKeterangan() %>
+                                                    <span class="fw-bold me-2">Status:</span>
+                                                    <%= p.getStatus_peminjaman() %>
                                                 </p>
                                             </li>
                                             <%
-                                                tgl_berakhir = data.get(i).getTgl_berakhir();
-                                                id_lab = data.get(i).getNo_lab();
                                                 }
                                             %>
                                         </ul>
                                         
-                                        <!-- Button trigger modal -->
+                                        <%
+                                            String status = p.getStatus_peminjaman();
+                                            if (!status.equalsIgnoreCase("selesai")) { %>
+                                                <div class="text-center">
+                                                    <button type="button" class="btn btn-primary" disabled>
+                                                        Lihat Logbook
+                                                    </button>
+                                                </div>  
+                                            <% } else{ 
+                                                    int id_lab = p.getId_lab();
+                                                    String tgl_berakhir = p.getTgl_berakhir();
+                                                    Logbook log = new Logbook();
+                                                    log = log.logbookByPeminjaman(id_lab, tgl_berakhir);
+                                            %>
+                                            
                                         <div class="text-center">
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogbook">
                                                 Lihat Logbook
                                             </button>
                                         </div>
-                                        
-                                        <%
-                                            Logbook lb = new Logbook();
-                                            List<Logbook> dataLogbook = new ArrayList<Logbook>();
-                                            dataLogbook = lb.pilihLogbook(id_lab, tgl_berakhir);
-                                            for (int i = 0; i < dataLogbook.size(); i++) {
-                                        %>
                                         
                                         <!-- Modal -->
                                         <div class="modal fade" id="modalLogbook" tabindex="-1" aria-labelledby="modalLogbookLabel" aria-hidden="true">
@@ -168,10 +172,10 @@
                                                     <div class="modal-body px-4 pt-4">
                                                         <div class="">
                                                             <img
-                                                                src="http://localhost:8080/SIMPEL_Ganjil/assets/images/<%= dataLogbook.get(i).getFoto_lab() %>"
+                                                                src="http://localhost:8080/SIMPEL_Ganjil/assets/images/<%= log.getFoto_lab() %>"
                                                                 style="
-                                                                width: 100%;
-                                                                border-radius: 8px;
+                                                                    width: 100%;
+                                                                    border-radius: 8px;
                                                                 "
                                                             >
                                                         </div>
@@ -179,19 +183,19 @@
                                                             <li>
                                                                 <p class="mb-2">
                                                                     <span class="fw-bold me-2">Nama Pengisi:</span>
-                                                                    <%= dataLogbook.get(i).getNama_pengisi() %>
+                                                                    <%= log.getNama_pengisi() %>
                                                                 </p>
                                                                 <p class="mb-2">
                                                                     <span class="fw-bold me-2">Tanggal Pengisian:</span>
-                                                                    <%= dataLogbook.get(i).getTgl_pengisian() %>
+                                                                    <%= log.getTgl_pengisian()%>
                                                                 </p>
                                                                 <p class="mb-2">
                                                                     <span class="fw-bold me-2">Kondisi Lab:</span>
-                                                                    <%= dataLogbook.get(i).getKondisi_lab() %>
+                                                                    <%= log.getKondisi_lab()%>
                                                                 </p>
                                                                 <p class="mb-2">
                                                                     <span class="fw-bold me-2">Pengaduan:</span>
-                                                                    <%= dataLogbook.get(i).getPengaduan() %>
+                                                                    <%= log.getPengaduan()%>
                                                                 </p>
                                                             </li>
                                                         </ul>
@@ -210,12 +214,7 @@
                             <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <%
-                                            InformasiLab infoLab = new InformasiLab();
-                                            List<InformasiLab> dataLab = new ArrayList<InformasiLab>();
-                                            dataLab = infoLab.tampilInfoLab(id_peminjaman);
-                                            for (int i = 0; i < dataLab.size(); i++) {
-                                        %>
+                                        
                                         <div class="row">
                                             <h4 class="header-title mb-3">Informasi Lab</h4>
                                             <div class="col-lg-6">
@@ -223,23 +222,23 @@
                                                     <li>
                                                         <p class="mb-2">
                                                             <span class="fw-bold me-2">Nomor Lab:</span>
-                                                            <%= dataLab.get(i).getNo_lab() %>
+                                                            
                                                         </p>
                                                         <p class="mb-2">
                                                             <span class="fw-bold me-2">Nama Lab:</span>
-                                                            <%= dataLab.get(i).getNama_lab() %>
+                                                            
                                                         </p>
                                                         <p class="mb-3">
                                                             <span class="fw-bold me-2">Kapasitas Lab:</span>
-                                                            <%= dataLab.get(i).getKapasitas() %> Orang
+                                                            
                                                         </p>
                                                         <p class="mb-2">
                                                             <span class="fw-bold me-2">Ketua Lab:</span>
-                                                            <%= dataLab.get(i).getKetua_lab() %>
+                                                            
                                                         </p>
                                                         <p class="mb-2">
                                                             <span class="fw-bold me-2">PIC Lab:</span>
-                                                            <%= dataLab.get(i).getPic_lab() %>
+                                                            
                                                         </p>
                                                     </li>
                                                 </ul>
@@ -247,7 +246,7 @@
                                             <div class="col-lg-6">
                                                 <img 
                                                     class="mt-1"
-                                                    src="http://localhost:8080/SIMPEL_Ganjil/assets/images/<%= dataLab.get(i).getFoto_lab() %>"
+                                                    src="http://localhost:8080/SIMPEL_Ganjil/assets/images/"
                                                     style="
                                                         width: 100%;
                                                         border-radius: 8px;
@@ -255,13 +254,13 @@
                                                 >
                                             </div>
                                         </div>
-                                        <% } %>                
+                                                     
                                     </div>
                                 </div>
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->       
-                        <% } %>    
+                        
                     </div> <!-- container -->
 
                 </div> <!-- content -->
