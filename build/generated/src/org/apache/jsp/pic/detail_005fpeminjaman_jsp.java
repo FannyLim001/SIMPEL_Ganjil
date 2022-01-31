@@ -247,6 +247,16 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                        </div>     \r\n");
       out.write("                        <!-- end page title --> \r\n");
       out.write("                        \r\n");
+      out.write("                        ");
+
+                            if (id_peminjaman == null) { 
+      out.write("\r\n");
+      out.write("                                <p>Tidak ada data</p>\r\n");
+      out.write("                            ");
+ } else{
+                        
+      out.write("\r\n");
+      out.write("                        \r\n");
       out.write("                        <div class=\"row\">\r\n");
       out.write("                            <div class=\"col-lg-6\">\r\n");
       out.write("                                <div class=\"card\">\r\n");
@@ -429,7 +439,9 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                            </div> <!-- end col -->\r\n");
       out.write("                        </div>\r\n");
       out.write("                        <!-- end row -->       \r\n");
-      out.write("\r\n");
+      out.write("                        ");
+ } 
+      out.write("    \r\n");
       out.write("                    </div> <!-- container -->\r\n");
       out.write("\r\n");
       out.write("                </div> <!-- content -->\r\n");
