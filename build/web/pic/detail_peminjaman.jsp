@@ -8,6 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="models.pic.DetailPeminjaman"%>
 <%@page import="models.pic.InformasiLab"%>
+<%@page import="models.pic.Logbook"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -135,13 +136,21 @@
                                             </li>
                                             <% } %>
                                         </ul>
+                                        
                                         <!-- Button trigger modal -->
                                         <div class="text-center">
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogbook">
                                                 Lihat Logbook
                                             </button>
                                         </div>
-
+                                        
+                                        <%
+                                            Logbook lb = new Logbook();
+                                            List<Logbook> dataLogbook = new ArrayList<Logbook>();
+                                            dataLogbook = lb.pilihLogbook(id_peminjaman);
+                                            for (int i = 0; i < dataLogbook.size(); i++) {
+                                        %>
+                                        
                                         <!-- Modal -->
                                         <div class="modal fade" id="modalLogbook" tabindex="-1" aria-labelledby="modalLogbookLabel" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -153,7 +162,7 @@
                                                     <div class="modal-body px-4 pt-4">
                                                         <div class="">
                                                             <img
-                                                                src="http://localhost:8080/SIMPEL_Ganjil/assets/images/bg-auth.jpg"
+                                                                src="http://localhost:8080/SIMPEL_Ganjil/assets/images/<%= dataLogbook.get(i).getFoto_lab() %>"
                                                                 style="
                                                                 width: 100%;
                                                                 border-radius: 8px;
@@ -162,10 +171,22 @@
                                                         </div>
                                                         <ul class="list-unstyled mb-0 mt-3">
                                                             <li>
-                                                                <p class="mb-2"><span class="fw-bold me-2">Nama Pengisi:</span>Anriana Lusia</p>
-                                                                <p class="mb-2"><span class="fw-bold me-2">Tanggal Pengisian:</span>25-01-2022</p>
-                                                                <p class="mb-2"><span class="fw-bold me-2">Kondisi Lab:</span>Baik</p>
-                                                                <p class="mb-2"><span class="fw-bold me-2">Pengaduan:</span>Keyboard PC 13 Tidak Berfungsi</p>
+                                                                <p class="mb-2">
+                                                                    <span class="fw-bold me-2">Nama Pengisi:</span>
+                                                                    <%= dataLogbook.get(i).getNama_pengisi() %>
+                                                                </p>
+                                                                <p class="mb-2">
+                                                                    <span class="fw-bold me-2">Tanggal Pengisian:</span>
+                                                                    <%= dataLogbook.get(i).getTgl_pengisian() %>
+                                                                </p>
+                                                                <p class="mb-2">
+                                                                    <span class="fw-bold me-2">Kondisi Lab:</span>
+                                                                    <%= dataLogbook.get(i).getKondisi_lab() %>
+                                                                </p>
+                                                                <p class="mb-2">
+                                                                    <span class="fw-bold me-2">Pengaduan:</span>
+                                                                    <%= dataLogbook.get(i).getPengaduan() %>
+                                                                </p>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -175,6 +196,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div> <!-- end col -->
