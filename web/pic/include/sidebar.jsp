@@ -42,7 +42,7 @@
                 <div class="collapse" id="peminjaman">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="http://localhost:8080/SIMPEL_Ganjil/pic/konfirmasi_peminjaman.jsp">Konfirmasi Peminjaman</a>
+                            <a href="http://localhost:8080/SIMPEL_Ganjil/pic/mengkonfirmasi_peminjaman.jsp">Konfirmasi Peminjaman</a>
                         </li>
                         <li>
                             <a href="http://localhost:8080/SIMPEL_Ganjil/pic/daftar_peminjaman.jsp">Daftar Peminjaman</a>
