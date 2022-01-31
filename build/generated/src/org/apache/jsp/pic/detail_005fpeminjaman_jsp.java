@@ -6,6 +6,7 @@ import javax.servlet.jsp.*;
 import java.util.ArrayList;
 import java.util.List;
 import models.pic.DetailPeminjaman;
+import models.pic.InformasiLab;
 
 public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -58,6 +59,7 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html lang=\"en\">\r\n");
       out.write("    <head>\r\n");
@@ -88,7 +90,7 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("    \r\n");
       out.write("    ");
 
-        Int id_peminjaman = request.getParameter("id_peminjaman");
+        String id_peminjaman = request.getParameter("id_peminjaman");
     
       out.write("\r\n");
       out.write("    \r\n");
@@ -356,33 +358,72 @@ public final class detail_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                    </div>\r\n");
       out.write("                                </div>\r\n");
       out.write("                            </div> <!-- end col -->\r\n");
+      out.write("                            \r\n");
       out.write("                            <div class=\"col-lg-6\">\r\n");
       out.write("                                <div class=\"card\">\r\n");
       out.write("                                    <div class=\"card-body\">\r\n");
+      out.write("                                        ");
+
+                                            InformasiLab infoLab = new InformasiLab();
+                                            List<InformasiLab> dataLab = new ArrayList<InformasiLab>();
+                                            dataLab = infoLab.tampilInfoLab(id_peminjaman);
+                                            for (int i = 0; i < dataLab.size(); i++) {
+                                        
+      out.write("\r\n");
       out.write("                                        <div class=\"row\">\r\n");
       out.write("                                            <h4 class=\"header-title mb-3\">Informasi Lab</h4>\r\n");
       out.write("                                            <div class=\"col-lg-6\">\r\n");
       out.write("                                                <ul class=\"list-unstyled mb-0\">\r\n");
       out.write("                                                    <li>\r\n");
-      out.write("                                                        <p class=\"mb-2\"><span class=\"fw-bold me-2\">Nomor Lab:</span>330</p>\r\n");
-      out.write("                                                        <p class=\"mb-2\"><span class=\"fw-bold me-2\">Nama Lab:</span>Lab Programming</p>\r\n");
-      out.write("                                                        <p class=\"mb-3\"><span class=\"fw-bold me-2\">Kapasitas Lab:</span>36 Mahasiswa</p>\r\n");
-      out.write("                                                        <p class=\"mb-2\"><span class=\"fw-bold me-2\">Ketua Lab:</span>Ibu Shummaya</p>\r\n");
-      out.write("                                                        <p class=\"mb-2\"><span class=\"fw-bold me-2\">PIC Lab:</span>Ibu Dwi Listiyanti</p>\r\n");
+      out.write("                                                        <p class=\"mb-2\">\r\n");
+      out.write("                                                            <span class=\"fw-bold me-2\">Nomor Lab:</span>\r\n");
+      out.write("                                                            ");
+      out.print( dataLab.get(i).getNo_lab() );
+      out.write("\r\n");
+      out.write("                                                        </p>\r\n");
+      out.write("                                                        <p class=\"mb-2\">\r\n");
+      out.write("                                                            <span class=\"fw-bold me-2\">Nama Lab:</span>\r\n");
+      out.write("                                                            ");
+      out.print( dataLab.get(i).getNama_lab() );
+      out.write("\r\n");
+      out.write("                                                        </p>\r\n");
+      out.write("                                                        <p class=\"mb-3\">\r\n");
+      out.write("                                                            <span class=\"fw-bold me-2\">Kapasitas Lab:</span>\r\n");
+      out.write("                                                            ");
+      out.print( dataLab.get(i).getKapasitas() );
+      out.write(" Orang\r\n");
+      out.write("                                                        </p>\r\n");
+      out.write("                                                        <p class=\"mb-2\">\r\n");
+      out.write("                                                            <span class=\"fw-bold me-2\">Ketua Lab:</span>\r\n");
+      out.write("                                                            ");
+      out.print( dataLab.get(i).getKetua_lab() );
+      out.write("\r\n");
+      out.write("                                                        </p>\r\n");
+      out.write("                                                        <p class=\"mb-2\">\r\n");
+      out.write("                                                            <span class=\"fw-bold me-2\">PIC Lab:</span>\r\n");
+      out.write("                                                            ");
+      out.print( dataLab.get(i).getPic_lab() );
+      out.write("\r\n");
+      out.write("                                                        </p>\r\n");
       out.write("                                                    </li>\r\n");
       out.write("                                                </ul>\r\n");
       out.write("                                            </div>\r\n");
       out.write("                                            <div class=\"col-lg-6\">\r\n");
       out.write("                                                <img \r\n");
       out.write("                                                    class=\"mt-1\"\r\n");
-      out.write("                                                    src=\"http://localhost:8080/SIMPEL_Ganjil/assets/images/bg-auth.jpg\"\r\n");
+      out.write("                                                    src=\"http://localhost:8080/SIMPEL_Ganjil/assets/images/");
+      out.print( dataLab.get(i).getFoto_lab() );
+      out.write("\"\r\n");
       out.write("                                                    style=\"\r\n");
-      out.write("                                                    width: 100%;\r\n");
-      out.write("                                                    border-radius: 8px;\r\n");
+      out.write("                                                        width: 100%;\r\n");
+      out.write("                                                        border-radius: 8px;\r\n");
       out.write("                                                    \"\r\n");
       out.write("                                                >\r\n");
       out.write("                                            </div>\r\n");
       out.write("                                        </div>\r\n");
+      out.write("                                        ");
+ } 
+      out.write("                \r\n");
       out.write("                                    </div>\r\n");
       out.write("                                </div>\r\n");
       out.write("                            </div> <!-- end col -->\r\n");
