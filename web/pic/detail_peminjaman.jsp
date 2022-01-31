@@ -41,6 +41,7 @@
     
     <%
         String id_peminjaman = request.getParameter("id_peminjaman");
+        
         Peminjaman p = new Peminjaman();
         p = p.peminjamanById(Integer.parseInt(id_peminjaman));
     %>
@@ -214,7 +215,10 @@
                             <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        
+                                        <%
+                                            InformasiLab info = new InformasiLab();
+                                            info = info.labById(id_peminjaman);
+                                        %>
                                         <div class="row">
                                             <h4 class="header-title mb-3">Informasi Lab</h4>
                                             <div class="col-lg-6">
@@ -222,23 +226,23 @@
                                                     <li>
                                                         <p class="mb-2">
                                                             <span class="fw-bold me-2">Nomor Lab:</span>
-                                                            
+                                                            <%= info.getNo_lab() %>
                                                         </p>
                                                         <p class="mb-2">
                                                             <span class="fw-bold me-2">Nama Lab:</span>
-                                                            
+                                                            <%= info.getNama_lab()%>
                                                         </p>
                                                         <p class="mb-3">
                                                             <span class="fw-bold me-2">Kapasitas Lab:</span>
-                                                            
+                                                            <%= info.getKapasitas()%>
                                                         </p>
                                                         <p class="mb-2">
                                                             <span class="fw-bold me-2">Ketua Lab:</span>
-                                                            
+                                                            <%= info.getKetua_lab()%>
                                                         </p>
                                                         <p class="mb-2">
                                                             <span class="fw-bold me-2">PIC Lab:</span>
-                                                            
+                                                            <%= info.getPic_lab()%>
                                                         </p>
                                                     </li>
                                                 </ul>
@@ -246,7 +250,7 @@
                                             <div class="col-lg-6">
                                                 <img 
                                                     class="mt-1"
-                                                    src="http://localhost:8080/SIMPEL_Ganjil/assets/images/"
+                                                    src="http://localhost:8080/SIMPEL_Ganjil/assets/images/<%= info.getFoto_lab() %>"
                                                     style="
                                                         width: 100%;
                                                         border-radius: 8px;
