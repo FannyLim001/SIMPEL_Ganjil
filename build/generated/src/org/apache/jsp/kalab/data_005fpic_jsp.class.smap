@@ -1,0 +1,22 @@
+SMAP
+data_005fpic_jsp.java
+JSP
+*S JSP
+*F
++ 0 data_pic.jsp
+kalab/data_pic.jsp
++ 1 sidebar.jsp
+kalab/include/sidebar.jsp
++ 2 header.jsp
+kalab/include/header.jsp
++ 3 footer.jsp
+kalab/include/footer.jsp
+*L
+5,25:51
+5#1,60:76
+29#0,8:135
+5#2,36:143
+36#0,27:178
+5#3,23:205
+62#0,30:227
+*E
