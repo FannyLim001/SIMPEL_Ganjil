@@ -78,31 +78,33 @@ public class InformasiLab {
         this.foto_lab = foto_lab;
     }
     
-    public List tampilInfoLab(String id_peminjaman){
-        List<InformasiLab> data = new ArrayList<InformasiLab>();
-        ResultSet rs = null;
+    public InformasiLab labById(String id_peminjaman){
+        InformasiLab info = new InformasiLab();
         try{
             String sql = "SELECT l.no_lab, l.nama_lab, l.kapasitas_lab, ka.nama_kalab,\n" + 
                 "pic.nama_pic, l.foto_lab\n" +
                 "FROM tbl_lab l, tbl_kepala_lab ka, tbl_pic_lab pic, tbl_peminjaman p\n" +
                 "WHERE l.id_kalab = ka.id_kalab AND l.id_pic = pic.id_pic\n" +
                 "AND p.id_lab = l.id_lab AND p.id_peminjaman = '"+id_peminjaman+"'";
-            rs = db.getData(sql);
-            while(rs.next()){
-                InformasiLab il = new InformasiLab();
-                il.setNo_lab(rs.getString("no_lab"));
-                il.setNama_lab(rs.getString("nama_lab"));
-                il.setKapasitas(rs.getString("kapasitas_lab"));
-                il.setKetua_lab(rs.getString("nama_kalab"));
-                il.setPic_lab(rs.getString("nama_pic"));
-                il.setFoto_lab(rs.getString("foto_lab"));
-                
-                data.add(il);
+            ResultSet rs = db.getData(sql);
+            if(rs.next()){
+                info.setNo_lab(rs.getString("no_lab"));
+                info.setNama_lab(rs.getString("nama_lab"));
+                info.setKapasitas(rs.getString("kapasitas_lab"));
+                info.setKetua_lab(rs.getString("nama_kalab"));
+                info.setPic_lab(rs.getString("nama_pic"));
+                info.setFoto_lab(rs.getString("foto_lab"));
             }
             db.disconnect(rs);
         }catch(Exception ex){
             System.out.println("Terjadi Kesalahan Saat menampilkan detail peminjaman" + ex);
         }
-        return data;
+        return info;
     }
+    
+//    public static void main(String[] args) {
+//        InformasiLab info = new InformasiLab();
+//        info = info.labById("2");
+//        System.out.println(info.getNama_lab());
+//    }
 }

@@ -6,7 +6,7 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="models.pic.DaftarPeminjaman"%>
+<%@page import="models.pic.Peminjaman"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -36,7 +36,11 @@
         <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
         <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css" />
     </head>
-
+    <%
+        Peminjaman daftarPeminjaman = new Peminjaman();
+        List<Peminjaman> data = new ArrayList<Peminjaman>();
+        data = daftarPeminjaman.allPeminjaman();
+    %>
     <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
         <!-- Begin page -->
         <div class="wrapper">
@@ -74,79 +78,14 @@
                             </div>
                         </div>     
                         <!-- end page title --> 
-
+                        
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="tab-content">
                                             <div class="tab-pane show active" id="basic-datatable-preview">
-                                                <h5>Peminjaman Dalam Proses</h5>
-                                                <table id="tbl-proses" class="table display nowrap">
-                                                    <thead class="table-light">
-                                                        <tr class="text-center">
-                                                            <th>Lab</th>
-                                                            <th>Ketua Kegiatan</th>
-                                                            <th>Kontak Ketua</th>
-                                                            <th>Level</th>
-                                                            <th>Tgl Peminjaman</th>
-                                                            <th>Tgl Mulai</th>
-                                                            <th>Tgl Berakhir</th>
-                                                            <th>Keterangan</th>
-                                                            <th>Status</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <%
-                                                            DaftarPeminjaman dpDalamProses = new DaftarPeminjaman();
-                                                            List<DaftarPeminjaman> dataDalamProses = new ArrayList<DaftarPeminjaman>();
-                                                            dataDalamProses = dpDalamProses.tampilDaftarDalamProses();
-                                                            for (int i = 0; i < dataDalamProses.size(); i++) {
-                                                        %>
-                                                        <tr>
-                                                            <td><%= dataDalamProses.get(i).getNo_lab() %></td>
-                                                            <td><%= dataDalamProses.get(i).getKetua_kegiatan() %></td>
-                                                            <td class="text-center"><%= dataDalamProses.get(i).getKontak_ketua() %></td>
-                                                            <td class="text-center"><%= dataDalamProses.get(i).getLevel() %></td>
-                                                            <td class="text-center"><%= dataDalamProses.get(i).getTgl_peminjaman() %></td>
-                                                            <td class="text-center"><%= dataDalamProses.get(i).getTgl_mulai() %></td>
-                                                            <td class="text-center"><%= dataDalamProses.get(i).getTgl_berakhir() %></td>
-                                                            <td><%= dataDalamProses.get(i).getKeterangan() %></td>
-                                                            <td class="text-center">
-                                                                <%
-                                                                    if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("diajukan")) { %>
-                                                                        <span class="badge bg-warning p-2"><%= dataDalamProses.get(i).getStatus() %></span>
-                                                                    <%
-                                                                        }else if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("menunggu")){ %>
-                                                                            <span class="badge bg-secondary p-2"><%= dataDalamProses.get(i).getStatus() %></span>
-                                                                    <%
-                                                                        }else if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("ditolak")){ %>
-                                                                            <span class="badge bg-danger p-2"><%= dataDalamProses.get(i).getStatus() %></span>
-                                                                    <%    
-                                                                        }else if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("disetujui")){ %>
-                                                                            <span class="badge bg-success p-2"><%= dataDalamProses.get(i).getStatus() %></span>
-                                                                    <%    
-                                                                    }
-                                                                %>
-                                                            </td>
-                                                        </tr>
-                                                        <% } %>
-                                                    </tbody>
-                                                </table>                                           
-                                            </div> <!-- end preview-->
-                                        </div> <!-- end card body-->
-                                    </div> <!-- end card -->
-                                </div><!-- end col-->
-                            </div>
-                            <!-- end row -->        
-                        </div> <!-- container -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="tab-content">
-                                            <div class="tab-pane show active" id="basic-datatable-preview">
-                                                <h5>Peminjaman Selesai</h5>
+                                                <h5>Daftar Peminjaman</h5>
                                                 <table id="tbl-selesai" class="table dt-responsive w-100 display">
                                                     <thead class="table-light">
                                                         <tr class="text-center">
@@ -161,22 +100,32 @@
                                                     </thead>
                                                     <tbody>
                                                         <%
-                                                            DaftarPeminjaman dpSelesai = new DaftarPeminjaman();
-                                                            List<DaftarPeminjaman> dataSelesai = new ArrayList<DaftarPeminjaman>();
-                                                            dataSelesai = dpSelesai.tampilDaftarSelesai();
-                                                            for (int i = 0; i < dataSelesai.size(); i++) {
+                                                            for (int i = 0; i < data.size(); i++) {
                                                         %>
                                                         <tr>
-                                                            <td><%= dataSelesai.get(i).getNo_lab() %></td>
-                                                            <td><%= dataSelesai.get(i).getKetua_kegiatan() %></td>
-                                                            <td class="text-center"><%= dataSelesai.get(i).getLevel() %></td>
-                                                            <td class="text-center"><%= dataSelesai.get(i).getTgl_peminjaman()%></td>
-                                                            <td><%= dataSelesai.get(i).getKeterangan() %></td>
+                                                            <td><%= data.get(i).getNo_lab() %></td>
+                                                            <td><%= data.get(i).getKetua_kegiatan() %></td>
+                                                            <td class="text-center"><%= data.get(i).getLevel() %></td>
+                                                            <td class="text-center"><%= data.get(i).getTgl_peminjaman()%></td>
+                                                            <td><%= data.get(i).getKeterangan() %></td>
                                                             <td class="text-center">
-                                                                <span class="badge bg-success p-2"><%= dataSelesai.get(i).getStatus() %></span>
+                                                            <%
+                                                                String status = data.get(i).getStatus_peminjaman();
+                                                                if (status.equalsIgnoreCase("diajukan")) { %>
+                                                                    <span class="badge bg-warning p-2"><%= status %></span>
+                                                                <% } else if (status.equalsIgnoreCase("menunggu")) { %>
+                                                                    <span class="badge bg-secondary p-2"><%= status %></span>
+                                                                <% } else if (status.equalsIgnoreCase("disetujui")) { %>
+                                                                    <span class="badge bg-info p-2"><%= status %></span>
+                                                                <% } else if (status.equalsIgnoreCase("ditolak")) { %>
+                                                                    <span class="badge bg-danger p-2"><%= status %></span>   
+                                                                <% } else if (status.equalsIgnoreCase("selesai")) { %>
+                                                                    <span class="badge bg-success p-2"><%= status %></span>   
+                                                                <% }
+                                                            %>
                                                             </td>
                                                             <td class="table-action text-center">
-                                                                <a href="http://localhost:8080/SIMPEL_Ganjil/pic/detail_peminjaman.jsp?id_peminjaman=<%= dataSelesai.get(i).getId_peminjaman() %>" 
+                                                                <a href="http://localhost:8080/SIMPEL_Ganjil/pic/detail_peminjaman.jsp?id_peminjaman=<%= data.get(i).getId_peminjaman() %>" 
                                                                    class="btn btn-primary mb-2">Detail</a>
                                                             </td>
                                                         </tr>

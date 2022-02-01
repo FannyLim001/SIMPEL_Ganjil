@@ -6,7 +6,7 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="models.pic.DetailPeminjaman"%>
+<%@page import="models.pic.Peminjaman"%>
 <%@page import="models.pic.InformasiLab"%>
 <%@page import="models.pic.Logbook"%>
 
@@ -15,7 +15,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Data Peminjaman | SIMPEL </title>
+        <title>Detail Peminjaman | SIMPEL </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -41,6 +41,9 @@
     
     <%
         String id_peminjaman = request.getParameter("id_peminjaman");
+        
+        Peminjaman p = new Peminjaman();
+        p = p.peminjamanById(Integer.parseInt(id_peminjaman));
     %>
     
     <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
@@ -72,84 +75,105 @@
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">SIMPEL</a></li>
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">PIC Lab</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Data Peminjaman</a></li>
-                                            <li class="breadcrumb-item active">Detail Data Peminjaman</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Daftar Peminjaman</a></li>
+                                            <li class="breadcrumb-item active">Detail Peminjaman</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Detail Data Peminjaman</h4>
+                                    <h4 class="page-title">Detail Peminjaman</h4>
                                 </div>
                             </div>
                         </div>     
                         <!-- end page title --> 
-                        
-                        <%
-                            if (id_peminjaman == null) { %>
-                                <p>Tidak ada data</p>
-                            <% } else{
-                        %>
                         
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="header-title mb-3">Informasi Peminjaman</h4>
+                                        
+                                        <%
+                                            if (id_peminjaman == null || id_peminjaman == "") { %>
+                                                <p>Tidak ada data</p>
+                                            <% } else{
+                                        %>
+                                        
                                         <ul class="list-unstyled mb-0">
-                                            <%
-                                                DetailPeminjaman detail = new DetailPeminjaman();
-                                                List<DetailPeminjaman> data = new ArrayList<DetailPeminjaman>();
-                                                data = detail.tampilDetailPeminjaman(id_peminjaman);
-                                                for (int i = 0; i < data.size(); i++) {
-                                            %>
                                             <li>
                                                 <p class="mb-2">
                                                     <span class="fw-bold me-2">Ketua Kegiatan:</span>
-                                                    <%= data.get(i).getKetua_kegiatan() %>
+                                                    <%= p.getKetua_kegiatan() %>
                                                 </p>
                                                 <p class="mb-3">
                                                     <span class="fw-bold me-2">Kontak Ketua:</span>
-                                                    <%= data.get(i).getKontak_ketua() %>
+                                                    <%= p.getKontak_ketua() %>
                                                 </p>
                                                 <p class="mb-2">
                                                     <span class="fw-bold me-2">Lab yang dipinjam:</span>
-                                                    <%= data.get(i).getNo_lab() %>
+                                                    <%= p.getNo_lab() %>
                                                 </p>
                                                 <p class="mb-3">
                                                     <span class="fw-bold me-2">Level Peminjaman:</span>
-                                                    <%= data.get(i).getLevel() %>
+                                                    <%= p.getLevel() %>
                                                 </p>
                                                 <p class="mb-2">
                                                     <span class="fw-bold me-2">Tanggal Peminjaman:</span>
-                                                    <%= data.get(i).getTgl_peminjaman() %>
+                                                    <%= p.getTgl_peminjaman() %>
                                                 </p>
                                                 <p class="mb-2">
                                                     <span class="fw-bold me-2">Tanggal Mulai:</span>
-                                                    <%= data.get(i).getTgl_mulai() %>
+                                                    <%= p.getTgl_mulai() %>
                                                 </p>
                                                 <p class="mb-3">
-                                                    <span class="fw-bold me-2">Tanggal Selesai:</span>
-                                                    <%= data.get(i).getTgl_berakhir() %>
+                                                    <span class="fw-bold me-2">Tanggal Berakhir:</span>
+                                                    <%= p.getTgl_berakhir() %>
                                                 </p>
-                                                <p class="mb-3">
+                                                <p class="mb-2">
                                                     <span class="fw-bold me-2">Keterangan:</span>
-                                                    <%= data.get(i).getKeterangan() %>
+                                                    <%= p.getKeterangan() %>
+                                                </p>
+                                                <p class="mb-3">
+                                                    <span class="fw-bold me-2">Status:</span>
+                                                    <%  
+                                                        String status = p.getStatus_peminjaman();
+                                                        if (status.equalsIgnoreCase("diajukan")) { %>
+                                                            <span class="badge bg-warning p-2"><%= status %></span>
+                                                        <% } else if (status.equalsIgnoreCase("menunggu")) { %>
+                                                            <span class="badge bg-secondary p-2"><%= status %></span>
+                                                        <% } else if (status.equalsIgnoreCase("disetujui")) { %>
+                                                            <span class="badge bg-info p-2"><%= status %></span>
+                                                        <% } else if (status.equalsIgnoreCase("ditolak")) { %>
+                                                            <span class="badge bg-danger p-2"><%= status %></span>   
+                                                        <% } else if (status.equalsIgnoreCase("selesai")) { %>
+                                                            <span class="badge bg-success p-2"><%= status %></span>   
+                                                        <% }
+                                                    %>
                                                 </p>
                                             </li>
-                                            <% } %>
+                                            <%
+                                                }
+                                            %>
                                         </ul>
                                         
-                                        <!-- Button trigger modal -->
+                                        <%
+                                            String status = p.getStatus_peminjaman();
+                                            if (!status.equalsIgnoreCase("selesai")) { %>
+                                                <div class="text-center">
+                                                    <button type="button" class="btn btn-primary" disabled>
+                                                        Lihat Logbook
+                                                    </button>
+                                                </div>  
+                                            <% } else{ 
+                                                    int id_lab = p.getId_lab();
+                                                    String tgl_berakhir = p.getTgl_berakhir();
+                                                    Logbook log = new Logbook();
+                                                    log = log.logbookByPeminjaman(id_lab, tgl_berakhir);
+                                            %>
+                                            
                                         <div class="text-center">
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogbook">
                                                 Lihat Logbook
                                             </button>
                                         </div>
-                                        
-                                        <%
-                                            Logbook lb = new Logbook();
-                                            List<Logbook> dataLogbook = new ArrayList<Logbook>();
-                                            dataLogbook = lb.pilihLogbook(id_peminjaman);
-                                            for (int i = 0; i < dataLogbook.size(); i++) {
-                                        %>
                                         
                                         <!-- Modal -->
                                         <div class="modal fade" id="modalLogbook" tabindex="-1" aria-labelledby="modalLogbookLabel" aria-hidden="true">
@@ -162,10 +186,10 @@
                                                     <div class="modal-body px-4 pt-4">
                                                         <div class="">
                                                             <img
-                                                                src="http://localhost:8080/SIMPEL_Ganjil/assets/images/<%= dataLogbook.get(i).getFoto_lab() %>"
+                                                                src="http://localhost:8080/SIMPEL_Ganjil/assets/images/<%= log.getFoto_lab() %>"
                                                                 style="
-                                                                width: 100%;
-                                                                border-radius: 8px;
+                                                                    width: 100%;
+                                                                    border-radius: 8px;
                                                                 "
                                                             >
                                                         </div>
@@ -173,19 +197,19 @@
                                                             <li>
                                                                 <p class="mb-2">
                                                                     <span class="fw-bold me-2">Nama Pengisi:</span>
-                                                                    <%= dataLogbook.get(i).getNama_pengisi() %>
+                                                                    <%= log.getNama_pengisi() %>
                                                                 </p>
                                                                 <p class="mb-2">
                                                                     <span class="fw-bold me-2">Tanggal Pengisian:</span>
-                                                                    <%= dataLogbook.get(i).getTgl_pengisian() %>
+                                                                    <%= log.getTgl_pengisian()%>
                                                                 </p>
                                                                 <p class="mb-2">
                                                                     <span class="fw-bold me-2">Kondisi Lab:</span>
-                                                                    <%= dataLogbook.get(i).getKondisi_lab() %>
+                                                                    <%= log.getKondisi_lab()%>
                                                                 </p>
                                                                 <p class="mb-2">
                                                                     <span class="fw-bold me-2">Pengaduan:</span>
-                                                                    <%= dataLogbook.get(i).getPengaduan() %>
+                                                                    <%= log.getPengaduan()%>
                                                                 </p>
                                                             </li>
                                                         </ul>
@@ -205,10 +229,8 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <%
-                                            InformasiLab infoLab = new InformasiLab();
-                                            List<InformasiLab> dataLab = new ArrayList<InformasiLab>();
-                                            dataLab = infoLab.tampilInfoLab(id_peminjaman);
-                                            for (int i = 0; i < dataLab.size(); i++) {
+                                            InformasiLab info = new InformasiLab();
+                                            info = info.labById(id_peminjaman);
                                         %>
                                         <div class="row">
                                             <h4 class="header-title mb-3">Informasi Lab</h4>
@@ -217,23 +239,23 @@
                                                     <li>
                                                         <p class="mb-2">
                                                             <span class="fw-bold me-2">Nomor Lab:</span>
-                                                            <%= dataLab.get(i).getNo_lab() %>
+                                                            <%= info.getNo_lab() %>
                                                         </p>
                                                         <p class="mb-2">
                                                             <span class="fw-bold me-2">Nama Lab:</span>
-                                                            <%= dataLab.get(i).getNama_lab() %>
+                                                            <%= info.getNama_lab()%>
                                                         </p>
                                                         <p class="mb-3">
                                                             <span class="fw-bold me-2">Kapasitas Lab:</span>
-                                                            <%= dataLab.get(i).getKapasitas() %> Orang
+                                                            <%= info.getKapasitas()%>
                                                         </p>
                                                         <p class="mb-2">
                                                             <span class="fw-bold me-2">Ketua Lab:</span>
-                                                            <%= dataLab.get(i).getKetua_lab() %>
+                                                            <%= info.getKetua_lab()%>
                                                         </p>
                                                         <p class="mb-2">
                                                             <span class="fw-bold me-2">PIC Lab:</span>
-                                                            <%= dataLab.get(i).getPic_lab() %>
+                                                            <%= info.getPic_lab()%>
                                                         </p>
                                                     </li>
                                                 </ul>
@@ -241,7 +263,7 @@
                                             <div class="col-lg-6">
                                                 <img 
                                                     class="mt-1"
-                                                    src="http://localhost:8080/SIMPEL_Ganjil/assets/images/<%= dataLab.get(i).getFoto_lab() %>"
+                                                    src="http://localhost:8080/SIMPEL_Ganjil/assets/images/<%= info.getFoto_lab() %>"
                                                     style="
                                                         width: 100%;
                                                         border-radius: 8px;
@@ -249,13 +271,13 @@
                                                 >
                                             </div>
                                         </div>
-                                        <% } %>                
+                                                     
                                     </div>
                                 </div>
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->       
-                        <% } %>    
+                        
                     </div> <!-- container -->
 
                 </div> <!-- content -->

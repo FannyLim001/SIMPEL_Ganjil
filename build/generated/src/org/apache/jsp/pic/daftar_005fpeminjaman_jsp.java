@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import java.util.ArrayList;
 import java.util.List;
-import models.pic.DaftarPeminjaman;
+import models.pic.Peminjaman;
 
 public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -85,6 +85,12 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("        <link href=\"http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/dataTables.bootstrap5.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n");
       out.write("        <link href=\"http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/responsive.bootstrap5.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n");
       out.write("    </head>\r\n");
+      out.write("    ");
+
+        Peminjaman daftarPeminjaman = new Peminjaman();
+        List<Peminjaman> data = new ArrayList<Peminjaman>();
+        data = daftarPeminjaman.allPeminjaman();
+    
       out.write("\r\n");
       out.write("    <body class=\"loading\" data-layout-config='{\"leftSideBarTheme\":\"dark\",\"layoutBoxed\":false, \"leftSidebarCondensed\":false, \"leftSidebarScrollable\":false,\"darkMode\":false, \"showRightSidebarOnStart\": true}'>\r\n");
       out.write("        <!-- Begin page -->\r\n");
@@ -135,7 +141,7 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                <div class=\"collapse\" id=\"peminjaman\">\r\n");
       out.write("                    <ul class=\"side-nav-second-level\">\r\n");
       out.write("                        <li>\r\n");
-      out.write("                            <a href=\"http://localhost:8080/SIMPEL_Ganjil/pic/konfirmasi_peminjaman.jsp\">Konfirmasi Peminjaman</a>\r\n");
+      out.write("                            <a href=\"http://localhost:8080/SIMPEL_Ganjil/pic/mengkonfirmasi_peminjaman.jsp\">Konfirmasi Peminjaman</a>\r\n");
       out.write("                        </li>\r\n");
       out.write("                        <li>\r\n");
       out.write("                            <a href=\"http://localhost:8080/SIMPEL_Ganjil/pic/daftar_peminjaman.jsp\">Daftar Peminjaman</a>\r\n");
@@ -237,117 +243,14 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                            </div>\r\n");
       out.write("                        </div>     \r\n");
       out.write("                        <!-- end page title --> \r\n");
-      out.write("\r\n");
+      out.write("                        \r\n");
       out.write("                        <div class=\"row\">\r\n");
       out.write("                            <div class=\"col-12\">\r\n");
       out.write("                                <div class=\"card\">\r\n");
       out.write("                                    <div class=\"card-body\">\r\n");
       out.write("                                        <div class=\"tab-content\">\r\n");
       out.write("                                            <div class=\"tab-pane show active\" id=\"basic-datatable-preview\">\r\n");
-      out.write("                                                <h5>Peminjaman Dalam Proses</h5>\r\n");
-      out.write("                                                <table id=\"tbl-proses\" class=\"table display nowrap\">\r\n");
-      out.write("                                                    <thead class=\"table-light\">\r\n");
-      out.write("                                                        <tr class=\"text-center\">\r\n");
-      out.write("                                                            <th>Lab</th>\r\n");
-      out.write("                                                            <th>Ketua Kegiatan</th>\r\n");
-      out.write("                                                            <th>Kontak Ketua</th>\r\n");
-      out.write("                                                            <th>Level</th>\r\n");
-      out.write("                                                            <th>Tgl Peminjaman</th>\r\n");
-      out.write("                                                            <th>Tgl Mulai</th>\r\n");
-      out.write("                                                            <th>Tgl Berakhir</th>\r\n");
-      out.write("                                                            <th>Keterangan</th>\r\n");
-      out.write("                                                            <th>Status</th>\r\n");
-      out.write("                                                        </tr>\r\n");
-      out.write("                                                    </thead>\r\n");
-      out.write("                                                    <tbody>\r\n");
-      out.write("                                                        ");
-
-                                                            DaftarPeminjaman dpDalamProses = new DaftarPeminjaman();
-                                                            List<DaftarPeminjaman> dataDalamProses = new ArrayList<DaftarPeminjaman>();
-                                                            dataDalamProses = dpDalamProses.tampilDaftarDalamProses();
-                                                            for (int i = 0; i < dataDalamProses.size(); i++) {
-                                                        
-      out.write("\r\n");
-      out.write("                                                        <tr>\r\n");
-      out.write("                                                            <td>");
-      out.print( dataDalamProses.get(i).getNo_lab() );
-      out.write("</td>\r\n");
-      out.write("                                                            <td>");
-      out.print( dataDalamProses.get(i).getKetua_kegiatan() );
-      out.write("</td>\r\n");
-      out.write("                                                            <td class=\"text-center\">");
-      out.print( dataDalamProses.get(i).getKontak_ketua() );
-      out.write("</td>\r\n");
-      out.write("                                                            <td class=\"text-center\">");
-      out.print( dataDalamProses.get(i).getLevel() );
-      out.write("</td>\r\n");
-      out.write("                                                            <td class=\"text-center\">");
-      out.print( dataDalamProses.get(i).getTgl_peminjaman() );
-      out.write("</td>\r\n");
-      out.write("                                                            <td class=\"text-center\">");
-      out.print( dataDalamProses.get(i).getTgl_mulai() );
-      out.write("</td>\r\n");
-      out.write("                                                            <td class=\"text-center\">");
-      out.print( dataDalamProses.get(i).getTgl_berakhir() );
-      out.write("</td>\r\n");
-      out.write("                                                            <td>");
-      out.print( dataDalamProses.get(i).getKeterangan() );
-      out.write("</td>\r\n");
-      out.write("                                                            <td class=\"text-center\">\r\n");
-      out.write("                                                                ");
-
-                                                                    if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("diajukan")) { 
-      out.write("\r\n");
-      out.write("                                                                        <span class=\"badge bg-warning p-2\">");
-      out.print( dataDalamProses.get(i).getStatus() );
-      out.write("</span>\r\n");
-      out.write("                                                                    ");
-
-                                                                        }else if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("menunggu")){ 
-      out.write("\r\n");
-      out.write("                                                                            <span class=\"badge bg-secondary p-2\">");
-      out.print( dataDalamProses.get(i).getStatus() );
-      out.write("</span>\r\n");
-      out.write("                                                                    ");
-
-                                                                        }else if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("ditolak")){ 
-      out.write("\r\n");
-      out.write("                                                                            <span class=\"badge bg-danger p-2\">");
-      out.print( dataDalamProses.get(i).getStatus() );
-      out.write("</span>\r\n");
-      out.write("                                                                    ");
-    
-                                                                        }else if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("disetujui")){ 
-      out.write("\r\n");
-      out.write("                                                                            <span class=\"badge bg-success p-2\">");
-      out.print( dataDalamProses.get(i).getStatus() );
-      out.write("</span>\r\n");
-      out.write("                                                                    ");
-    
-                                                                    }
-                                                                
-      out.write("\r\n");
-      out.write("                                                            </td>\r\n");
-      out.write("                                                        </tr>\r\n");
-      out.write("                                                        ");
- } 
-      out.write("\r\n");
-      out.write("                                                    </tbody>\r\n");
-      out.write("                                                </table>                                           \r\n");
-      out.write("                                            </div> <!-- end preview-->\r\n");
-      out.write("                                        </div> <!-- end card body-->\r\n");
-      out.write("                                    </div> <!-- end card -->\r\n");
-      out.write("                                </div><!-- end col-->\r\n");
-      out.write("                            </div>\r\n");
-      out.write("                            <!-- end row -->        \r\n");
-      out.write("                        </div> <!-- container -->\r\n");
-      out.write("                        <div class=\"row\">\r\n");
-      out.write("                            <div class=\"col-12\">\r\n");
-      out.write("                                <div class=\"card\">\r\n");
-      out.write("                                    <div class=\"card-body\">\r\n");
-      out.write("                                        <div class=\"tab-content\">\r\n");
-      out.write("                                            <div class=\"tab-pane show active\" id=\"basic-datatable-preview\">\r\n");
-      out.write("                                                <h5>Peminjaman Selesai</h5>\r\n");
+      out.write("                                                <h5>Daftar Peminjaman</h5>\r\n");
       out.write("                                                <table id=\"tbl-selesai\" class=\"table dt-responsive w-100 display\">\r\n");
       out.write("                                                    <thead class=\"table-light\">\r\n");
       out.write("                                                        <tr class=\"text-center\">\r\n");
@@ -363,36 +266,66 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                                    <tbody>\r\n");
       out.write("                                                        ");
 
-                                                            DaftarPeminjaman dpSelesai = new DaftarPeminjaman();
-                                                            List<DaftarPeminjaman> dataSelesai = new ArrayList<DaftarPeminjaman>();
-                                                            dataSelesai = dpSelesai.tampilDaftarSelesai();
-                                                            for (int i = 0; i < dataSelesai.size(); i++) {
+                                                            for (int i = 0; i < data.size(); i++) {
                                                         
       out.write("\r\n");
       out.write("                                                        <tr>\r\n");
       out.write("                                                            <td>");
-      out.print( dataSelesai.get(i).getNo_lab() );
+      out.print( data.get(i).getNo_lab() );
       out.write("</td>\r\n");
       out.write("                                                            <td>");
-      out.print( dataSelesai.get(i).getKetua_kegiatan() );
+      out.print( data.get(i).getKetua_kegiatan() );
       out.write("</td>\r\n");
       out.write("                                                            <td class=\"text-center\">");
-      out.print( dataSelesai.get(i).getLevel() );
+      out.print( data.get(i).getLevel() );
       out.write("</td>\r\n");
       out.write("                                                            <td class=\"text-center\">");
-      out.print( dataSelesai.get(i).getTgl_peminjaman());
+      out.print( data.get(i).getTgl_peminjaman());
       out.write("</td>\r\n");
       out.write("                                                            <td>");
-      out.print( dataSelesai.get(i).getKeterangan() );
+      out.print( data.get(i).getKeterangan() );
       out.write("</td>\r\n");
       out.write("                                                            <td class=\"text-center\">\r\n");
-      out.write("                                                                <span class=\"badge bg-success p-2\">");
-      out.print( dataSelesai.get(i).getStatus() );
+      out.write("                                                            ");
+
+                                                                String status = data.get(i).getStatus_peminjaman();
+                                                                if (status.equalsIgnoreCase("diajukan")) { 
+      out.write("\r\n");
+      out.write("                                                                    <span class=\"badge bg-warning p-2\">");
+      out.print( status );
       out.write("</span>\r\n");
+      out.write("                                                                ");
+ } else if (status.equalsIgnoreCase("menunggu")) { 
+      out.write("\r\n");
+      out.write("                                                                    <span class=\"badge bg-secondary p-2\">");
+      out.print( status );
+      out.write("</span>\r\n");
+      out.write("                                                                ");
+ } else if (status.equalsIgnoreCase("disetujui")) { 
+      out.write("\r\n");
+      out.write("                                                                    <span class=\"badge bg-info p-2\">");
+      out.print( status );
+      out.write("</span>\r\n");
+      out.write("                                                                ");
+ } else if (status.equalsIgnoreCase("ditolak")) { 
+      out.write("\r\n");
+      out.write("                                                                    <span class=\"badge bg-danger p-2\">");
+      out.print( status );
+      out.write("</span>   \r\n");
+      out.write("                                                                ");
+ } else if (status.equalsIgnoreCase("selesai")) { 
+      out.write("\r\n");
+      out.write("                                                                    <span class=\"badge bg-success p-2\">");
+      out.print( status );
+      out.write("</span>   \r\n");
+      out.write("                                                                ");
+ }
+                                                            
+      out.write("\r\n");
       out.write("                                                            </td>\r\n");
       out.write("                                                            <td class=\"table-action text-center\">\r\n");
       out.write("                                                                <a href=\"http://localhost:8080/SIMPEL_Ganjil/pic/detail_peminjaman.jsp?id_peminjaman=");
-      out.print( dataSelesai.get(i).getId_peminjaman() );
+      out.print( data.get(i).getId_peminjaman() );
       out.write("\" \r\n");
       out.write("                                                                   class=\"btn btn-primary mb-2\">Detail</a>\r\n");
       out.write("                                                            </td>\r\n");

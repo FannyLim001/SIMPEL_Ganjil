@@ -93,7 +93,7 @@
                                                             <th>Tgl Mulai</th>
                                                             <th>Tgl Berakhir</th>
                                                             <th>Keterangan</th>
-                                                            <th>Status</th>
+                                                            <th>Aksi</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -141,7 +141,7 @@
                             <!-- end row -->        
                         </div> <!-- container -->
  
-
+                    <!-- Footer Start -->
                     <!-- Footer Start -->
                     <%@include file="include/footer.jsp" %>
                     <!-- end Footer -->
