@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class laporan_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class pengajuan_005fpeminjaman_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -54,7 +54,7 @@ public final class laporan_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html lang=\"en\">\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta charset=\"utf-8\" />\r\n");
-      out.write("        <title>Laporan | SIMPEL Mahasiswa</title>\r\n");
+      out.write("        <title>Pengajuan Peminjaman | SIMPEL Mahasiswa</title>\r\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n");
       out.write("        <meta content=\"A fully featured admin theme which can be used to build CRM, CMS, etc.\" name=\"description\" />\r\n");
       out.write("        <meta content=\"Coderthemes\" name=\"author\" />\r\n");
@@ -200,10 +200,10 @@ public final class laporan_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        <ol class=\"breadcrumb m-0\">\r\n");
       out.write("                                            <li class=\"breadcrumb-item\"><a href=\"javascript: void(0);\">SIMPEL</a></li>\r\n");
       out.write("                                            <li class=\"breadcrumb-item\"><a href=\"javascript: void(0);\">Mahasiswa</a></li>\r\n");
-      out.write("                                            <li class=\"breadcrumb-item active\">Laporan</li>\r\n");
+      out.write("                                            <li class=\"breadcrumb-item active\">Pengajuan Peminjaman</li>\r\n");
       out.write("                                        </ol>\r\n");
       out.write("                                    </div>\r\n");
-      out.write("                                    <h4 class=\"page-title\">Laporan</h4>\r\n");
+      out.write("                                    <h4 class=\"page-title\">Pengajuan Peminjaman</h4>\r\n");
       out.write("                                </div>\r\n");
       out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");

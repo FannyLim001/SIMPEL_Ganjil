@@ -1,0 +1,22 @@
+SMAP
+laporan_005fpeminjaman_jsp.java
+JSP
+*S JSP
+*F
++ 0 laporan_peminjaman.jsp
+kalab/laporan_peminjaman.jsp
++ 1 sidebar.jsp
+kalab/include/sidebar.jsp
++ 2 header.jsp
+kalab/include/header.jsp
++ 3 footer.jsp
+kalab/include/footer.jsp
+*L
+5,23:51
+5#1,60:74
+27#0,8:133
+5#2,36:141
+34#0,27:176
+5#3,23:203
+60#0,29:225
+*E

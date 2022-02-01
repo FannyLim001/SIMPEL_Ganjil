@@ -1,0 +1,22 @@
+SMAP
+panduan_jsp.java
+JSP
+*S JSP
+*F
++ 0 panduan.jsp
+mahasiswa/panduan.jsp
++ 1 sidebar.jsp
+mahasiswa/include/sidebar.jsp
++ 2 topbar.jsp
+mahasiswa/include/topbar.jsp
++ 3 footer.jsp
+mahasiswa/include/footer.jsp
+*L
+5,24:51
+1#1,80:75
+28#0,8:155
+1#2,29:163
+35#0,27:192
+1#3,17:219
+61#0,30:236
+*E
