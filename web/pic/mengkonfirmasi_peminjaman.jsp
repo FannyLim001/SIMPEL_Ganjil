@@ -6,7 +6,7 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="models.pic.DaftarPeminjaman"%>
+<%@page import="models.pic.Peminjaman"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -81,7 +81,7 @@
                                     <div class="card-body">
                                         <div class="tab-content">
                                             <div class="tab-pane show active" id="basic-datatable-preview">
-                                                <h5>Konfirmasi Peminjaman Lab</h5>
+                                                <h5>Peminjaman Yang Diajukan</h5>
                                                 <table id="tbl-proses" class="table display nowrap">
                                                     <thead class="table-light">
                                                         <tr class="text-center">
@@ -98,35 +98,36 @@
                                                     </thead>
                                                     <tbody>
                                                         <%
-                                                            DaftarPeminjaman dpDalamProses = new DaftarPeminjaman();
-                                                            List<DaftarPeminjaman> dataDalamProses = new ArrayList<DaftarPeminjaman>();
-                                                            dataDalamProses = dpDalamProses.tampilDaftarDalamProses();
-                                                            for (int i = 0; i < dataDalamProses.size(); i++) {
+                                                            Peminjaman dpDalamProses = new Peminjaman();
+                                                            List<Peminjaman> daftar = new ArrayList<Peminjaman>();
+                                                            daftar = dpDalamProses.peminjamanDiajukan();
+                                                            for (int i = 0; i < daftar.size(); i++) {
                                                         %>
                                                         <tr>
-                                                            <td><%= dataDalamProses.get(i).getNo_lab() %></td>
-                                                            <td><%= dataDalamProses.get(i).getKetua_kegiatan() %></td>
-                                                            <td class="text-center"><%= dataDalamProses.get(i).getKontak_ketua() %></td>
-                                                            <td class="text-center"><%= dataDalamProses.get(i).getLevel() %></td>
-                                                            <td class="text-center"><%= dataDalamProses.get(i).getTgl_peminjaman() %></td>
-                                                            <td class="text-center"><%= dataDalamProses.get(i).getTgl_mulai() %></td>
-                                                            <td class="text-center"><%= dataDalamProses.get(i).getTgl_berakhir() %></td>
-                                                            <td><%= dataDalamProses.get(i).getKeterangan() %></td>
+                                                            <td><%= daftar.get(i).getNo_lab() %></td>
+                                                            <td><%= daftar.get(i).getKetua_kegiatan() %></td>
+                                                            <td class="text-center"><%= daftar.get(i).getKontak_ketua() %></td>
+                                                            <td class="text-center"><%= daftar.get(i).getLevel() %></td>
+                                                            <td class="text-center"><%= daftar.get(i).getTgl_peminjaman() %></td>
+                                                            <td class="text-center"><%= daftar.get(i).getTgl_mulai() %></td>
+                                                            <td class="text-center"><%= daftar.get(i).getTgl_berakhir() %></td>
+                                                            <td><%= daftar.get(i).getKeterangan() %></td>
                                                             <td class="text-center">
                                                                 <%
-                                                                    if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("diajukan")) { %>
-                                                                <span class="badge bg-warning p-2"><%= dataDalamProses.get(i).getStatus() %></span>
+                                                                    String status = daftar.get(i).getStatus_peminjaman();
+                                                                    if (status.equalsIgnoreCase("diajukan")) { %>
+                                                                    <span class="badge bg-warning p-2"><%= status %></span>
                                                                 <%
-                                                                        }else if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("menunggu")){ %>
-                                                                <span class="badge bg-secondary p-2"><%= dataDalamProses.get(i).getStatus() %></span>
+                                                                    }else if (status.equalsIgnoreCase("menunggu")){ %>
+                                                                    <span class="badge bg-secondary p-2"><%= status %></span>
                                                                 <%
-                                                                        }else if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("ditolak")){ %>
-                                                                <span class="badge bg-danger p-2"><%= dataDalamProses.get(i).getStatus() %></span>
+                                                                    }else if (status.equalsIgnoreCase("ditolak")){ %>
+                                                                    <span class="badge bg-danger p-2"><%= status %></span>
                                                                 <%    
-                                                                        }else if (dataDalamProses.get(i).getStatus().equalsIgnoreCase("disetujui")){ %>
-                                                                <span class="badge bg-success p-2"><%= dataDalamProses.get(i).getStatus() %></span>
+                                                                    }else if (status.equalsIgnoreCase("disetujui")){ %>
+                                                                    <span class="badge bg-success p-2"><%= status %></span>
                                                                 <%    
-                                                                }
+                                                                    }
                                                                 %>
                                                             </td>
                                                         </tr>

@@ -188,4 +188,42 @@ public class Peminjaman {
         }
         return p;
     }
+    
+    public List peminjamanDiajukan(){
+        List<Peminjaman> data = new ArrayList<Peminjaman>();
+        ResultSet rs = null;
+        
+        try{
+            String sql = "SELECT p.id_peminjaman, p.id_lab, p.level,\n" +
+                "p.tgl_peminjaman, p.tgl_mulai, p.tgl_berakhir,\n" +
+                "p.keterangan, p.id_mhs, p.ketua_kegiatan,\n" +
+                "p.kontak_ketua, p.status_peminjaman,\n" +
+                "l.no_lab\n" +
+                "FROM tbl_peminjaman p, tbl_lab l\n" +
+                "WHERE p.id_lab = l.id_lab AND\n" +
+                "status_peminjaman LIKE \"Diajukan\"";
+            rs = db.getData(sql);
+            while(rs.next()){
+                Peminjaman p = new Peminjaman();
+                p.setId_peminjaman(rs.getInt("id_peminjaman"));
+                p.setId_lab(rs.getInt("id_lab"));
+                p.setLevel(rs.getInt("level"));
+                p.setId_mhs(rs.getInt("id_mhs"));
+                p.setNo_lab(rs.getInt("no_lab"));
+                p.setTgl_peminjaman(rs.getString("tgl_peminjaman"));
+                p.setTgl_mulai(rs.getString("tgl_mulai"));
+                p.setTgl_berakhir(rs.getString("tgl_berakhir"));
+                p.setKeterangan(rs.getString("keterangan"));
+                p.setKetua_kegiatan(rs.getString("ketua_kegiatan"));
+                p.setKontak_ketua(rs.getString("kontak_ketua")); 
+                p.setStatus_peminjaman(rs.getString("status_peminjaman"));
+                
+                data.add(p);
+            }
+        }catch(Exception ex){
+            System.out.println("Error: "+ex);
+        }
+        
+        return data;
+    }
 }
