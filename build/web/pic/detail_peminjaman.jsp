@@ -75,11 +75,11 @@
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">SIMPEL</a></li>
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">PIC Lab</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Data Peminjaman</a></li>
-                                            <li class="breadcrumb-item active">Detail Data Peminjaman</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Daftar Peminjaman</a></li>
+                                            <li class="breadcrumb-item active">Detail Peminjaman</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Detail Data Peminjaman</h4>
+                                    <h4 class="page-title">Detail Peminjaman</h4>
                                 </div>
                             </div>
                         </div>     
@@ -133,7 +133,20 @@
                                                 </p>
                                                 <p class="mb-3">
                                                     <span class="fw-bold me-2">Status:</span>
-                                                    <%= p.getStatus_peminjaman() %>
+                                                    <%  
+                                                        String status = p.getStatus_peminjaman();
+                                                        if (status.equalsIgnoreCase("diajukan")) { %>
+                                                            <span class="badge bg-warning p-2"><%= status %></span>
+                                                        <% } else if (status.equalsIgnoreCase("menunggu")) { %>
+                                                            <span class="badge bg-secondary p-2"><%= status %></span>
+                                                        <% } else if (status.equalsIgnoreCase("disetujui")) { %>
+                                                            <span class="badge bg-info p-2"><%= status %></span>
+                                                        <% } else if (status.equalsIgnoreCase("ditolak")) { %>
+                                                            <span class="badge bg-danger p-2"><%= status %></span>   
+                                                        <% } else if (status.equalsIgnoreCase("selesai")) { %>
+                                                            <span class="badge bg-success p-2"><%= status %></span>   
+                                                        <% }
+                                                    %>
                                                 </p>
                                             </li>
                                             <%
