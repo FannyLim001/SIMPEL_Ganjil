@@ -51,6 +51,5 @@ public class Konfirmasi_peminjaman {
     public void proses(int id, String status) {
         int getid = id;
         String getstatus = status;
-        return getstatus;
     }
 }

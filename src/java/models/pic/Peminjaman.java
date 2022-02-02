@@ -131,7 +131,8 @@ public class Peminjaman {
                 "p.kontak_ketua, p.status_peminjaman,\n" +
                 "l.no_lab\n" +
                 "FROM tbl_peminjaman p, tbl_lab l\n" +
-                "WHERE p.id_lab = l.id_lab;";
+                "WHERE p.id_lab = l.id_lab\n" +
+                "ORDER BY id_peminjaman DESC";
             rs = db.getData(sql);
             while(rs.next()){
                 Peminjaman p = new Peminjaman();
@@ -201,7 +202,8 @@ public class Peminjaman {
                 "l.no_lab\n" +
                 "FROM tbl_peminjaman p, tbl_lab l\n" +
                 "WHERE p.id_lab = l.id_lab AND\n" +
-                "status_peminjaman LIKE \"Diajukan\"";
+                "status_peminjaman LIKE \"Diajukan\"\n" +
+                "ORDER BY id_peminjaman DESC";
             rs = db.getData(sql);
             while(rs.next()){
                 Peminjaman p = new Peminjaman();
