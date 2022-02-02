@@ -41,9 +41,12 @@
     
     <%
         String id_peminjaman = request.getParameter("id_peminjaman");
-        
-        Peminjaman p = new Peminjaman();
-        p = p.peminjamanById(Integer.parseInt(id_peminjaman));
+        Boolean isId;
+        if (id_peminjaman == null || id_peminjaman == "") {
+            isId = false;
+        }else{
+            isId = true;
+        }
     %>
     
     <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
@@ -92,9 +95,11 @@
                                         <h4 class="header-title mb-3">Informasi Peminjaman</h4>
                                         
                                         <%
-                                            if (id_peminjaman == null || id_peminjaman == "") { %>
+                                            if (!isId) { %>
                                                 <p>Tidak ada data</p>
                                             <% } else{
+                                                Peminjaman p = null;
+                                                p = new Peminjaman().peminjamanById(Integer.parseInt(id_peminjaman));
                                         %>
                                         
                                         <ul class="list-unstyled mb-0">
@@ -149,13 +154,9 @@
                                                     %>
                                                 </p>
                                             </li>
-                                            <%
-                                                }
-                                            %>
                                         </ul>
                                         
                                         <%
-                                            String status = p.getStatus_peminjaman();
                                             if (!status.equalsIgnoreCase("selesai")) { %>
                                                 <div class="text-center">
                                                     <button type="button" class="btn btn-primary" disabled>
@@ -271,7 +272,9 @@
                                                 >
                                             </div>
                                         </div>
-                                                     
+                                        <%
+                                            }
+                                        %>             
                                     </div>
                                 </div>
                             </div> <!-- end col -->
