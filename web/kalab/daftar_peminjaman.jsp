@@ -103,7 +103,7 @@
                                                             <td>Pujiarti</td>
                                                             <td>08123456789</td>
                                                             <td>Selesai</td>
-                                                            <td><button class="btn btn-success btn-sm">Setujui</button> <button class="btn btn-danger btn-sm">Tolak</button></td>
+                                                            <td><button class="btn btn-success btn-sm">Setujui</button><br><br><button class="btn btn-danger btn-sm">Tolak</button></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>                                           
