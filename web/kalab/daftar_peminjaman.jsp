@@ -70,15 +70,32 @@
                             </div>
                         </div>     
                         <!-- end page title --> 
-
-                       
+                        <div class="row">
+                            <div class="col-3">
+                                <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                                    <li class="nav-item">
+                                        <a href="#home1" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0 active">
+                                            <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                                            <span class="d-none d-md-block">Dalam Proses</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#profile1" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
+                                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                            <span class="d-none d-md-block">Selesai</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="tab-content">
-                                            <div class="tab-pane show active" id="basic-datatable-preview">
-                                                <h5>Peminjaman Selesai</h5>
+                                            <div class="tab-pane show active" id="home1">
+                                                <h5>Peminjaman Proses</h5>
                                                 <table id="tbl-selesai" class="table dt-responsive w-100 display">
                                                     <thead class="table-light">
                                                         <tr class="text-center">
@@ -103,7 +120,38 @@
                                                             <td>Pujiarti</td>
                                                             <td>08123456789</td>
                                                             <td>Selesai</td>
-                                                            <td><button class="btn btn-success btn-sm">Setujui</button><br><br><button class="btn btn-danger btn-sm">Tolak</button></td>
+                                                            <td><button class="btn btn-success btn-sm">Setujui</button><br><br> <button class="btn btn-danger btn-sm">Tolak</button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>                                           
+                                            </div> <!-- end preview-->
+                                            <div class="tab-pane" id="profile1">
+                                                <h5>Peminjaman Selesai</h5>
+                                                <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                                                    <thead class="table-light">
+                                                        <tr class="text-center">
+                                                            <th>Lab</th>
+                                                            <th>Level</th>
+                                                            <th>Tgl Peminjaman</th>
+                                                            <th>Tgl Mulai</th>
+                                                            <th>Tgl Berakhir</th>
+                                                            <th>Ketua Kegiatan</th>
+                                                            <th>Kontak Ketua</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>LAB 330</td>
+                                                            <td>1</td>
+                                                            <td>2022-01-13 00:00:00</td>
+                                                            <td>2022-01-15 00:00:00</td>
+                                                            <td>2022-01-16 00:00:00</td>
+                                                            <td>Pujiarti</td>
+                                                            <td>08123456789</td>
+                                                            <td>Selesai</td>
+                                                            <td><button class="btn btn-success btn-sm">Setujui</button><br><br> <button class="btn btn-danger btn-sm">Tolak</button></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>                                           
@@ -114,7 +162,6 @@
                             </div>
                             <!-- end row -->        
                         </div> <!-- container -->
-
                     </div> <!-- content -->
 
                     <!-- Footer Start -->
