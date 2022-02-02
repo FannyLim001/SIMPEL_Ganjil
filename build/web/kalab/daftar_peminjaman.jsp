@@ -126,7 +126,7 @@
                                                 </table>                                           
                                             </div> <!-- end preview-->
                                             <div class="tab-pane" id="profile1">
-                                                <h5>Peminjaman Selesai</h5>
+                                                <h5>Peminjaman Selesai</h5> 
                                                 <table id="basic-datatable" class="table dt-responsive nowrap w-100">
                                                     <thead class="table-light">
                                                         <tr class="text-center">
