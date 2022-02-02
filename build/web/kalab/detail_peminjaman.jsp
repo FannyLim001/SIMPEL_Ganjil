@@ -13,24 +13,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-        <!-- App css -->
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style" />
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style" />
-
-        <!-- third party css -->
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css" />
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/buttons.bootstrap5.css" rel="stylesheet" type="text/css" />
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/select.bootstrap5.css" rel="stylesheet" type="text/css" />
-        <!-- third party css end -->
-
-        <!-- Datatables css -->
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
@@ -73,169 +55,113 @@
                         <!-- end page title --> 
 
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title mb-3">Informasi Peminjaman</h4>
-                                        <ul class="list-unstyled mb-0">
-                                            <li>
-                                                <p class="mb-2">
-                                                    <span class="fw-bold me-2">Ketua Kegiatan:</span>
-                                                    Siska
-                                                </p>
-                                                <p class="mb-2">
-                                                    <span class="fw-bold me-2">NIM Ketua Kegiatan:</span>
-                                                    2055301067
-                                                </p>
-                                                <p class="mb-3">
-                                                    <span class="fw-bold me-2">Kontak Ketua:</span>
-                                                    082387655401
-                                                </p>
-                                                <p class="mb-2">
-                                                    <span class="fw-bold me-2">Lab yang dipinjam:</span>
-                                                    330
-                                                </p>
-                                                <p class="mb-3">
-                                                    <span class="fw-bold me-2">Level Peminjaman:</span>
-                                                    2
-                                                </p>
-                                                <p class="mb-2">
-                                                    <span class="fw-bold me-2">Tanggal Peminjaman:</span>
-                                                    20/01/2022
-                                                </p>
-                                                <p class="mb-2">
-                                                    <span class="fw-bold me-2">Tanggal Mulai:</span>
-                                                    24/01/2022
-                                                </p>
-                                                <p class="mb-3">
-                                                    <span class="fw-bold me-2">Tanggal Selesai:</span>
-                                                    25/01/2022
-                                                </p>
-                                                <p class="mb-3">
-                                                    <span class="fw-bold me-2">Keterangan:</span>
-                                                    Memimjam lab untuk pengerjaan Tugas Akhir
-                                                </p>
-                                            </li>
-                                        </ul>
-                                        <!-- Button trigger modal -->
-                                        <div class="text-center">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogbook">
-                                                Lihat Logbook
-                                            </button>
-                                        </div>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="modalLogbook" tabindex="-1" aria-labelledby="modalLogbookLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Data Logbook</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <h4>Informasi Peminjaman</h4>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="form-label"><b>Ketua Kegiatan</b></label><br>
+                                                <label class="form-label">Pujiarti</label>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="form-label"><b>NIM Ketua Kegiatan</b></label><br>
+                                                <label class="form-label">2055301157</label>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="form-label"><b>Kontak Ketua Kegiatan</b></label><br>
+                                                <label class="form-label">08123456789</label>
+                                            </div>
+                                        </div><!-- end col-->
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="form-label"><b>Lab yang dipinjam</b></label><br>
+                                                <label class="form-label">Lab 330</label>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="form-label"><b>Level Peminjaman</b></label><br>
+                                                <label class="form-label">2</label>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="form-label"><b>Tanggal Peminjaman</b></label><br>
+                                                <label class="form-label">13-01-2022</label>
+                                            </div>
+                                        </div><!-- end col-->
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="form-label"><b>Tanggal Mulai</b></label><br>
+                                                <label class="form-label">15-01-2022</label>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="form-label"><b>Tanggal Selesai</b></label><br>
+                                                <label class="form-label">16-01-2022</label>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="form-label"><b>Keterangan</b></label><br>
+                                                <label class="form-label">Meminjam Lab untuk Pengerjaan Tugas Akhir</label>
+                                            </div>
+                                        </div><!-- end col-->
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label class="form-label"><b>Daftar Mahasiswa</b></label><br>
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <label class="form-label">Ayu Anita</label>
                                                     </div>
-                                                    <div class="modal-body px-4 pt-4">
-                                                        <div class="">
-                                                            <img
-                                                                src="http://localhost:8080/SIMPEL_Ganjil/assets/images/bg-auth.jpg"
-                                                                style="
-                                                                width: 100%;
-                                                                border-radius: 8px;
-                                                                "
-                                                            >
-                                                        </div>
-                                                        <ul class="list-unstyled mb-0 mt-3">
-                                                            <li>
-                                                                <p class="mb-2"><span class="fw-bold me-2">Nama Pengisi:</span>Anriana Lusia</p>
-                                                                <p class="mb-2"><span class="fw-bold me-2">Tanggal Pengisian:</span>25-01-2022</p>
-                                                                <p class="mb-2"><span class="fw-bold me-2">Kondisi Lab:</span>Baik</p>
-                                                                <p class="mb-2"><span class="fw-bold me-2">Pengaduan:</span>Keyboard PC 13 Tidak Berfungsi</p>
-                                                            </li>
-                                                        </ul>
+                                                    <div class="col-2">
+                                                        <label class="form-label">Ayu Anita</label>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+                                                    <div class="col-2">
+                                                        <label class="form-label">Ayu Anita</label>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <label class="form-label">Ayu Anita</label>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <label class="form-label">Ayu Anita</label>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <label class="form-label">Ayu Anita</label>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <a href="kalab_controller" class="btn btn-primary btn-sm"><i class="mdi mdi-clipboard-check-multiple"></i>&nbsp;&nbsp;Setujui</a>&nbsp;&nbsp;
+                                            <a href="kalab_controller" class="btn btn-danger btn-sm"><i class="mdi mdi-clipboard-off"></i>&nbsp;&nbsp;Tolak</a>
                                         </div>
                                     </div>
                                 </div>
-                            </div> <!-- end col -->
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <h4 class="header-title mb-3">Informasi Lab</h4>
-                                            <div class="col-lg-6">
-                                                <ul class="list-unstyled mb-0">
-                                                    <li>
-                                                        <p class="mb-2"><span class="fw-bold me-2">Nomor Lab:</span>330</p>
-                                                        <p class="mb-2"><span class="fw-bold me-2">Nama Lab:</span>Lab Programming</p>
-                                                        <p class="mb-3"><span class="fw-bold me-2">Kapasitas Lab:</span>36 Mahasiswa</p>
-                                                        <p class="mb-2"><span class="fw-bold me-2">Ketua Lab:</span>Ibu Shummaya</p>
-                                                        <p class="mb-2"><span class="fw-bold me-2">PIC Lab:</span>Ibu Dwi Listiyanti</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <img 
-                                                    class="mt-1"
-                                                    src="http://localhost:8080/SIMPEL_Ganjil/assets/images/bg-auth.jpg"
-                                                    style="
-                                                    width: 100%;
-                                                    border-radius: 8px;
-                                                    "
-                                                >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- end col -->
-                        </div>
-                        <!-- end row -->       
+                            </div> <!-- end card -->
+                        </div> <!-- end col-->
+                    </div>     
 
-                    </div> <!-- container -->
+                </div> <!-- container -->
 
-                </div> <!-- content -->
+            </div> <!-- content -->
 
-                <!-- Footer Start -->
-                <%@include file="include/footer.jsp" %>
-                <!-- end Footer -->
-
-            </div>
-
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
-
+            <!-- Footer Start -->
+            <%@include file="include/footer.jsp" %>
+            <!-- end Footer -->
 
         </div>
-        <!-- END wrapper -->
 
-        <div class="rightbar-overlay"></div>
-        <!-- /End-bar -->
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
 
 
-        <!-- bundle -->
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor.min.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/app.min.js"></script>
+    </div>
+    <!-- END wrapper -->
 
-        <!-- third party js -->
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/jquery.dataTables.min.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.bootstrap5.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.responsive.min.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/responsive.bootstrap5.min.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.buttons.min.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.bootstrap5.min.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.html5.min.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.flash.min.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.print.min.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.keyTable.min.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.select.min.js"></script>
-        <!-- third party js ends -->
-
-        <!-- demo app -->
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.datatable-init.js"></script>
-        <!-- end demo js-->
-
-    </body>
+    <div class="rightbar-overlay"></div>
+    <!-- /End-bar -->
+</body>
 </html>

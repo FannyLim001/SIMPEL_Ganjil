@@ -13,24 +13,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-        <!-- App css -->
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style" />
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style" />
-
-        <!-- third party css -->
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css" />
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/buttons.bootstrap5.css" rel="stylesheet" type="text/css" />
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/select.bootstrap5.css" rel="stylesheet" type="text/css" />
-        <!-- third party css end -->
-
-        <!-- Datatables css -->
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
-        <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
@@ -74,13 +56,13 @@
                             <div class="col-3">
                                 <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
                                     <li class="nav-item">
-                                        <a href="#home1" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0 active">
+                                        <a href="#tab1" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0 active">
                                             <i class="mdi mdi-home-variant d-md-none d-block"></i>
                                             <span class="d-none d-md-block">Dalam Proses</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#profile1" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
+                                        <a href="#tab2" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
                                             <i class="mdi mdi-account-circle d-md-none d-block"></i>
                                             <span class="d-none d-md-block">Selesai</span>
                                         </a>
@@ -94,9 +76,9 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="tab-content">
-                                            <div class="tab-pane show active" id="home1">
+                                            <div class="tab-pane show active" id="tab1">
                                                 <h5>Peminjaman Proses</h5>
-                                                <table id="tbl-selesai" class="table dt-responsive w-100 display">
+                                                <table id="tbl-proses" class="table dt-responsive nowrap w-100">
                                                     <thead class="table-light">
                                                         <tr class="text-center">
                                                             <th>Lab</th>
@@ -119,15 +101,15 @@
                                                             <td>2022-01-16 00:00:00</td>
                                                             <td>Pujiarti</td>
                                                             <td>08123456789</td>
-                                                            <td>Selesai</td>
-                                                            <td><button class="btn btn-success btn-sm">Setujui</button><br><br> <button class="btn btn-danger btn-sm">Tolak</button></td>
+                                                            <td><span class="badge bg-warning p-2">Diajukan</span></td>
+                                                            <td><a href="detail_peminjaman.jsp" class="btn btn-primary mb-2"><i class="mdi mdi-information"></i>&nbsp;Detail</a></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>                                           
                                             </div> <!-- end preview-->
-                                            <div class="tab-pane" id="profile1">
+                                            <div class="tab-pane" id="tab2">
                                                 <h5>Peminjaman Selesai</h5> 
-                                                <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                                                <table id="tbl-selesai" class="table dt-responsive nowrap w-100">
                                                     <thead class="table-light">
                                                         <tr class="text-center">
                                                             <th>Lab</th>
@@ -150,8 +132,8 @@
                                                             <td>2022-01-16 00:00:00</td>
                                                             <td>Pujiarti</td>
                                                             <td>08123456789</td>
-                                                            <td>Selesai</td>
-                                                            <td><button class="btn btn-success btn-sm">Setujui</button><br><br> <button class="btn btn-danger btn-sm">Tolak</button></td>
+                                                            <td><span class="badge bg-success p-2">Disetujui</span></td>
+                                                            <td><a href="detail_peminjaman.jsp" class="btn btn-primary mb-2"><i class="mdi mdi-information"></i>&nbsp;Detail</a></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>                                           
@@ -180,37 +162,5 @@
 
             <div class="rightbar-overlay"></div>
             <!-- /End-bar -->
-
-
-            <!-- bundle -->
-            <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor.min.js"></script>
-            <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/app.min.js"></script>
-
-            <!-- third party js -->
-            <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/jquery.dataTables.min.js"></script>
-            <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.bootstrap5.js"></script>
-            <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.responsive.min.js"></script>
-            <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/responsive.bootstrap5.min.js"></script>
-            <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.buttons.min.js"></script>
-            <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.bootstrap5.min.js"></script>
-            <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.html5.min.js"></script>
-            <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.flash.min.js"></script>
-            <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.print.min.js"></script>
-            <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.keyTable.min.js"></script>
-            <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.select.min.js"></script>
-            <!-- third party js ends -->
-
-            <!-- demo app -->
-            <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.datatable-init.js"></script>
-            <!-- end demo js-->
-
-            <script>
-                $(document).ready(function () {
-                    $('table.display').DataTable({
-                        "scrollX": true
-                    });
-                });
-            </script>
-
     </body>
 </html>
