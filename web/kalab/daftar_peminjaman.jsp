@@ -71,63 +71,7 @@
                         </div>     
                         <!-- end page title --> 
 
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="tab-content">
-                                            <div class="tab-pane show active" id="basic-datatable-preview">
-                                                <h5>Peminjaman Dalam Proses</h5>
-                                                <table id="tbl-proses" class="table display nowrap">
-                                                    <thead class="table-light">
-                                                        <tr class="text-center">
-                                                            <th>Lab</th>
-                                                            <th>Ketua Kegiatan</th>
-                                                            <th>Kontak Ketua</th>
-                                                            <th>Level</th>
-                                                            <th>Tgl Peminjaman</th>
-                                                            <th>Tgl Mulai</th>
-                                                            <th>Tgl Berakhir</th>
-                                                            <th>Keterangan</th>
-                                                            <th>Status</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Lab 329</td>
-                                                            <td>Andre Prisya</td>
-                                                            <td class="text-center">082387655409</td>
-                                                            <td class="text-center">2</td>
-                                                            <td class="text-center">28-01-2022</td>
-                                                            <td class="text-center">31-01-2022</td>
-                                                            <td class="text-center">31-01-2022</td>
-                                                            <td>Kegiatan CSIRT</td>
-                                                            <td class="text-center">
-                                                                <span class="badge bg-warning p-2">Diajukan</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Lab 317</td>
-                                                            <td>Ridho Ilahi</td>
-                                                            <td class="text-center">082387655425</td>
-                                                            <td class="text-center">1</td>
-                                                            <td class="text-center">28-01-2022</td>
-                                                            <td class="text-center">31-01-2022</td>
-                                                            <td class="text-center">02-02-2022</td>
-                                                            <td>Kegiatan CSIRT</td>
-                                                            <td class="text-center">
-                                                                <span class="badge bg-secondary p-2">Pending</span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>                                           
-                                            </div> <!-- end preview-->
-                                        </div> <!-- end card body-->
-                                    </div> <!-- end card -->
-                                </div><!-- end col-->
-                            </div>
-                            <!-- end row -->        
-                        </div> <!-- container -->
+                       
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -139,10 +83,12 @@
                                                     <thead class="table-light">
                                                         <tr class="text-center">
                                                             <th>Lab</th>
-                                                            <th>Ketua Kegiatan</th>
                                                             <th>Level</th>
                                                             <th>Tgl Peminjaman</th>
-                                                            <th>Keterangan</th>
+                                                            <th>Tgl Mulai</th>
+                                                            <th>Tgl Berakhir</th>
+                                                            <th>Ketua Kegiatan</th>
+                                                            <th>Kontak Ketua</th>
                                                             <th>Status</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -150,14 +96,14 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>LAB 330</td>
-                                                            <td>Siska Ananda Putri</td>
-                                                            <td class="text-center">1</td>
-                                                            <td class="text-center">09/12/2018</td>
-                                                            <td>Pengerjaan Tugas Akhir</td>
-                                                            <td class="text-center"><span class="badge bg-success p-2">Selesai</span></td>
-                                                            <td class="table-action text-center">
-                                                                <a href="http://localhost:8080/SIMPEL_Ganjil/kalab/detail_peminjaman.jsp" class="btn btn-primary mb-2">Detail</a>
-                                                            </td>
+                                                            <td>1</td>
+                                                            <td>2022-01-13 00:00:00</td>
+                                                            <td>2022-01-15 00:00:00</td>
+                                                            <td>2022-01-16 00:00:00</td>
+                                                            <td>Pujiarti</td>
+                                                            <td>08123456789</td>
+                                                            <td>Selesai</td>
+                                                            <td>Action Disini</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>                                           
