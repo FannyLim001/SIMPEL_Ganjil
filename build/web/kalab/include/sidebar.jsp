@@ -39,7 +39,7 @@
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="http://localhost:8080/SIMPEL_Ganjil/kalab/daftar_pic.jsp" class="side-nav-link">
+                <a href="http://localhost:8080/SIMPEL_Ganjil/kalab/data_pic.jsp" class="side-nav-link">
                     <i class="mdi mdi-office-building"></i>
                     <span> PIC Lab </span>
                 </a>
