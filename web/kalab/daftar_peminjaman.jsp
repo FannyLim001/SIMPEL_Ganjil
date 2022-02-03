@@ -4,6 +4,15 @@
     Author     : FANNY
 --%>
 
+<%@page language="java" %>
+<%@page import="models.kalab.PeminjamanModel"%>
+<jsp:useBean id="Peminjaman" class="models.kalab.PeminjamanModel" />
+<jsp:useBean id="KalabController" class="controllers.kalab.KalabController" />
+<% 
+    PeminjamanModel[] daftarPeminjaman = KalabController.getDaftarPeminjamanBelumSelesai();
+    PeminjamanModel[] daftarPeminjaman2 = KalabController.getDaftarPeminjamanSelesai();
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,14 +52,15 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">SIMPEL</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Kepala Lab</a></li>
+                                            <li class="breadcrumb-item"><a href="dashboard.jsp">Kepala Lab</a></li>
                                             <li class="breadcrumb-item active">Daftar Peminjaman</li>
                                         </ol>
                                     </div>
                                     <h4 class="page-title">Daftar Peminjaman</h4>
                                 </div>
                             </div>
-                        </div>     
+                        </div>
+
                         <!-- end page title --> 
                         <div class="row">
                             <div class="col-3">
@@ -70,7 +80,7 @@
                                 </ul>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -93,19 +103,33 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <%  
+                                                            for(int i=0; i<daftarPeminjaman.length; i++){
+                                                            Peminjaman = daftarPeminjaman[i];
+                                                        %>
+                                                        <jsp:setProperty name = "Peminjaman" property = "id_peminjaman" value = "<%=Peminjaman.getId_peminjaman()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "no_lab" value = "<%= Peminjaman.getNo_lab()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "level" value = "<%= Peminjaman.getLevel()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "tgl_peminjaman" value = "<%= Peminjaman.getTgl_peminjaman()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "tgl_mulai" value = "<%= Peminjaman.getTgl_mulai()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "tgl_berakhir" value = "<%= Peminjaman.getTgl_berakhir()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "ketua_kegiatan" value = "<%= Peminjaman.getKetua_kegiatan()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "kontak_ketua" value = "<%= Peminjaman.getKontak_ketua()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "status_peminjaman" value = "<%= Peminjaman.getStatus_peminjaman()%>" />
                                                         <tr>
-                                                            <td>LAB 330</td>
-                                                            <td>1</td>
-                                                            <td>2022-01-13 00:00:00</td>
-                                                            <td>2022-01-15 00:00:00</td>
-                                                            <td>2022-01-16 00:00:00</td>
-                                                            <td>Pujiarti</td>
-                                                            <td>08123456789</td>
-                                                            <td><span class="badge bg-warning p-2">Diajukan</span></td>
-                                                            <td><a href="detail_peminjaman.jsp" class="btn btn-primary mb-2"><i class="mdi mdi-information"></i>&nbsp;Detail</a></td>
+                                                            <td><jsp:getProperty name="Peminjaman" property="no_lab" /></td>
+                                                            <td><jsp:getProperty name="Peminjaman" property="level" /></td>
+                                                            <td><jsp:getProperty name="Peminjaman" property="tgl_peminjaman" /></td>
+                                                            <td><jsp:getProperty name="Peminjaman" property="tgl_mulai" /></td>
+                                                            <td><jsp:getProperty name="Peminjaman" property="tgl_berakhir" /></td>
+                                                            <td><jsp:getProperty name="Peminjaman" property="ketua_kegiatan" /></td>
+                                                            <td><jsp:getProperty name="Peminjaman" property="kontak_ketua" /></td>
+                                                            <td><span class="badge bg-warning p-2"><jsp:getProperty name="Peminjaman" property="status_peminjaman" /></span></td>
+                                                            <td><a href="detail_peminjaman.jsp?id_peminjaman=<jsp:getProperty name="Peminjaman" property="id_peminjaman" />" class="btn btn-primary mb-2"><i class="mdi mdi-information"></i>&nbsp;Detail</a></td>
                                                         </tr>
+                                                        <%}%>
                                                     </tbody>
-                                                </table>                                           
+                                                </table>
                                             </div> <!-- end preview-->
                                             <div class="tab-pane" id="tab2">
                                                 <h5>Peminjaman Selesai</h5> 
@@ -124,17 +148,31 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <%
+                                                            for(int i=0; i<daftarPeminjaman2.length; i++){
+                                                            Peminjaman = daftarPeminjaman2[i];
+                                                        %>
+                                                        <jsp:setProperty name = "Peminjaman" property = "id_peminjaman" value = "<%=Peminjaman.getId_peminjaman()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "no_lab" value = "<%= Peminjaman.getNo_lab()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "level" value = "<%= Peminjaman.getLevel()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "tgl_peminjaman" value = "<%= Peminjaman.getTgl_peminjaman()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "tgl_mulai" value = "<%= Peminjaman.getTgl_mulai()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "tgl_berakhir" value = "<%= Peminjaman.getTgl_berakhir()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "ketua_kegiatan" value = "<%= Peminjaman.getKetua_kegiatan()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "kontak_ketua" value = "<%= Peminjaman.getKontak_ketua()%>" />
+                                                        <jsp:setProperty name = "Peminjaman" property = "status_peminjaman" value = "<%= Peminjaman.getStatus_peminjaman()%>" />
                                                         <tr>
-                                                            <td>LAB 330</td>
-                                                            <td>1</td>
-                                                            <td>2022-01-13 00:00:00</td>
-                                                            <td>2022-01-15 00:00:00</td>
-                                                            <td>2022-01-16 00:00:00</td>
-                                                            <td>Pujiarti</td>
-                                                            <td>08123456789</td>
-                                                            <td><span class="badge bg-success p-2">Disetujui</span></td>
-                                                            <td><a href="detail_peminjaman.jsp" class="btn btn-primary mb-2"><i class="mdi mdi-information"></i>&nbsp;Detail</a></td>
+                                                            <td><jsp:getProperty name="Peminjaman" property="no_lab" /></td>
+                                                            <td><jsp:getProperty name="Peminjaman" property="level" /></td>
+                                                            <td><jsp:getProperty name="Peminjaman" property="tgl_peminjaman" /></td>
+                                                            <td><jsp:getProperty name="Peminjaman" property="tgl_mulai" /></td>
+                                                            <td><jsp:getProperty name="Peminjaman" property="tgl_berakhir" /></td>
+                                                            <td><jsp:getProperty name="Peminjaman" property="ketua_kegiatan" /></td>
+                                                            <td><jsp:getProperty name="Peminjaman" property="kontak_ketua" /></td>
+                                                            <td><span class="badge bg-success p-2"><jsp:getProperty name="Peminjaman" property="status_peminjaman" /></span></td>
+                                                            <td><a href="detail_peminjaman.jsp?id_peminjaman=<jsp:getProperty name="Peminjaman" property="id_peminjaman" />" class="btn btn-primary mb-2"><i class="mdi mdi-information"></i>&nbsp;Detail</a></td>
                                                         </tr>
+                                                        <%}%>
                                                     </tbody>
                                                 </table>                                           
                                             </div> <!-- end preview-->

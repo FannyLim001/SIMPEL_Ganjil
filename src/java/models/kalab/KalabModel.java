@@ -9,7 +9,7 @@ package models.kalab;
  *
  * @author FANNY
  */
-public class kalab_model {
+public class KalabModel {
     
     private String email_kalab;
     private String pass_kalab;

@@ -3,6 +3,7 @@ package org.apache.jsp.kalab;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import models.kalab.PeminjamanModel;
 
 public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -51,6 +52,34 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
+      models.kalab.PeminjamanModel Peminjaman = null;
+      synchronized (_jspx_page_context) {
+        Peminjaman = (models.kalab.PeminjamanModel) _jspx_page_context.getAttribute("Peminjaman", PageContext.PAGE_SCOPE);
+        if (Peminjaman == null){
+          Peminjaman = new models.kalab.PeminjamanModel();
+          _jspx_page_context.setAttribute("Peminjaman", Peminjaman, PageContext.PAGE_SCOPE);
+        }
+      }
+      out.write('\r');
+      out.write('\n');
+      controllers.kalab.KalabController KalabController = null;
+      synchronized (_jspx_page_context) {
+        KalabController = (controllers.kalab.KalabController) _jspx_page_context.getAttribute("KalabController", PageContext.PAGE_SCOPE);
+        if (KalabController == null){
+          KalabController = new controllers.kalab.KalabController();
+          _jspx_page_context.setAttribute("KalabController", KalabController, PageContext.PAGE_SCOPE);
+        }
+      }
+      out.write('\r');
+      out.write('\n');
+ 
+    PeminjamanModel[] daftarPeminjaman = KalabController.getDaftarPeminjamanBelumSelesai();
+    PeminjamanModel[] daftarPeminjaman2 = KalabController.getDaftarPeminjamanSelesai();
+
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html lang=\"en\">\r\n");
       out.write("    <head>\r\n");
@@ -59,8 +88,6 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n");
       out.write("        <meta content=\"A fully featured admin theme which can be used to build CRM, CMS, etc.\" name=\"description\" />\r\n");
       out.write("        <meta content=\"Coderthemes\" name=\"author\" />\r\n");
-      out.write("        <!-- App favicon -->\r\n");
-      out.write("        <link rel=\"shortcut icon\" href=\"assets/images/favicon.ico\">\r\n");
       out.write("    </head>\r\n");
       out.write("\r\n");
       out.write("    <body class=\"loading\" data-layout-config='{\"leftSideBarTheme\":\"dark\",\"layoutBoxed\":false, \"leftSidebarCondensed\":false, \"leftSidebarScrollable\":false,\"darkMode\":false, \"showRightSidebarOnStart\": true}'>\r\n");
@@ -100,19 +127,19 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("            </li>\r\n");
       out.write("            <li class=\"side-nav-item\">\r\n");
       out.write("                <a href=\"http://localhost:8080/SIMPEL_Ganjil/kalab/daftar_peminjaman.jsp\" class=\"side-nav-link\">\r\n");
-      out.write("                    <i class=\"mdi mdi-office-building\"></i>\r\n");
+      out.write("                    <i class=\"mdi mdi-clipboard-multiple\"></i>\r\n");
       out.write("                    <span> Peminjaman </span>\r\n");
       out.write("                </a>\r\n");
       out.write("            </li>\r\n");
       out.write("            <li class=\"side-nav-item\">\r\n");
       out.write("                <a href=\"http://localhost:8080/SIMPEL_Ganjil/kalab/data_pic.jsp\" class=\"side-nav-link\">\r\n");
-      out.write("                    <i class=\"mdi mdi-office-building\"></i>\r\n");
+      out.write("                    <i class=\"mdi mdi-account-group\"></i>\r\n");
       out.write("                    <span> PIC Lab </span>\r\n");
       out.write("                </a>\r\n");
       out.write("            </li>\r\n");
       out.write("            <li class=\"side-nav-item\">\r\n");
       out.write("                <a href=\"http://localhost:8080/SIMPEL_Ganjil/kalab/laporan_peminjaman.jsp\" class=\"side-nav-link\">\r\n");
-      out.write("                    <i class=\"mdi mdi-trophy\"></i>\r\n");
+      out.write("                    <i class=\"mdi mdi-book-arrow-up\"></i>\r\n");
       out.write("                    <span> Laporan Peminjaman</span>\r\n");
       out.write("                </a>\r\n");
       out.write("            </li>\r\n");
@@ -145,6 +172,9 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
+      out.write("        <!-- App favicon -->\r\n");
+      out.write("        <link rel=\"shortcut icon\" href=\"http://localhost:8080/SIMPEL_Ganjil/assets/images/favicon.ico\">\r\n");
+      out.write("        \r\n");
       out.write("        <!-- App css -->\r\n");
       out.write("        <link href=\"http://localhost:8080/SIMPEL_Ganjil/assets/css/icons.min.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n");
       out.write("        <link href=\"http://localhost:8080/SIMPEL_Ganjil/assets/css/app.min.css\" rel=\"stylesheet\" type=\"text/css\" id=\"light-style\" />\r\n");
@@ -212,19 +242,20 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                    <h4 class=\"page-title\">Daftar Peminjaman</h4>\r\n");
       out.write("                                </div>\r\n");
       out.write("                            </div>\r\n");
-      out.write("                        </div>     \r\n");
+      out.write("                        </div>\r\n");
+      out.write("\r\n");
       out.write("                        <!-- end page title --> \r\n");
       out.write("                        <div class=\"row\">\r\n");
       out.write("                            <div class=\"col-3\">\r\n");
       out.write("                                <ul class=\"nav nav-pills bg-nav-pills nav-justified mb-3\">\r\n");
       out.write("                                    <li class=\"nav-item\">\r\n");
-      out.write("                                        <a href=\"#home1\" data-bs-toggle=\"tab\" aria-expanded=\"false\" class=\"nav-link rounded-0 active\">\r\n");
+      out.write("                                        <a href=\"#tab1\" data-bs-toggle=\"tab\" aria-expanded=\"false\" class=\"nav-link rounded-0 active\">\r\n");
       out.write("                                            <i class=\"mdi mdi-home-variant d-md-none d-block\"></i>\r\n");
       out.write("                                            <span class=\"d-none d-md-block\">Dalam Proses</span>\r\n");
       out.write("                                        </a>\r\n");
       out.write("                                    </li>\r\n");
       out.write("                                    <li class=\"nav-item\">\r\n");
-      out.write("                                        <a href=\"#profile1\" data-bs-toggle=\"tab\" aria-expanded=\"true\" class=\"nav-link rounded-0\">\r\n");
+      out.write("                                        <a href=\"#tab2\" data-bs-toggle=\"tab\" aria-expanded=\"true\" class=\"nav-link rounded-0\">\r\n");
       out.write("                                            <i class=\"mdi mdi-account-circle d-md-none d-block\"></i>\r\n");
       out.write("                                            <span class=\"d-none d-md-block\">Selesai</span>\r\n");
       out.write("                                        </a>\r\n");
@@ -232,15 +263,15 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                </ul>\r\n");
       out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
-      out.write("                        \r\n");
+      out.write("\r\n");
       out.write("                        <div class=\"row\">\r\n");
       out.write("                            <div class=\"col-12\">\r\n");
       out.write("                                <div class=\"card\">\r\n");
       out.write("                                    <div class=\"card-body\">\r\n");
       out.write("                                        <div class=\"tab-content\">\r\n");
-      out.write("                                            <div class=\"tab-pane show active\" id=\"home1\">\r\n");
+      out.write("                                            <div class=\"tab-pane show active\" id=\"tab1\">\r\n");
       out.write("                                                <h5>Peminjaman Proses</h5>\r\n");
-      out.write("                                                <table id=\"tbl-selesai\" class=\"table dt-responsive w-100 display\">\r\n");
+      out.write("                                                <table id=\"tbl-proses\" class=\"table dt-responsive nowrap w-100\">\r\n");
       out.write("                                                    <thead class=\"table-light\">\r\n");
       out.write("                                                        <tr class=\"text-center\">\r\n");
       out.write("                                                            <th>Lab</th>\r\n");
@@ -255,23 +286,86 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                                        </tr>\r\n");
       out.write("                                                    </thead>\r\n");
       out.write("                                                    <tbody>\r\n");
+      out.write("                                                        ");
+
+                                                            for(int i=0; i<daftarPeminjaman.length; i++){
+                                                            Peminjaman = daftarPeminjaman[i];
+                                                        
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "id_peminjaman",
+Peminjaman.getId_peminjaman());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "no_lab",
+ Peminjaman.getNo_lab());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "level",
+ Peminjaman.getLevel());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "tgl_peminjaman",
+ Peminjaman.getTgl_peminjaman());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "tgl_mulai",
+ Peminjaman.getTgl_mulai());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "tgl_berakhir",
+ Peminjaman.getTgl_berakhir());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "ketua_kegiatan",
+ Peminjaman.getKetua_kegiatan());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "kontak_ketua",
+ Peminjaman.getKontak_ketua());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "status_peminjaman",
+ Peminjaman.getStatus_peminjaman());
+      out.write("\r\n");
       out.write("                                                        <tr>\r\n");
-      out.write("                                                            <td>LAB 330</td>\r\n");
-      out.write("                                                            <td>1</td>\r\n");
-      out.write("                                                            <td>2022-01-13 00:00:00</td>\r\n");
-      out.write("                                                            <td>2022-01-15 00:00:00</td>\r\n");
-      out.write("                                                            <td>2022-01-16 00:00:00</td>\r\n");
-      out.write("                                                            <td>Pujiarti</td>\r\n");
-      out.write("                                                            <td>08123456789</td>\r\n");
-      out.write("                                                            <td>Selesai</td>\r\n");
-      out.write("                                                            <td><button class=\"btn btn-success btn-sm\">Setujui</button><br><br> <button class=\"btn btn-danger btn-sm\">Tolak</button></td>\r\n");
+      out.write("                                                            <td>");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getNo_lab())));
+      out.write("</td>\r\n");
+      out.write("                                                            <td>");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getLevel())));
+      out.write("</td>\r\n");
+      out.write("                                                            <td>");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getTgl_peminjaman())));
+      out.write("</td>\r\n");
+      out.write("                                                            <td>");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getTgl_mulai())));
+      out.write("</td>\r\n");
+      out.write("                                                            <td>");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getTgl_berakhir())));
+      out.write("</td>\r\n");
+      out.write("                                                            <td>");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getKetua_kegiatan())));
+      out.write("</td>\r\n");
+      out.write("                                                            <td>");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getKontak_ketua())));
+      out.write("</td>\r\n");
+      out.write("                                                            <td><span class=\"badge bg-warning p-2\">");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getStatus_peminjaman())));
+      out.write("</span></td>\r\n");
+      out.write("                                                            <td><a href=\"detail_peminjaman.jsp?id_peminjaman=");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getId_peminjaman())));
+      out.write("\" class=\"btn btn-primary mb-2\"><i class=\"mdi mdi-information\"></i>&nbsp;Detail</a></td>\r\n");
       out.write("                                                        </tr>\r\n");
+      out.write("                                                        ");
+}
+      out.write("\r\n");
       out.write("                                                    </tbody>\r\n");
-      out.write("                                                </table>                                           \r\n");
+      out.write("                                                </table>\r\n");
       out.write("                                            </div> <!-- end preview-->\r\n");
-      out.write("                                            <div class=\"tab-pane\" id=\"profile1\">\r\n");
+      out.write("                                            <div class=\"tab-pane\" id=\"tab2\">\r\n");
       out.write("                                                <h5>Peminjaman Selesai</h5> \r\n");
-      out.write("                                                <table id=\"basic-datatable\" class=\"table dt-responsive nowrap w-100\">\r\n");
+      out.write("                                                <table id=\"tbl-selesai\" class=\"table dt-responsive nowrap w-100\">\r\n");
       out.write("                                                    <thead class=\"table-light\">\r\n");
       out.write("                                                        <tr class=\"text-center\">\r\n");
       out.write("                                                            <th>Lab</th>\r\n");
@@ -286,17 +380,80 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                                        </tr>\r\n");
       out.write("                                                    </thead>\r\n");
       out.write("                                                    <tbody>\r\n");
+      out.write("                                                        ");
+
+                                                            for(int i=0; i<daftarPeminjaman2.length; i++){
+                                                            Peminjaman = daftarPeminjaman2[i];
+                                                        
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "id_peminjaman",
+Peminjaman.getId_peminjaman());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "no_lab",
+ Peminjaman.getNo_lab());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "level",
+ Peminjaman.getLevel());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "tgl_peminjaman",
+ Peminjaman.getTgl_peminjaman());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "tgl_mulai",
+ Peminjaman.getTgl_mulai());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "tgl_berakhir",
+ Peminjaman.getTgl_berakhir());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "ketua_kegiatan",
+ Peminjaman.getKetua_kegiatan());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "kontak_ketua",
+ Peminjaman.getKontak_ketua());
+      out.write("\r\n");
+      out.write("                                                        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Peminjaman"), "status_peminjaman",
+ Peminjaman.getStatus_peminjaman());
+      out.write("\r\n");
       out.write("                                                        <tr>\r\n");
-      out.write("                                                            <td>LAB 330</td>\r\n");
-      out.write("                                                            <td>1</td>\r\n");
-      out.write("                                                            <td>2022-01-13 00:00:00</td>\r\n");
-      out.write("                                                            <td>2022-01-15 00:00:00</td>\r\n");
-      out.write("                                                            <td>2022-01-16 00:00:00</td>\r\n");
-      out.write("                                                            <td>Pujiarti</td>\r\n");
-      out.write("                                                            <td>08123456789</td>\r\n");
-      out.write("                                                            <td>Selesai</td>\r\n");
-      out.write("                                                            <td><button class=\"btn btn-success btn-sm\">Setujui</button><br><br> <button class=\"btn btn-danger btn-sm\">Tolak</button></td>\r\n");
+      out.write("                                                            <td>");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getNo_lab())));
+      out.write("</td>\r\n");
+      out.write("                                                            <td>");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getLevel())));
+      out.write("</td>\r\n");
+      out.write("                                                            <td>");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getTgl_peminjaman())));
+      out.write("</td>\r\n");
+      out.write("                                                            <td>");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getTgl_mulai())));
+      out.write("</td>\r\n");
+      out.write("                                                            <td>");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getTgl_berakhir())));
+      out.write("</td>\r\n");
+      out.write("                                                            <td>");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getKetua_kegiatan())));
+      out.write("</td>\r\n");
+      out.write("                                                            <td>");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getKontak_ketua())));
+      out.write("</td>\r\n");
+      out.write("                                                            <td><span class=\"badge bg-warning p-2\">");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getStatus_peminjaman())));
+      out.write("</span></td>\r\n");
+      out.write("                                                            <td><a href=\"detail_peminjaman.jsp?id_peminjaman=");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getId_peminjaman())));
+      out.write("\" class=\"btn btn-primary mb-2\"><i class=\"mdi mdi-information\"></i>&nbsp;Detail</a></td>\r\n");
       out.write("                                                        </tr>\r\n");
+      out.write("                                                        ");
+}
+      out.write("\r\n");
       out.write("                                                    </tbody>\r\n");
       out.write("                                                </table>                                           \r\n");
       out.write("                                            </div> <!-- end preview-->\r\n");
@@ -316,50 +473,59 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <body>\r\n");
-      out.write("    <!-- Footer Start -->\r\n");
-      out.write("    <footer class=\"footer\">\r\n");
-      out.write("        <div class=\"container-fluid\">\r\n");
-      out.write("            <div class=\"row\">\r\n");
-      out.write("                <div class=\"col-md-6\">\r\n");
-      out.write("                    <script>document.write(new Date().getFullYear())</script> © SIMPEL - Development by Ganjil 2TID\r\n");
-      out.write("                </div>\r\n");
-      out.write("                <div class=\"col-md-6\">\r\n");
-      out.write("                    <div class=\"text-md-end footer-links d-none d-md-block\">\r\n");
-      out.write("                        <a href=\"https://github.com/FannyLim001/SIMPEL_Ganjil\">Developer Page</a>\r\n");
+      out.write("        <!-- Footer Start -->\r\n");
+      out.write("        <footer class=\"footer\">\r\n");
+      out.write("            <div class=\"container-fluid\">\r\n");
+      out.write("                <div class=\"row\">\r\n");
+      out.write("                    <div class=\"col-md-6\">\r\n");
+      out.write("                        <script>document.write(new Date().getFullYear())</script> © SIMPEL - Development by Ganjil 2TID\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"col-md-6\">\r\n");
+      out.write("                        <div class=\"text-md-end footer-links d-none d-md-block\">\r\n");
+      out.write("                            <a href=\"https://github.com/FannyLim001/SIMPEL_Ganjil\">Developer Page</a>\r\n");
+      out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
       out.write("            </div>\r\n");
-      out.write("        </div>\r\n");
-      out.write("    </footer>\r\n");
-      out.write("    <!-- bundle -->\r\n");
-      out.write("            <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor.min.js\"></script>\r\n");
-      out.write("            <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/app.min.js\"></script>\r\n");
+      out.write("        </footer>\r\n");
+      out.write("        <!-- bundle -->\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor.min.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/app.min.js\"></script>\r\n");
       out.write("\r\n");
-      out.write("            <!-- third party js -->\r\n");
-      out.write("            <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/jquery.dataTables.min.js\"></script>\r\n");
-      out.write("            <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.bootstrap5.js\"></script>\r\n");
-      out.write("            <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.responsive.min.js\"></script>\r\n");
-      out.write("            <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/responsive.bootstrap5.min.js\"></script>\r\n");
-      out.write("            <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.buttons.min.js\"></script>\r\n");
-      out.write("            <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.bootstrap5.min.js\"></script>\r\n");
-      out.write("            <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.html5.min.js\"></script>\r\n");
-      out.write("            <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.flash.min.js\"></script>\r\n");
-      out.write("            <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.print.min.js\"></script>\r\n");
-      out.write("            <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.keyTable.min.js\"></script>\r\n");
-      out.write("            <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.select.min.js\"></script>\r\n");
-      out.write("            <!-- third party js ends -->\r\n");
+      out.write("        <!-- third party js -->\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/jquery.dataTables.min.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.bootstrap5.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.responsive.min.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/responsive.bootstrap5.min.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.buttons.min.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.bootstrap5.min.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.html5.min.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.flash.min.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.print.min.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.keyTable.min.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.select.min.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/apexcharts.min.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/jquery-jvectormap-1.2.2.min.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/jquery-jvectormap-world-mill-en.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/Chart.bundle.min.js\"></script>\r\n");
+      out.write("        <!-- third party js ends -->\r\n");
       out.write("\r\n");
-      out.write("            <!-- demo app -->\r\n");
-      out.write("            <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.datatable-init.js\"></script>\r\n");
-      out.write("            <!-- end demo js-->\r\n");
+      out.write("        <!-- demo app -->\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.datatable-init.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.dashboard.js\"></script>\r\n");
+      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.chartjs.js\"></script>\r\n");
+      out.write("        <!-- end demo js-->\r\n");
       out.write("\r\n");
-      out.write("            <script>\r\n");
-      out.write("                $(document).ready(function () {\r\n");
-      out.write("                    $('table.display').DataTable({\r\n");
-      out.write("                        \"scrollX\": true\r\n");
+      out.write("        <script>\r\n");
+      out.write("                    $(document).ready(function () {\r\n");
+      out.write("                        $('#tbl-proses').DataTable({\r\n");
+      out.write("                        });\r\n");
       out.write("                    });\r\n");
-      out.write("                });\r\n");
-      out.write("            </script>\r\n");
+      out.write("                    $(document).ready(function () {\r\n");
+      out.write("                        $('#tbl-selesai').DataTable({\r\n");
+      out.write("                        });\r\n");
+      out.write("                    });\r\n");
+      out.write("        </script>\r\n");
       out.write("    </body>\r\n");
       out.write("    <!-- end Footer -->\r\n");
       out.write("</html>\r\n");
