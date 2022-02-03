@@ -6,7 +6,12 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+
+<!-- Models -->
 <%@page import="models.pic.Peminjaman"%>
+
+<!-- Controllers -->
+<%@page import="controllers.pic.PicController"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -36,11 +41,7 @@
         <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
         <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css" />
     </head>
-    <%
-        Peminjaman daftarPeminjaman = new Peminjaman();
-        List<Peminjaman> data = new ArrayList<Peminjaman>();
-        data = daftarPeminjaman.allPeminjaman();
-    %>
+   
     <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
         <!-- Begin page -->
         <div class="wrapper">
@@ -100,17 +101,18 @@
                                                     </thead>
                                                     <tbody>
                                                         <%
-                                                            for (int i = 0; i < data.size(); i++) {
+                                                            Peminjaman[] daftar = new PicController().allPeminjaman();
+                                                            for (int i = 0; i < daftar.length; i++) {
                                                         %>
                                                         <tr>
-                                                            <td><%= data.get(i).getNo_lab() %></td>
-                                                            <td><%= data.get(i).getKetua_kegiatan() %></td>
-                                                            <td class="text-center"><%= data.get(i).getLevel() %></td>
-                                                            <td class="text-center"><%= data.get(i).getTgl_peminjaman()%></td>
-                                                            <td><%= data.get(i).getKeterangan() %></td>
+                                                            <td><%= daftar[i].getNo_lab() %></td>
+                                                            <td><%= daftar[i].getKetua_kegiatan() %></td>
+                                                            <td class="text-center"><%= daftar[i].getLevel() %></td>
+                                                            <td class="text-center"><%= daftar[i].getTgl_peminjaman()%></td>
+                                                            <td><%= daftar[i].getKeterangan() %></td>
                                                             <td class="text-center">
                                                             <%
-                                                                String status = data.get(i).getStatus_peminjaman();
+                                                                String status = daftar[i].getStatus_peminjaman();
                                                                 if (status.equalsIgnoreCase("diajukan")) { %>
                                                                     <span class="badge bg-warning p-2"><%= status %></span>
                                                                 <% } else if (status.equalsIgnoreCase("menunggu")) { %>
@@ -125,7 +127,7 @@
                                                             %>
                                                             </td>
                                                             <td class="table-action text-center">
-                                                                <a href="http://localhost:8080/SIMPEL_Ganjil/pic/detail_peminjaman.jsp?id_peminjaman=<%= data.get(i).getId_peminjaman() %>" 
+                                                                <a href="http://localhost:8080/SIMPEL_Ganjil/pic/detail_peminjaman.jsp?id_peminjaman=<%= daftar[i].getId_peminjaman() %>" 
                                                                    class="btn btn-primary mb-2">Detail</a>
                                                             </td>
                                                         </tr>

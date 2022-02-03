@@ -6,9 +6,14 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+
+<!-- Models -->
 <%@page import="models.pic.Peminjaman"%>
 <%@page import="models.pic.Konfirmasi_peminjaman"%>
 <%@page import="models.pic.InformasiLab"%>
+
+<!-- Controllers -->
+<%@page import="controllers.pic.PicController"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -80,13 +85,11 @@
                         <!-- Start dasboard stuff -->
                         <div class="row">
                             <%
-                                Peminjaman p = new Peminjaman();
-                                List<Peminjaman> data = new ArrayList<Peminjaman>();
-                                data = p.statusPeminjaman();
+                                Peminjaman[] p = new PicController().statusPeminjaman();
                                 String bgcard = null; 
                                 String stat = null;
-                                for (int i = 0; i < data.size(); i++) {
-                                    stat = data.get(i).getStatus_peminjaman();
+                                for (int i = 0; i < p.length; i++) {
+                                    stat = p[i].getStatus_peminjaman();
                                     if (stat.equals("Diajukan")) {
                                         bgcard = "bg-warning";
                                     }else if (stat.equals("Menunggu")) {
@@ -103,7 +106,7 @@
                                 <div class="card text-light <%= bgcard %>">
                                     <div class="card-body d-flex flex-column align-items-center">
                                         <h1 class="mt-1 mb-1">
-                                            <%= data.get(i).getJml_status_peminjaman() %>
+                                            <%= p[i].getJml_status_peminjaman() %>
                                         </h1>
                                         <p class="fw-normal mb-0">Peminjaman</p>
                                         <h4 class="fw-bold mt-0 mb-1 text-center">
@@ -114,7 +117,7 @@
                             </div> <!-- end col-->
                             <%
                                 }
-                                InformasiLab info = new InformasiLab().labTersedia();
+                                InformasiLab info = new PicController().labTersedia();
                             %>
                             <div class="col-md-2">
                                 <div class="card">
@@ -157,23 +160,21 @@
                                                     </thead>
                                                     <tbody>
                                                         <%
-                                                            Peminjaman dpDalamProses = new Peminjaman();
-                                                            List<Peminjaman> daftar = new ArrayList<Peminjaman>();
-                                                            daftar = dpDalamProses.peminjamanDiajukan();
-                                                            for (int i = 0; i < daftar.size(); i++) {
+                                                            Peminjaman[] peminjaman = new PicController().peminjamanDiajukan();
+                                                            for (int i = 0; i < peminjaman.length; i++) {
                                                         %>
                                                         <tr>
-                                                            <td><%= daftar.get(i).getNo_lab() %></td>
-                                                            <td><%= daftar.get(i).getKetua_kegiatan() %></td>
-                                                            <td class="text-center"><%= daftar.get(i).getKontak_ketua() %></td>
-                                                            <td class="text-center"><%= daftar.get(i).getLevel() %></td>
-                                                            <td class="text-center"><%= daftar.get(i).getTgl_peminjaman() %></td>
-                                                            <td class="text-center"><%= daftar.get(i).getTgl_mulai() %></td>
-                                                            <td class="text-center"><%= daftar.get(i).getTgl_berakhir() %></td>
-                                                            <td><%= daftar.get(i).getKeterangan() %></td>
+                                                            <td><%= peminjaman[i].getNo_lab() %></td>
+                                                            <td><%= peminjaman[i].getKetua_kegiatan() %></td>
+                                                            <td class="text-center"><%= peminjaman[i].getKontak_ketua() %></td>
+                                                            <td class="text-center"><%= peminjaman[i].getLevel() %></td>
+                                                            <td class="text-center"><%= peminjaman[i].getTgl_peminjaman() %></td>
+                                                            <td class="text-center"><%= peminjaman[i].getTgl_mulai() %></td>
+                                                            <td class="text-center"><%= peminjaman[i].getTgl_berakhir() %></td>
+                                                            <td><%= peminjaman[i].getKeterangan() %></td>
                                                             <td class="text-center">
                                                                 <%
-                                                                    String status = daftar.get(i).getStatus_peminjaman();
+                                                                    String status = peminjaman[i].getStatus_peminjaman();
                                                                     if (status.equalsIgnoreCase("diajukan")) { %>
                                                                 <span class="badge bg-warning p-2"><%= status %></span>
                                                                 <%

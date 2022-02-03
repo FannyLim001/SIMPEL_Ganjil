@@ -6,9 +6,14 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+
+<!-- Models -->
 <%@page import="models.pic.Peminjaman"%>
 <%@page import="models.pic.InformasiLab"%>
 <%@page import="models.pic.Logbook"%>
+
+<!-- Controllers -->
+<%@page import="controllers.pic.PicController"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,7 +25,7 @@
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="http://localhost:8080/SIMPEL_Ganjil/assets/images/favicon.ico">
 
         <!-- App css -->
         <link href="http://localhost:8080/SIMPEL_Ganjil/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
@@ -98,8 +103,7 @@
                                             if (!isId) { %>
                                                 <p>Tidak ada data</p>
                                             <% } else{
-                                                Peminjaman p = null;
-                                                p = new Peminjaman().peminjamanById(Integer.parseInt(id_peminjaman));
+                                                Peminjaman p = new PicController().peminjamanById(Integer.parseInt(id_peminjaman));
                                         %>
                                         
                                         <ul class="list-unstyled mb-0">
@@ -159,15 +163,14 @@
                                         <%
                                             if (!status.equalsIgnoreCase("selesai")) { %>
                                                 <div class="text-center">
-                                                    <button type="button" class="btn btn-primary" disabled>
-                                                        Lihat Logbook
+                                                    <button type="button" class="btn btn-danger" disabled>
+                                                        Logbook Belum Tersedia
                                                     </button>
                                                 </div>  
                                             <% } else{ 
                                                     int id_lab = p.getId_lab();
                                                     String tgl_berakhir = p.getTgl_berakhir();
-                                                    Logbook log = new Logbook();
-                                                    log = log.logbookByPeminjaman(id_lab, tgl_berakhir);
+                                                    Logbook log = new PicController().logbookByPeminjaman(id_lab, tgl_berakhir);
                                             %>
                                             
                                         <div class="text-center">
@@ -230,8 +233,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <%
-                                            InformasiLab info = new InformasiLab();
-                                            info = info.labById(id_peminjaman);
+                                            InformasiLab info = new PicController().labById(id_peminjaman);
                                         %>
                                         <div class="row">
                                             <h4 class="header-title mb-3">Informasi Lab</h4>
