@@ -85,7 +85,7 @@
                         <!-- Start dasboard stuff -->
                         <div class="row">
                             <%
-                                Peminjaman[] p = new PicController().statusPeminjaman();
+                                Peminjaman[] p = new PicController().getStatusPeminjaman();
                                 String bgcard = null; 
                                 String stat = null;
                                 for (int i = 0; i < p.length; i++) {
@@ -117,7 +117,7 @@
                             </div> <!-- end col-->
                             <%
                                 }
-                                InformasiLab info = new PicController().labTersedia();
+                                InformasiLab info = new PicController().getLabTersedia();
                             %>
                             <div class="col-md-2">
                                 <div class="card">
@@ -160,7 +160,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <%
-                                                            Peminjaman[] peminjaman = new PicController().peminjamanDiajukan();
+                                                            Peminjaman[] peminjaman = new PicController().getPeminjamanDiajukan();
                                                             for (int i = 0; i < peminjaman.length; i++) {
                                                         %>
                                                         <tr>

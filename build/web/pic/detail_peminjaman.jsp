@@ -103,7 +103,7 @@
                                             if (!isId) { %>
                                                 <p>Tidak ada data</p>
                                             <% } else{
-                                                Peminjaman p = new PicController().peminjamanById(Integer.parseInt(id_peminjaman));
+                                                Peminjaman p = new PicController().getPeminjamanById(Integer.parseInt(id_peminjaman));
                                         %>
                                         
                                         <ul class="list-unstyled mb-0">
@@ -170,7 +170,7 @@
                                             <% } else{ 
                                                     int id_lab = p.getId_lab();
                                                     String tgl_berakhir = p.getTgl_berakhir();
-                                                    Logbook log = new PicController().logbookByPeminjaman(id_lab, tgl_berakhir);
+                                                    Logbook log = new PicController().getLogbookByPeminjaman(id_lab, tgl_berakhir);
                                             %>
                                             
                                         <div class="text-center">
@@ -233,7 +233,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <%
-                                            InformasiLab info = new PicController().labById(id_peminjaman);
+                                            InformasiLab info = new PicController().getLabById(id_peminjaman);
                                         %>
                                         <div class="row">
                                             <h4 class="header-title mb-3">Informasi Lab</h4>

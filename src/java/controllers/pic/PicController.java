@@ -8,7 +8,7 @@ import models.pic.*;
 public class PicController {
     
     /* Akses models Peminjaman */
-    public Peminjaman[] allPeminjaman(){
+    public Peminjaman[] getDataPeminjaman(){
         Peminjaman[] p = null;
         Peminjaman temp = null;
         ArrayList daftar = new ArrayList();
@@ -51,7 +51,7 @@ public class PicController {
         }
     }
     
-    public Peminjaman peminjamanById(int id){
+    public Peminjaman getPeminjamanById(int id){
         Peminjaman p = null;
         database db = new database();
         ResultSet rs = null;
@@ -88,7 +88,7 @@ public class PicController {
         }
     }
     
-    public Peminjaman[] peminjamanDiajukan(){
+    public Peminjaman[] getPeminjamanDiajukan(){
         Peminjaman[] p = null;
         Peminjaman temp = null;
         ArrayList daftar = new ArrayList();
@@ -134,7 +134,7 @@ public class PicController {
         }
     }
     
-    public Peminjaman[] statusPeminjaman(){
+    public Peminjaman[] getStatusPeminjaman(){
         Peminjaman[] p = null;
         Peminjaman temp = null;
         ArrayList daftar = new ArrayList();
@@ -163,7 +163,7 @@ public class PicController {
     }
     
     /* Akses models InformasiLab */
-    public InformasiLab labTersedia(){
+    public InformasiLab getLabTersedia(){
         InformasiLab info = null;
         database db = new database();
         ResultSet rs = null;
@@ -187,7 +187,7 @@ public class PicController {
         }
     }
     
-    public InformasiLab labById(String id_peminjaman){
+    public InformasiLab getLabById(String id_peminjaman){
         InformasiLab info = null;
         database db = new database();
         ResultSet rs = null;
@@ -216,7 +216,7 @@ public class PicController {
     }
     
     /* Akses models Logbook */
-    public Logbook logbookByPeminjaman(int id_lab, String tgl_berakhir){
+    public Logbook getLogbookByPeminjaman(int id_lab, String tgl_berakhir){
         Logbook lb = null;
         database db = new database();
         ResultSet rs = null;

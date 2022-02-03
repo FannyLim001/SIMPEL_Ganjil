@@ -101,7 +101,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <%
-                                                            Peminjaman[] daftar = new PicController().allPeminjaman();
+                                                            Peminjaman[] daftar = new PicController().getDataPeminjaman();
                                                             for (int i = 0; i < daftar.length; i++) {
                                                         %>
                                                         <tr>
