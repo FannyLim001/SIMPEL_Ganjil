@@ -34,8 +34,8 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">SIMPEL</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Kepala Lab</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Data PIC Lab</a></li>
+                                            <li class="breadcrumb-item"><a href="dashboard.jsp">Kepala Lab</a></li>
+                                            <li class="breadcrumb-item"><a href="data_pic.jsp">Data PIC Lab</a></li>
                                             <li class="breadcrumb-item active">Tambah Data PIC Lab</li>
                                         </ol>
                                     </div>
@@ -44,6 +44,8 @@
                             </div>
                         </div>
                         <!-- end page title --> 
+                        
+                        <form action="add_pic.jsp" method="post">
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -80,13 +82,14 @@
                                         <br>
                                         <div class="row">
                                             <div class="col-3">
-                                                <a href="kalab_controller" class="btn btn-primary btn-sm"><i class="mdi mdi-account-plus"></i>&nbsp;&nbsp;Tambah</a>
+                                                <button type="submit" class="btn btn-primary btn-sm"><i class="mdi mdi-account-plus"></i>&nbsp;&nbsp;Tambah</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div> <!-- end card -->
                             </div> <!-- end col-->        
                         </div> <!-- end row -->
+                        </form>
 
                     </div> <!-- container -->
 

@@ -124,7 +124,14 @@
                                                             <td><jsp:getProperty name="Peminjaman" property="tgl_berakhir" /></td>
                                                             <td><jsp:getProperty name="Peminjaman" property="ketua_kegiatan" /></td>
                                                             <td><jsp:getProperty name="Peminjaman" property="kontak_ketua" /></td>
-                                                            <td><span class="badge bg-warning p-2"><jsp:getProperty name="Peminjaman" property="status_peminjaman" /></span></td>
+                                                            <%
+                                                                String status = Peminjaman.getStatus_peminjaman();
+                                                                if (status.equals("Diajukan")) { %>
+                                                                <td><span class="badge bg-warning p-2"><%= status %></span></td>
+                                                                <% } else if (status.equals("Menunggu")) { %>
+                                                                <td><span class="badge bg-secondary p-2"><%= status %></span></td>
+                                                                <% }
+                                                            %>
                                                             <td><a href="detail_peminjaman.jsp?id_peminjaman=<jsp:getProperty name="Peminjaman" property="id_peminjaman" />" class="btn btn-primary mb-2"><i class="mdi mdi-information"></i>&nbsp;Detail</a></td>
                                                         </tr>
                                                         <%}%>
@@ -169,7 +176,16 @@
                                                             <td><jsp:getProperty name="Peminjaman" property="tgl_berakhir" /></td>
                                                             <td><jsp:getProperty name="Peminjaman" property="ketua_kegiatan" /></td>
                                                             <td><jsp:getProperty name="Peminjaman" property="kontak_ketua" /></td>
-                                                            <td><span class="badge bg-success p-2"><jsp:getProperty name="Peminjaman" property="status_peminjaman" /></span></td>
+                                                            <%
+                                                                String status = Peminjaman.getStatus_peminjaman();
+                                                                if (status.equals("Disetujui")) { %>
+                                                                <td><span class="badge bg-info p-2"><%= status %></span></td>
+                                                                <% } else if (status.equals("Ditolak")) { %>
+                                                                <td><span class="badge bg-danger p-2"><%= status %></span></td>   
+                                                                <% } else if (status.equals("Selesai")) { %>
+                                                                <td><span class="badge bg-success p-2"><%= status %></span></td>   
+                                                                <% }
+                                                            %>
                                                             <td><a href="detail_peminjaman.jsp?id_peminjaman=<jsp:getProperty name="Peminjaman" property="id_peminjaman" />" class="btn btn-primary mb-2"><i class="mdi mdi-information"></i>&nbsp;Detail</a></td>
                                                         </tr>
                                                         <%}%>

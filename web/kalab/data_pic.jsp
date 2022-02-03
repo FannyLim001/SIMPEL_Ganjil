@@ -4,6 +4,13 @@
     Author     : FANNY
 --%>
 
+<%@page language="java" %>
+<%@page import="models.kalab.PicModel"%>
+<jsp:useBean id="Pic" class="models.kalab.PicModel" />
+<jsp:useBean id="KalabController" class="controllers.kalab.KalabController" />
+<% 
+    PicModel[] daftarPic = KalabController.getDaftarPic();
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="id">
@@ -35,7 +42,7 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">SIMPEL</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Kepala Lab</a></li>
+                                            <li class="breadcrumb-item"><a href="dashboard.jsp">Kepala Lab</a></li>
                                             <li class="breadcrumb-item active">Data PIC Lab</li>
                                         </ol>
                                     </div>
@@ -69,15 +76,27 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <%  
+                                                            int num=1;
+                                                            for(int i=0; i<daftarPic.length; i++){
+                                                            Pic = daftarPic[i];
+                                                %>
+                                                <jsp:setProperty name = "Pic" property = "id_pic" value = "<%=Pic.getId_pic()%>" />
+                                                <jsp:setProperty name = "Pic" property = "nama_pic" value = "<%=Pic.getNama_pic()%>" />
+                                                <jsp:setProperty name = "Pic" property = "ruangan_pic" value = "<%= Pic.getRuangan_pic()%>" />
+                                                <jsp:setProperty name = "Pic" property = "email_pic" value = "<%= Pic.getEmail_pic()%>" />
+                                                <jsp:setProperty name = "Pic" property = "pass_pic" value = "<%= Pic.getPass_pic()%>" />
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>Dwi Listiyanti</td>
-                                                    <td>LAB 330</td>
-                                                    <td>dwilisty@pcr.ac.id</td>
-                                                    <td>dwi124</td>
-                                                    <td><a href="edit_pic.jsp" class="btn btn-primary mb-2"><i class="mdi mdi-account-edit"></i>&nbsp;Edit</a>&nbsp;&nbsp;
-                                                        <a href="delete_pic.jsp" class="btn btn-danger mb-2"><i class="mdi mdi-account-remove"></i>&nbsp;Hapus</a></td>
+                                                    <td><%= num++ %></td>
+                                                    <td><jsp:getProperty name="Pic" property="nama_pic" /></td>
+                                                    <td><jsp:getProperty name="Pic" property="ruangan_pic" /></td>
+                                                    <td><jsp:getProperty name="Pic" property="email_pic" /></td>
+                                                    <td><jsp:getProperty name="Pic" property="pass_pic" /></td>
+                                                    <td><a href="edit_pic.jsp?id_pic=<jsp:getProperty name="Pic" property="id_pic" />" class="btn btn-primary mb-2"><i class="mdi mdi-account-edit"></i>&nbsp;Edit</a>&nbsp;&nbsp;
+                                                        <a href="delete_pic.jsp?id_pic=<jsp:getProperty name="Pic" property="id_pic" />" class="btn btn-danger mb-2"><i class="mdi mdi-account-remove"></i>&nbsp;Hapus</a>
+                                                    </td>
                                                 </tr>
+                                                <%}%>
                                             </tbody>
                                         </table>
                                     </div> <!-- end card -->

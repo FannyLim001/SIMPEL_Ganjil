@@ -35,7 +35,7 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">SIMPEL</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Kepala Lab</a></li>
+                                            <li class="breadcrumb-item"><a href="dashboard.jsp">Kepala Lab</a></li>
                                             <li class="breadcrumb-item active">Dashboard</li>
                                         </ol>
                                     </div>

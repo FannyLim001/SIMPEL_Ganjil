@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	 version="3.1">
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>KalabLogout</servlet-name>
+        <servlet-class>controllers.kalab.KalabLogout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>KalabLogin</servlet-name>
+        <servlet-class>controllers.kalab.KalabLogin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>KalabLogout</servlet-name>
+        <url-pattern>/KalabLogout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KalabLogin</servlet-name>
+        <url-pattern>/KalabLogin</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
