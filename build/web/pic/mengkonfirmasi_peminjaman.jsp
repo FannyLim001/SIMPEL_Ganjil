@@ -8,6 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="models.pic.Peminjaman"%>
 <%@page import="models.pic.Konfirmasi_peminjaman"%>
+<%@page import="models.pic.InformasiLab"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -75,6 +76,63 @@
                             </div>
                         </div>     
                         <!-- end page title --> 
+                        
+                        <!-- Start dasboard stuff -->
+                        <div class="row">
+                            <%
+                                Peminjaman p = new Peminjaman();
+                                List<Peminjaman> data = new ArrayList<Peminjaman>();
+                                data = p.statusPeminjaman();
+                                String bgcard = null; 
+                                String stat = null;
+                                for (int i = 0; i < data.size(); i++) {
+                                    stat = data.get(i).getStatus_peminjaman();
+                                    if (stat.equals("Diajukan")) {
+                                        bgcard = "bg-warning";
+                                    }else if (stat.equals("Menunggu")) {
+                                        bgcard = "bg-secondary";
+                                    }else if (stat.equals("Disetujui")) {
+                                        bgcard = "bg-info";
+                                    }else if (stat.equals("Ditolak")) {
+                                        bgcard = "bg-danger";
+                                    }else if (stat.equals("Selesai")) {
+                                        bgcard = "bg-success";
+                                    }
+                            %>
+                            <div class="col-md-2">
+                                <div class="card text-light <%= bgcard %>">
+                                    <div class="card-body d-flex flex-column align-items-center">
+                                        <h1 class="mt-1 mb-1">
+                                            <%= data.get(i).getJml_status_peminjaman() %>
+                                        </h1>
+                                        <p class="fw-normal mb-0">Peminjaman</p>
+                                        <h4 class="fw-bold mt-0 mb-1 text-center">
+                                            <%= stat %>
+                                        </h4>                                        
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div> <!-- end col-->
+                            <%
+                                }
+                                InformasiLab info = new InformasiLab().labTersedia();
+                            %>
+                            <div class="col-md-2">
+                                <div class="card">
+                                    <div class="card-body d-flex flex-column align-items-center">
+                                            <h1 class="mt-1 mb-1 d-inline">
+                                                <%= info.getLab_tersedia() %> / 
+                                                <%= info.getJml_lab() %> 
+                                            </h1>
+                                        <p class="fw-normal mb-0">Lab Yang</p>
+                                        <h4 class="fw-bold mt-0 mb-1 text-center">
+                                            Tersedia
+                                        </h4>                                        
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div>
+                        </div>
+                        <!-- end row -->
+                        
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">

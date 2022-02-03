@@ -7,7 +7,7 @@ import config.database;
 
 public class Peminjaman {
     database db = null;
-    int no_lab;
+    int no_lab, jml_status_peminjaman;
     int id_peminjaman, id_lab, level, id_mhs;
     String tgl_peminjaman, tgl_mulai, tgl_berakhir, keterangan;
     String ketua_kegiatan, kontak_ketua, status_peminjaman;
@@ -119,6 +119,14 @@ public class Peminjaman {
     public void setStatus_peminjaman(String status_peminjaman) {
         this.status_peminjaman = status_peminjaman;
     }
+
+    public int getJml_status_peminjaman() {
+        return jml_status_peminjaman;
+    }
+
+    public void setJml_status_peminjaman(int jml_status_peminjaman) {
+        this.jml_status_peminjaman = jml_status_peminjaman;
+    }
     
     public List allPeminjaman(){
         List<Peminjaman> data = new ArrayList<Peminjaman>();
@@ -224,6 +232,27 @@ public class Peminjaman {
             }
         }catch(Exception ex){
             System.out.println("Error: "+ex);
+        }
+        
+        return data;
+    }
+    
+    public List statusPeminjaman(){
+        List<Peminjaman> data = new ArrayList<Peminjaman>(); 
+        try{
+            String sql = "SELECT status_peminjaman, COUNT(id_peminjaman) as jml\n" +
+                "FROM tbl_peminjaman\n" +
+                "GROUP BY status_peminjaman";
+            ResultSet rs = db.getData(sql);
+            while(rs.next()){
+                Peminjaman p = new Peminjaman();
+                p.setStatus_peminjaman(rs.getString("status_peminjaman"));
+                p.setJml_status_peminjaman(rs.getInt("jml"));
+                
+                data.add(p);
+            }
+        }catch(Exception ex){
+            System.out.println("Error: " + ex);
         }
         
         return data;

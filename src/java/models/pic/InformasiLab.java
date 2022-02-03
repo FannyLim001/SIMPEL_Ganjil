@@ -7,8 +7,8 @@ import config.database;
 
 public class InformasiLab {
     database db = null;
-    int id_lab;
-    String no_lab, nama_lab, kapasitas, ketua_lab, pic_lab, foto_lab;
+    int id_lab, jml_lab, lab_tersedia;
+    String no_lab, nama_lab, kapasitas, ketua_lab, pic_lab, foto_lab, status;
     
     public InformasiLab(){
         db = new database();
@@ -76,6 +76,50 @@ public class InformasiLab {
 
     public void setFoto_lab(String foto_lab) {
         this.foto_lab = foto_lab;
+    }
+
+    public int getJml_lab() {
+        return jml_lab;
+    }
+
+    public void setJml_lab(int jml_lab) {
+        this.jml_lab = jml_lab;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getLab_tersedia() {
+        return lab_tersedia;
+    }
+
+    public void setLab_tersedia(int lab_tersedia) {
+        this.lab_tersedia = lab_tersedia;
+    }
+    
+    public InformasiLab labTersedia(){
+        InformasiLab info = new InformasiLab();
+        try{
+            String sql = "SELECT COUNT(id_lab) as jml_seluruh_lab, (\n" +
+                "    SELECT COUNT(id_lab) \n" +
+                "    FROM tbl_lab \n" +
+                "    WHERE status_lab LIKE \"Available\") as jml_lab_tersedia\n" +
+                "FROM tbl_lab";
+            ResultSet rs = db.getData(sql);
+            if(rs.next()){
+                info.setJml_lab(rs.getInt("jml_seluruh_lab"));
+                info.setLab_tersedia(rs.getInt("jml_lab_tersedia"));
+            }
+        }catch(Exception ex){
+            System.out.println("Error: " + ex);
+        }
+        
+        return info;
     }
     
     public InformasiLab labById(String id_peminjaman){
