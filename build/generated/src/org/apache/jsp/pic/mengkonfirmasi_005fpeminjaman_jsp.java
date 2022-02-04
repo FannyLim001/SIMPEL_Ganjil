@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import models.pic.Peminjaman;
 import models.pic.Konfirmasi_peminjaman;
+import models.pic.InformasiLab;
+import controllers.pic.PicController;
 
 public final class mengkonfirmasi_005fpeminjaman_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -57,6 +59,12 @@ public final class mengkonfirmasi_005fpeminjaman_jsp extends org.apache.jasper.r
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("<!-- Models -->\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!-- Controllers -->\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -239,17 +247,75 @@ public final class mengkonfirmasi_005fpeminjaman_jsp extends org.apache.jasper.r
       out.write("                            </div>\r\n");
       out.write("                        </div>     \r\n");
       out.write("                        <!-- end page title --> \r\n");
-      out.write("                        ");
+      out.write("                        \r\n");
+      out.write("                        <!-- Start dasboard stuff -->\r\n");
+      out.write("                        <div class=\"row\">\r\n");
+      out.write("                            ");
 
-                                                           Konfirmasi_peminjaman km = new Konfirmasi_peminjaman();
-                                                           int id = Integer.parseInt(request.getParameter("id"));
-                                                           String status = request.getParameter("status");
-                                                           
-                                                           if(status!=null) {
-                                                               km.konfirmasi(id,status);
-                                                           }
-                        
+                                Peminjaman[] p = new PicController().getStatusPeminjaman();
+                                String bgcard = null; 
+                                String stat = null;
+                                for (int i = 0; i < p.length; i++) {
+                                    stat = p[i].getStatus_peminjaman();
+                                    if (stat.equals("Diajukan")) {
+                                        bgcard = "bg-warning";
+                                    }else if (stat.equals("Menunggu")) {
+                                        bgcard = "bg-secondary";
+                                    }else if (stat.equals("Disetujui")) {
+                                        bgcard = "bg-info";
+                                    }else if (stat.equals("Ditolak")) {
+                                        bgcard = "bg-danger";
+                                    }else if (stat.equals("Selesai")) {
+                                        bgcard = "bg-success";
+                                    }
+                            
       out.write("\r\n");
+      out.write("                            <div class=\"col-md-2\">\r\n");
+      out.write("                                <div class=\"card text-light ");
+      out.print( bgcard );
+      out.write("\">\r\n");
+      out.write("                                    <div class=\"card-body d-flex flex-column align-items-center\">\r\n");
+      out.write("                                        <h1 class=\"mt-1 mb-1\">\r\n");
+      out.write("                                            ");
+      out.print( p[i].getJml_status_peminjaman() );
+      out.write("\r\n");
+      out.write("                                        </h1>\r\n");
+      out.write("                                        <p class=\"fw-normal mb-0\">Peminjaman</p>\r\n");
+      out.write("                                        <h4 class=\"fw-bold mt-0 mb-1 text-center\">\r\n");
+      out.write("                                            ");
+      out.print( stat );
+      out.write("\r\n");
+      out.write("                                        </h4>                                        \r\n");
+      out.write("                                    </div> <!-- end card-body-->\r\n");
+      out.write("                                </div> <!-- end card-->\r\n");
+      out.write("                            </div> <!-- end col-->\r\n");
+      out.write("                            ");
+
+                                }
+                                InformasiLab info = new PicController().getLabTersedia();
+                            
+      out.write("\r\n");
+      out.write("                            <div class=\"col-md-2\">\r\n");
+      out.write("                                <div class=\"card\">\r\n");
+      out.write("                                    <div class=\"card-body d-flex flex-column align-items-center\">\r\n");
+      out.write("                                            <h1 class=\"mt-1 mb-1 d-inline\">\r\n");
+      out.write("                                                ");
+      out.print( info.getLab_tersedia() );
+      out.write(" / \r\n");
+      out.write("                                                ");
+      out.print( info.getJml_lab() );
+      out.write(" \r\n");
+      out.write("                                            </h1>\r\n");
+      out.write("                                        <p class=\"fw-normal mb-0\">Lab Yang</p>\r\n");
+      out.write("                                        <h4 class=\"fw-bold mt-0 mb-1 text-center\">\r\n");
+      out.write("                                            Tersedia\r\n");
+      out.write("                                        </h4>                                        \r\n");
+      out.write("                                    </div> <!-- end card-body-->\r\n");
+      out.write("                                </div> <!-- end card-->\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <!-- end row -->\r\n");
+      out.write("                        \r\n");
       out.write("                        <div class=\"row\">\r\n");
       out.write("                            <div class=\"col-12\">\r\n");
       out.write("                                <div class=\"card\">\r\n");
@@ -275,41 +341,39 @@ public final class mengkonfirmasi_005fpeminjaman_jsp extends org.apache.jasper.r
       out.write("                                                    <tbody>\r\n");
       out.write("                                                        ");
 
-                                                            Peminjaman dpDalamProses = new Peminjaman();
-                                                            List<Peminjaman> daftar = new ArrayList<Peminjaman>();
-                                                            daftar = dpDalamProses.peminjamanDiajukan();
-                                                            for (int i = 0; i < daftar.size(); i++) {
+                                                            Peminjaman[] peminjaman = new PicController().getPeminjamanDiajukan();
+                                                            for (int i = 0; i < peminjaman.length; i++) {
                                                         
       out.write("\r\n");
       out.write("                                                        <tr>\r\n");
       out.write("                                                            <td>");
-      out.print( daftar.get(i).getNo_lab() );
+      out.print( peminjaman[i].getNo_lab() );
       out.write("</td>\r\n");
       out.write("                                                            <td>");
-      out.print( daftar.get(i).getKetua_kegiatan() );
+      out.print( peminjaman[i].getKetua_kegiatan() );
       out.write("</td>\r\n");
       out.write("                                                            <td class=\"text-center\">");
-      out.print( daftar.get(i).getKontak_ketua() );
+      out.print( peminjaman[i].getKontak_ketua() );
       out.write("</td>\r\n");
       out.write("                                                            <td class=\"text-center\">");
-      out.print( daftar.get(i).getLevel() );
+      out.print( peminjaman[i].getLevel() );
       out.write("</td>\r\n");
       out.write("                                                            <td class=\"text-center\">");
-      out.print( daftar.get(i).getTgl_peminjaman() );
+      out.print( peminjaman[i].getTgl_peminjaman() );
       out.write("</td>\r\n");
       out.write("                                                            <td class=\"text-center\">");
-      out.print( daftar.get(i).getTgl_mulai() );
+      out.print( peminjaman[i].getTgl_mulai() );
       out.write("</td>\r\n");
       out.write("                                                            <td class=\"text-center\">");
-      out.print( daftar.get(i).getTgl_berakhir() );
+      out.print( peminjaman[i].getTgl_berakhir() );
       out.write("</td>\r\n");
       out.write("                                                            <td>");
-      out.print( daftar.get(i).getKeterangan() );
+      out.print( peminjaman[i].getKeterangan() );
       out.write("</td>\r\n");
       out.write("                                                            <td class=\"text-center\">\r\n");
       out.write("                                                                ");
 
-                                                                    String status = daftar.get(i).getStatus_peminjaman();
+                                                                    String status = peminjaman[i].getStatus_peminjaman();
                                                                     if (status.equalsIgnoreCase("diajukan")) { 
       out.write("\r\n");
       out.write("                                                                <span class=\"badge bg-warning p-2\">");
@@ -349,9 +413,16 @@ public final class mengkonfirmasi_005fpeminjaman_jsp extends org.apache.jasper.r
                                                                 }else{
                                                                 
       out.write("\r\n");
-      out.write("                                                                <a href=\"\"><button class=\"btn btn-success btn-sm\">Setujui</button></a>\r\n");
-      out.write("\r\n");
-      out.write("                                                                <a href=\"\"><button class=\"btn btn-danger btn-sm\">Tolak</button></a>\r\n");
+      out.write("                                                                <a href=\"proses_konfirmasi.jsp?id=");
+      out.print( peminjaman[i].getId_peminjaman() );
+      out.write("&aksi=Disetujui\" class=\"btn btn-success btn-sm\">\r\n");
+      out.write("                                                                    Setujui\r\n");
+      out.write("                                                                </a>\r\n");
+      out.write("                                                                <a href=\"proses_konfirmasi.jsp?id=");
+      out.print( peminjaman[i].getId_peminjaman() );
+      out.write("&aksi=Ditolak\" class=\"btn btn-danger btn-sm\">\r\n");
+      out.write("                                                                    Tolak\r\n");
+      out.write("                                                                </a>\r\n");
       out.write("                                                                ");
 
                                                                     }

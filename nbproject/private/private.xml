@@ -3,24 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/kalab/detail_peminjaman.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/pic/detail_peminjaman.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/pic/daftar_peminjaman.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/pic/mengkonfirmasi_peminjaman.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/mahasiswa/pengajuan_peminjaman.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/mahasiswa/include/sidebar.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/kalab/daftar_peminjaman.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/pic/daftar_lab.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/kalab/dashboard.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/mahasiswa/beranda.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/pic/include/footer.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/pic/include/sidebar.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/mahasiswa/log_peminjaman.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/kalab/laporan_peminjaman.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/mahasiswa/datalab.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/mahasiswa/panduan.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/mahasiswa/laporan.jsp</file>
-            <file>file:/C:/Users/A%20S%20U%20S/Documents/SHOLAWATI/SEM%203/BPW1/SIMPEL_Ganjil/web/pic/include/topbar.jsp</file>
+            <file>file:/C:/Users/WINDOWS%2010/Documents/SEMESTER%203%20-%20POLITEKNIK%20CALTEX%20RIAU/Bengkel%20Pemrograman%20Web%201/Project_Ganjil/SIMPEL_Ganjil/web/pic/detail_peminjaman.jsp</file>
+            <file>file:/C:/Users/WINDOWS%2010/Documents/SEMESTER%203%20-%20POLITEKNIK%20CALTEX%20RIAU/Bengkel%20Pemrograman%20Web%201/Project_Ganjil/SIMPEL_Ganjil/src/java/models/mahasiswa/Datalab.java</file>
+            <file>file:/C:/Users/WINDOWS%2010/Documents/SEMESTER%203%20-%20POLITEKNIK%20CALTEX%20RIAU/Bengkel%20Pemrograman%20Web%201/Project_Ganjil/SIMPEL_Ganjil/web/pic/daftar_peminjaman.jsp</file>
+            <file>file:/C:/Users/WINDOWS%2010/Documents/SEMESTER%203%20-%20POLITEKNIK%20CALTEX%20RIAU/Bengkel%20Pemrograman%20Web%201/Project_Ganjil/SIMPEL_Ganjil/src/java/models/pic/Logbook.java</file>
+            <file>file:/C:/Users/WINDOWS%2010/Documents/SEMESTER%203%20-%20POLITEKNIK%20CALTEX%20RIAU/Bengkel%20Pemrograman%20Web%201/Project_Ganjil/SIMPEL_Ganjil/web/pic/mengkonfirmasi_peminjaman.jsp</file>
+            <file>file:/C:/Users/WINDOWS%2010/Documents/SEMESTER%203%20-%20POLITEKNIK%20CALTEX%20RIAU/Bengkel%20Pemrograman%20Web%201/Project_Ganjil/SIMPEL_Ganjil/web/pic/proses_konfirmasi.jsp</file>
+            <file>file:/C:/Users/WINDOWS%2010/Documents/SEMESTER%203%20-%20POLITEKNIK%20CALTEX%20RIAU/Bengkel%20Pemrograman%20Web%201/Project_Ganjil/SIMPEL_Ganjil/src/java/models/pic/Konfirmasi_peminjaman.java</file>
+            <file>file:/C:/Users/WINDOWS%2010/Documents/SEMESTER%203%20-%20POLITEKNIK%20CALTEX%20RIAU/Bengkel%20Pemrograman%20Web%201/Project_Ganjil/SIMPEL_Ganjil/src/java/config/database.java</file>
+            <file>file:/C:/Users/WINDOWS%2010/Documents/SEMESTER%203%20-%20POLITEKNIK%20CALTEX%20RIAU/Bengkel%20Pemrograman%20Web%201/Project_Ganjil/SIMPEL_Ganjil/src/java/models/pic/Peminjaman.java</file>
         </group>
     </open-files>
 </project-private>

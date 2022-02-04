@@ -21,9 +21,9 @@ public class database {
 
     public static void getconnection() {
         try {
-            String db = "jdbc:mysql://localhost:3306/sistem_peminjamanlab";
+            String db = "jdbc:mysql://localhost:3307/sistem_peminjamanlab";
             String user = "root";
-            String pass = "";
+            String pass = "ica";
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(db, user, pass);
         } catch (Exception x) {
@@ -33,9 +33,9 @@ public class database {
 
     public void connection() {
         try {
-            String db = "jdbc:mysql://localhost:3306/sistem_peminjamanlab";
+            String db = "jdbc:mysql://localhost:3307/sistem_peminjamanlab";
             String user = "root";
-            String pass = "";
+            String pass = "ica";
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(db, user, pass);
             st = conn.createStatement();

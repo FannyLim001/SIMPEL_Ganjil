@@ -8,6 +8,7 @@
 <%@page import="java.util.List"%>
 
 <!-- Models -->
+<!-- Models -->
 <%@page import="models.pic.Peminjaman"%>
 <%@page import="models.pic.Konfirmasi_peminjaman"%>
 <%@page import="models.pic.InformasiLab"%>
@@ -195,9 +196,12 @@
                                                                     System.out.println("-");
                                                                 }else{
                                                                 %>
-                                                                <a href=""><button class="btn btn-success btn-sm">Setujui</button></a>
-
-                                                                <a href=""><button class="btn btn-danger btn-sm">Tolak</button></a>
+                                                                <a href="proses_konfirmasi.jsp?id=<%= peminjaman[i].getId_peminjaman() %>&aksi=Disetujui" class="btn btn-success btn-sm">
+                                                                    Setujui
+                                                                </a>
+                                                                <a href="proses_konfirmasi.jsp?id=<%= peminjaman[i].getId_peminjaman() %>&aksi=Ditolak" class="btn btn-danger btn-sm">
+                                                                    Tolak
+                                                                </a>
                                                                 <%
                                                                     }
                                                                 %>
