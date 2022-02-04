@@ -15,19 +15,15 @@
     String ruangan_pic=request.getParameter("ruangan_pic");
     String email_pic=request.getParameter("email_pic");
     String pass_pic=request.getParameter("pass_pic");
+    String kontak_pic=request.getParameter("kontak_pic");
     
     Pic.setId_pic(id_pic);
     Pic.setNama_pic(nama_pic);
     Pic.setRuangan_pic(ruangan_pic);
     Pic.setEmail_pic(email_pic);
     Pic.setPass_pic(pass_pic);
+    Pic.setKontak_pic(kontak_pic);
 
-        int status = KalabController.update(Pic);
-        if(status>0){
-            out.print("<p>Record updated successfully!</p>");
-            request.getRequestDispatcher("data_pic.jsp").include(request,response);
-        }else{
-            out.println("Sorry! unable to update record");
-        }
-        out.close();
+        KalabController.UpdatePic(Pic);
+        response.sendRedirect("data_pic.jsp");
 %>

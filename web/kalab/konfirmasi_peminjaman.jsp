@@ -13,14 +13,9 @@
     int id_peminjaman=Integer.parseInt(request.getParameter("id_peminjaman"));
     String status_peminjaman=request.getParameter("konfirmasi");
     
+    Peminjaman.setId_peminjaman(id_peminjaman);
     Peminjaman.setStatus_peminjaman(status_peminjaman);
 
-        int status = KalabController.update(Peminjaman);
-        if(status>0){
-            out.print("<p>Record updated successfully!</p>");
-            request.getRequestDispatcher("daftar_peminjaman.jsp").include(request,response);
-        }else{
-            out.println("Sorry! unable to update record");
-        }
-        out.close();
+        KalabController.UpdateStatus(Peminjaman);
+        response.sendRedirect("daftar_peminjaman.jsp");
 %>

@@ -195,7 +195,7 @@ public class KalabController {
         ResultSet rs = null;
         database db = new database();
         db.connection();
-        String sql = "select p.id_pic, p.nama_pic, p.ruangan_pic, p.email_pic, p.pass_pic from tbl_pic_lab p "
+        String sql = "select p.id_pic, p.nama_pic, p.ruangan_pic, p.email_pic, p.pass_pic, p.kontak_pic from tbl_pic_lab p "
                 + "where p.id_pic='"+id_pic+"'";
         try {
             rs = db.getData(sql);
@@ -206,6 +206,7 @@ public class KalabController {
                 Pic.setRuangan_pic(rs.getString("ruangan_pic"));
                 Pic.setEmail_pic(rs.getString("email_pic"));
                 Pic.setPass_pic(rs.getString("pass_pic"));
+                Pic.setKontak_pic(rs.getString("kontak_pic"));
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -267,81 +268,52 @@ public class KalabController {
         }
     }
     
-//    public static int save(PicModel p){
-//        database db = new database();
-//        db.connection();
-//        String sql = "insert into lagu(judul_lagu,durasi,id_penyanyi) values(?,?,?)";
-//        int status=0;
-//        try {
-//            PreparedStatement ps = db.getPreparedStatement(sql);
-//            ps.setString(1,lg.getJudul_lagu());
-//            ps.setString(2,lg.getDurasi());
-//            ps.setInt(3,lg.getId_penyanyi());
-//        
-//            status = ps.executeUpdate();
-//        
-//        } catch(SQLException e){
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                db.disconnect();
-//            } catch(SQLException e){
-//                e.printStackTrace();
-//            }
-//        }
-//        return status;
-//    }
+    public static void UpdateStatus(PeminjamanModel p){
+        database db = new database();
+        db.connection();
+        String sql = "update tbl_peminjaman set status_peminjaman='"+p.getStatus_peminjaman()+"' "
+                + "where id_peminjaman='"+p.getId_peminjaman()+"'";
+        try {
+            db.saveData(sql);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     
-//    public static int update(PeminjamanModel p){
-//        database db = new database();
-//        db.connection();
-//        String sql = "update tbl_peminjaman set status_peminjaman=? where id_peminjaman=?";
-//        int status=0;
-//        try {
-//            db.saveData(sql);
-//            .setString(1,lg.getJudul_lagu());
-//            ps.setString(2,lg.getDurasi());
-//            ps.setInt(3,lg.getId_penyanyi());
-//            ps.setInt(4,lg.getID());
-//        
-//            status=ps.executeUpdate();
-//        
-//        } catch(ClassNotFoundException | SQLException e){
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                db.disconnect();
-//            } catch(SQLException e){
-//                e.printStackTrace();
-//            }
-//        }
-//        return status;
-//    }
+    public static void SavePic(PicModel p){
+        database db = new database();
+        db.connection();
+        String sql = "insert into tbl_pic_lab(nama_pic, email_pic, pass_pic, kontak_pic, ruangan_pic, foto_pic) "
+                + "values('"+p.getNama_pic()+"','"+p.getEmail_pic()+"','"+p.getPass_pic()+"','"+p.getKontak_pic()+"','"+p.getRuangan_pic()+"','"+p.getFoto_pic()+"')";
+        try {
+            db.saveData(sql);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     
-//    public static int delete(int id_lagu){
-//        String pwd = "";
-//        String login = "root";
-//        Connection con = null;
-//        AksesJdbc db = new AksesJdbc("javabeans_fanny",login, pwd);
-//        String sql = "delete from lagu where id_lagu=?";
-//        int status=0;
-//        try {
-//            con = db.connect();
-//            PreparedStatement ps = db.getPreparedStatement(sql);
-//            ps.setInt(1,id_lagu);
-//        
-//            status=ps.executeUpdate();
-//        
-//        } catch(ClassNotFoundException | SQLException e){
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                db.disconnect();
-//            } catch(SQLException e){
-//                e.printStackTrace();
-//            }
-//        }
-//        return status;
-//    }
+    public static void UpdatePic(PicModel p){
+        database db = new database();
+        db.connection();
+        String sql = "update tbl_pic_lab set nama_pic='"+p.getNama_pic()+"', email_pic='"+p.getEmail_pic()+"', "
+                + "pass_pic='"+p.getPass_pic()+"', kontak_pic='"+p.getKontak_pic()+"', ruangan_pic='"+p.getRuangan_pic()+"' "
+                + "where id_pic='"+p.getId_pic()+"'";
+        try {
+            db.saveData(sql);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public static void DeletePic(int id_pic){
+        database db = new database();
+        db.connection();
+        String sql = "delete from tbl_pic_lab where id_pic='"+id_pic+"'";
+        try {
+            db.saveData(sql);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     
 }

@@ -19,6 +19,7 @@
 <jsp:setProperty name = "Pic" property = "ruangan_pic" value = "<%= Pic.getRuangan_pic()%>" />
 <jsp:setProperty name = "Pic" property = "email_pic" value = "<%= Pic.getEmail_pic()%>" />
 <jsp:setProperty name = "Pic" property = "pass_pic" value = "<%= Pic.getPass_pic()%>" />
+<jsp:setProperty name = "Pic" property = "kontak_pic" value = "<%= Pic.getKontak_pic()%>" />
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -71,11 +72,11 @@
                                                 <div class="row">
                                                     <div class="col-3">
                                                         <label for="simpleinput" class="form-label">Nama PIC</label>
-                                                        <input type="text" id="simpleinput" class="form-control" value="<jsp:getProperty name="Pic" property="nama_pic" />">
+                                                        <input type="text" name="nama_pic" class="form-control" value="<jsp:getProperty name="Pic" property="nama_pic" />">
                                                     </div>
                                                     <div class="col-2">
-                                                        <label for="simpleinput" class="form-label">Lab</label>
-                                                        <input type="text" id="simpleinput" class="form-control" value="<jsp:getProperty name="Pic" property="ruangan_pic" />">
+                                                        <label for="simpleinput" class="form-label">Ruangan PIC</label>
+                                                        <input type="text" name="ruangan_pic" class="form-control" value="<jsp:getProperty name="Pic" property="ruangan_pic" />">
                                                     </div>
                                                 </div><!-- end col-->
                                             </div>
@@ -83,17 +84,21 @@
                                             <div class="row">
                                                 <div class="col-3">
                                                     <label for="simpleinput" class="form-label">Email</label>
-                                                    <input type="email" id="simpleinput" class="form-control" value="<jsp:getProperty name="Pic" property="email_pic" />">
+                                                    <input type="email" name="email_pic" class="form-control" value="<jsp:getProperty name="Pic" property="email_pic" />">
                                                 </div>
                                                 <div class="col-3">
                                                     <label for="simpleinput" class="form-label">Password</label>
                                                     <div class="input-group input-group-merge">
-                                                        <input type="password" id="password" class="form-control" value="<jsp:getProperty name="Pic" property="pass_pic" />">
+                                                        <input type="password" name="pass_pic" class="form-control" value="<jsp:getProperty name="Pic" property="pass_pic" />">
                                                         <div class="input-group-text" data-password="false">
                                                             <span class="password-eye"></span>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-2">
+                                                        <label for="simpleinput" class="form-label">Kontak</label>
+                                                        <input type="text" name="kontak_pic" class="form-control" value="<jsp:getProperty name="Pic" property="kontak_pic" />">
+                                                    </div>
                                             </div><!-- end col-->
                                             <br>
                                             <div class="row">

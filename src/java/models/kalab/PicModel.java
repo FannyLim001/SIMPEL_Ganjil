@@ -16,6 +16,8 @@ public class PicModel {
     private String ruangan_pic;
     private String email_pic;
     private String pass_pic;
+    private String kontak_pic;
+    private String foto_pic;
 
     public int getId_pic() {
         return id_pic;
@@ -56,6 +58,21 @@ public class PicModel {
     public void setPass_pic(String pass_pic) {
         this.pass_pic = pass_pic;
     }
-    
+
+    public String getKontak_pic() {
+        return kontak_pic;
+    }
+
+    public void setKontak_pic(String kontak_pic) {
+        this.kontak_pic = kontak_pic;
+    }
+
+    public String getFoto_pic() {
+        return foto_pic;
+    }
+
+    public void setFoto_pic(String foto_pic) {
+        this.foto_pic = foto_pic;
+    }
     
 }

@@ -154,15 +154,19 @@
                                             </div>
                                         </div>
                                         <br>-->
-                                        <form action="konfirmasi_peminjaman.jsp" method="post">
-                                            <input type="hidden" name="id_peminjaman" value="<jsp:getProperty name="Peminjaman" property="id_peminjaman" />">
-                                            <div class="row">
-                                                <div class="col-3">
-                                                    <button type="submit" class="btn btn-primary btn-sm" name="konfirmasi" value="Disetujui"><i class="mdi mdi-clipboard-check-multiple"></i>&nbsp;&nbsp;Setujui&nbsp;&nbsp;</button>
-                                                    <button type="submit" class="btn btn-danger btn-sm" name="konfirmasi" value="Ditolak"><i class="mdi mdi-clipboard-off"></i>&nbsp;&nbsp;Tolak</button>
+                                        <%
+                                            String status = Peminjaman.getStatus_peminjaman();
+                                            if (!status.equals("Selesai")) { %>
+                                            <form action="konfirmasi_peminjaman.jsp" method="post">
+                                                <input type="hidden" name="id_peminjaman" value="<jsp:getProperty name="Peminjaman" property="id_peminjaman" />">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <button type="submit" class="btn btn-primary btn-sm" name="konfirmasi" value="Disetujui"><i class="mdi mdi-clipboard-check-multiple"></i>&nbsp;&nbsp;Setujui&nbsp;&nbsp;</button>
+                                                        <button type="submit" class="btn btn-danger btn-sm" name="konfirmasi" value="Ditolak"><i class="mdi mdi-clipboard-off"></i>&nbsp;&nbsp;Tolak</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        <% } %>
                                     </div>
                                 </div> <!-- end card -->
                             </div> <!-- end col-->

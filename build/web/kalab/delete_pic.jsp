@@ -12,12 +12,6 @@
 <%
     int id_pic=Integer.parseInt(request.getParameter("id_pic"));
 
-        int status = KalabController.delete(id_pic);
-        if(status>0){
-            out.print("<p>Record deleted successfully!</p>");
-            request.getRequestDispatcher("data_pic.jsp").include(request,response);
-        }else{
-            out.println("Sorry! unable to delete record");
-        }
-        out.close();
+        KalabController.DeletePic(id_pic);
+        response.sendRedirect("data_pic.jsp");
 %>

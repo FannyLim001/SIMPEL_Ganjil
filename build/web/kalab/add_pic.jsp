@@ -45,7 +45,7 @@
                         </div>
                         <!-- end page title --> 
                         
-                        <form action="add_pic.jsp" method="post">
+                        <form action="save_pic.jsp" method="post">
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -55,11 +55,11 @@
                                             <div class="row">
                                                 <div class="col-3">
                                                     <label for="simpleinput" class="form-label">Nama PIC</label>
-                                                    <input type="text" id="simpleinput" class="form-control" placeholder="Nama">
+                                                    <input type="text" name="nama_pic" class="form-control" placeholder="Nama">
                                                 </div>
                                                 <div class="col-2">
-                                                    <label for="simpleinput" class="form-label">Lab</label>
-                                                    <input type="text" id="simpleinput" class="form-control" placeholder="Nomor Lab">
+                                                    <label for="simpleinput" class="form-label">Ruangan PIC</label>
+                                                    <input type="text" name="ruangan_pic" class="form-control" placeholder="Nomor Lab">
                                                 </div>
                                             </div><!-- end col-->
                                         </div>
@@ -67,17 +67,21 @@
                                         <div class="row">
                                             <div class="col-3">
                                                 <label for="simpleinput" class="form-label">Email</label>
-                                                <input type="email" id="simpleinput" class="form-control" placeholder="Email">
+                                                <input type="email" name="email_pic" class="form-control" placeholder="Email">
                                             </div>
                                             <div class="col-3">
                                                 <label for="simpleinput" class="form-label">Password</label>
                                                 <div class="input-group input-group-merge">
-                                                    <input type="password" id="password" class="form-control" placeholder="Password">
+                                                    <input type="password" name="pass_pic" class="form-control" placeholder="Password">
                                                     <div class="input-group-text" data-password="false">
                                                         <span class="password-eye"></span>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-2">
+                                                    <label for="simpleinput" class="form-label">Kontak</label>
+                                                    <input type="text" name="kontak_pic" class="form-control" placeholder="Kontak Pic">
+                                                </div>
                                         </div><!-- end col-->
                                         <br>
                                         <div class="row">
