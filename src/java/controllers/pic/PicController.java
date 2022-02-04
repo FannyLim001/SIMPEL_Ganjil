@@ -188,12 +188,12 @@ public class PicController {
         database db = new database();
         ResultSet rs = null;
         try {
-            String sql = "SELECT p.id_lab, c.nama_pic, l.nama_kalab,\n"
-                    + "p.no_lab, p.nama_lab, p.kapasitas_lab,\n"
-                    + "p.foto_lab, p.status_lab, p.ketua_kegiatan,\n"
-                    + "FROM tbl_lab p, tbl_kepala_lab l, tbl_pic_lab c\n"
-                    + "WHERE p.id_pic = c.id_pic and p.id_kalab = l.id_kalab\n"
-                    + "ORDER BY id_lab DESC";
+            String sql = "SELECT p.id_lab, c.nama_pic, l.nama_kalab,\n" +
+                "p.no_lab, p.nama_lab, p.kapasitas_lab,\n" +
+                "p.foto_lab, p.status_lab\n" +
+                "FROM tbl_lab p, tbl_kepala_lab l, tbl_pic_lab c\n" +
+                "WHERE p.id_pic = c.id_pic and p.id_kalab = l.id_kalab\n" +
+                "ORDER BY p.id_lab DESC";
             rs = db.getData(sql);
             while (rs.next()) {
                 temp = new InformasiLab();
@@ -204,7 +204,7 @@ public class PicController {
                 temp.setNama_lab(rs.getString("nama_lab"));
                 temp.setKapasitas(rs.getInt("kapasitas_lab"));
                 temp.setFoto_lab(rs.getString("foto_lab"));
-                temp.setStatus(rs.getString("keterangan"));
+                temp.setStatus(rs.getString("status_lab"));
                 daftar.add(temp);
             }
             p = new InformasiLab[daftar.size()];
