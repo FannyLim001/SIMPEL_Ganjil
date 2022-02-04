@@ -162,6 +162,24 @@ public class PicController {
         }
     }
     
+    public void konfirmasiPeminjaman(int id, String aksi){
+        database db = new database();
+        String status = null;
+        if (aksi.equalsIgnoreCase("disetujui")) {
+            status = "Menunggu";
+        }else if(aksi.equalsIgnoreCase("ditolak")){
+            status = "Ditolak";
+        }
+        try{
+            String sql = "UPDATE tbl_peminjaman \n" +
+                "SET status_peminjaman = '"+status+"' \n" +
+                "WHERE id_peminjaman = "+id+"";
+            db.saveData(sql);
+        }catch(Exception ex){
+            System.out.println("Error: "+ex);
+        }
+    }
+    
     /* Akses models InformasiLab */
     public InformasiLab getLabTersedia(){
         InformasiLab info = null;

@@ -1,8 +1,15 @@
-<%@page import="models.pic.Konfirmasi_peminjaman"%>
+<!-- Models -->
+<%@page import="models.pic.Peminjaman" %>
+
+<!-- Controllers -->
+<%@page import="controllers.pic.PicController" %>
 
 <%
-    Konfirmasi_peminjaman km = new Konfirmasi_peminjaman();
     int id = Integer.parseInt(request.getParameter("id"));
-    String status = request.getParameter("status");
-    km.proses(id, status);
+    String aksi = request.getParameter("aksi");
+    
+    PicController pc = new PicController();
+    pc.konfirmasiPeminjaman(id, aksi);
+    
+    response.sendRedirect("mengkonfirmasi_peminjaman.jsp");
 %>
