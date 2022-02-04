@@ -3,17 +3,13 @@
     Created on : Feb 1, 2022, 5:49:29 PM
     Author     : USER
 --%>
-<%@page import="javax.servlet.http.HttpSession" %>
 
-<%
-    HttpSession nsession = request.getSession(false);
-%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Log In | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
+        <title>Log In | SIMPEL</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -124,14 +120,20 @@
 
         <!-- bundle -->
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor.min.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/app.min.js"></script>
+        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/app.min.js"></script>        
         <%
-            if (nsession != null && nsession.getAttribute("kondisi_login").equals("gagal")) {
+            if (request.getAttribute("kondisi_login") != null && request.getAttribute("kondisi_login").equals("gagal")) {
         %>
         <script>
-                alert("Login gagal!");
+            alert("Login Gagal, Coba Lagi!");
         </script>
-        <% } %>                    
+        <% 
+            }else if (request.getAttribute("kondisi_login") != null && request.getAttribute("kondisi_login").equals("belum")) {
+        %>
+        <script>
+            alert("Login Terlebih Dahulu!");
+        </script>
+        <% } %>
     </body>
 
 </html>

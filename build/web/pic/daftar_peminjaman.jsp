@@ -3,15 +3,20 @@
     Created on : Jan 26, 2022, 2:25:41 PM
     Author     : Egy Dya Hermawan
 --%>
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@page import="javax.servlet.http.HttpSession" %>
 
 <!-- Models -->
 <%@page import="models.pic.Peminjaman"%>
 
 <!-- Controllers -->
 <%@page import="controllers.pic.PicController"%>
+
+<%
+    HttpSession nsession = request.getSession(false);
+    if (nsession != null && nsession.getAttribute("nama_pic") != null) {
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -191,6 +196,11 @@
                     });
                 });
             </script>
-
+            <%
+                }else{
+                    request.setAttribute("kondisi_login", "belum");
+                    request.getRequestDispatcher("/pic/login_pic.jsp").include(request, response);
+                }
+            %>
     </body>
 </html>

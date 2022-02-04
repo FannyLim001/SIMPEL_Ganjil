@@ -1,4 +1,3 @@
-<%@page session="false" %>
 <%@page import="javax.servlet.http.HttpSession" %>
 <%
     HttpSession msession = request.getSession(false);

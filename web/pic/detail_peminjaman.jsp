@@ -15,6 +15,13 @@
 <!-- Controllers -->
 <%@page import="controllers.pic.PicController"%>
 
+<%@page import="javax.servlet.http.HttpSession" %>
+
+<%
+    HttpSession nsession = request.getSession(false);
+    if (nsession != null && nsession.getAttribute("nama_pic") != null) {
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -326,6 +333,11 @@
         <!-- demo app -->
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.datatable-init.js"></script>
         <!-- end demo js-->
-
+        <%
+            }else{
+                request.setAttribute("kondisi_login", "belum");
+                request.getRequestDispatcher("/pic/login_pic.jsp").include(request, response);
+            }
+        %>
     </body>
 </html>

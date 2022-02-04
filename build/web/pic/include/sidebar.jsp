@@ -2,7 +2,7 @@
 <div class="leftside-menu">
 
     <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-light">
+    <a href="http://localhost:8080/SIMPEL_Ganjil/pic/mengkonfirmasi_peminjaman.jsp" class="logo text-center logo-light">
         <span class="logo-lg">
             <img src="http://localhost:8080/SIMPEL_Ganjil/assets/images/logo.png" height="16">
         </span>
@@ -28,7 +28,7 @@
 
             <li class="side-nav-title side-nav-item text-center">Navigation</li>
             <li class="side-nav-item">
-                <a href="http://localhost:8080/SIMPEL_Ganjil/pic/beranda_pic.jsp" class="side-nav-link">
+                <a href="http://localhost:8080/SIMPEL_Ganjil/pic/mengkonfirmasi_peminjaman.jsp" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span> Beranda </span>
                 </a>

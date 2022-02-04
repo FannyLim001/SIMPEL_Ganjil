@@ -196,10 +196,11 @@
                     });
                 });
             </script>
+            <%
+                }else{
+                    request.setAttribute("kondisi_login", "belum");
+                    request.getRequestDispatcher("/pic/login_pic.jsp").include(request, response);
+                }
+            %>
     </body>
 </html>
-<%
-    }else{
-        request.getRequestDispatcher("/pic/login_pic.jsp").include(request, response);
-    }
-%>

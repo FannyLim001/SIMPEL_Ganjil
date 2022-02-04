@@ -5,6 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@page import="javax.servlet.http.HttpSession" %>
+
+<%
+    HttpSession nsession = request.getSession(false);
+    if (nsession != null && nsession.getAttribute("nama_pic") != null) {
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -232,6 +240,11 @@
                 });
             });
         </script>
-
+        <%
+            }else{
+                request.setAttribute("kondisi_login", "belum");
+                request.getRequestDispatcher("/pic/login_pic.jsp").include(request, response);
+            }
+        %>
     </body>
 </html>

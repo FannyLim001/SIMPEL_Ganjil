@@ -9,7 +9,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Log In | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
+        <title>Log In | SIMPEL</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -50,15 +50,15 @@
                         <p class="text-muted mb-4">Enter your email address and password to access account.</p>
 
                         <!-- form -->
-                        <form action="#">
+                        <form action="CekLoginPic.jsp" method="POST">
                             <div class="mb-3">
                                 <label for="emailaddress" class="form-label">Email address</label>
-                                <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                                <input name="email" class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
                             </div>
                             <div class="mb-3">
                                 <a href="pages-recoverpw-2.html" class="text-muted float-end"><small>Forgot your password?</small></a>
                                 <label for="password" class="form-label">Password</label>
-                                <input class="form-control" type="password" required="" id="password" placeholder="Enter your password">
+                                <input name="pass" class="form-control" type="password" required="" id="password" placeholder="Enter your password">
                             </div>
                             <div class="mb-3">
                                 <div class="form-check">
@@ -120,8 +120,20 @@
 
         <!-- bundle -->
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor.min.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/app.min.js"></script>
-
+        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/app.min.js"></script>        
+        <%
+            if (request.getAttribute("kondisi_login") != null && request.getAttribute("kondisi_login").equals("gagal")) {
+        %>
+        <script>
+            alert("Login Gagal, Coba Lagi!");
+        </script>
+        <% 
+            }else if (request.getAttribute("kondisi_login") != null && request.getAttribute("kondisi_login").equals("belum")) {
+        %>
+        <script>
+            alert("Login Terlebih Dahulu!");
+        </script>
+        <% } %>
     </body>
 
 </html>

@@ -3,7 +3,6 @@
     Created on : Jan 26, 2022, 2:48:55 PM
     Author     : SHOLAWATI
 --%>
-<%@page session="false" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 
@@ -266,10 +265,11 @@
                 });
             });
         </script>
+        <%
+            }else{
+                request.setAttribute("kondisi_login", "belum");
+                request.getRequestDispatcher("/pic/login_pic.jsp").include(request, response);
+            }
+        %>
     </body>
 </html>
-<%
-    }else{
-        request.getRequestDispatcher("/pic/login_pic.jsp").include(request, response);
-    }
-%>
