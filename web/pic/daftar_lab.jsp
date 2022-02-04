@@ -5,6 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<!-- Models -->
+<%@page import="models.pic.InformasiLab"%>
+<!-- Controllers -->
+<%@page import="controllers.pic.PicController"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -96,36 +103,33 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <%
+                                                            InformasiLab[] daftar = new PicController().getDataLab();
+                                                            for (int i = 0; i < daftar.length; i++) {
+                                                        %>
                                                         <tr>
-                                                            <td class="table-user ">
-                                                                <img src="../assets/images/users/avatar-5.jpg" alt="table-user" class="me-2 rounded-circle" />
+                                                            <td class="table-user"><%= daftar[i].getFoto_lab()%></td>
+                                                            <td><%= daftar[i].getNo_lab()%></td>
+                                                            <td><%= daftar[i].getNama_lab()%></td>
+                                                            <td><%= daftar[i].getKapasitas()%></td>
+                                                            <td><%= daftar[i].getPic_lab()%></td>
+                                                            <td><%= daftar[i].getKetua_lab()%></td>
+                                                            <td class="text-center">
+                                                                <%
+                                                                    String status = daftar[i].getStatus();
+                                                                    if (status.equalsIgnoreCase("available")) {%>
+                                                                <span class="badge bg-success p-2"><%= status%></span>
+                                                                <% } else if (status.equalsIgnoreCase("not available")) {%>
+                                                                <span class="badge bg-danger p-2"><%= status%></span>
+                                                                <% }
+                                                                %>
                                                             </td>
-                                                            <td>281</td>
-                                                            <td>Lab Computer Networking 1</td>
-                                                            <td>14 Orang</td>
-                                                            <td>Harumin</td>
-                                                            <td>Wenda Novayani</td>
-                                                            <td><span class="badge bg-success p-2">available</span></td>
                                                             <td class="table-action">
                                                                 <a href="edit_lab.jsp" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
                                                                 <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td class="table-user ">
-                                                                <img src="../assets/images/users/avatar-3.jpg" alt="table-user" class="me-2 rounded-circle" />
-                                                            </td>
-                                                            <td>328</td>
-                                                            <td>Lab Computer Networking 2</td>
-                                                            <td>14 Orang</td>
-                                                            <td>Susiyanti</td>
-                                                            <td>Wenda Novayani</td>
-                                                            <td><span class="badge bg-danger p-2">unavailable</span></td>
-                                                            <td class="table-action">
-                                                                <a href="edit_lab.jsp" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                                                <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                                            </td>
-                                                        </tr>
+                                                        <% }%>
                                                     </tbody>
                                                 </table>
                                             </div> <!-- end preview-->

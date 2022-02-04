@@ -4,8 +4,8 @@ import config.database;
 
 public class InformasiLab {
     database db = null;
-    int id_lab, jml_lab, lab_tersedia;
-    String no_lab, nama_lab, kapasitas, ketua_lab, pic_lab, foto_lab, status;
+    int id_lab, jml_lab, lab_tersedia, id_pic, id_kalab, kapasitas, no_lab;
+    String nama_lab, ketua_lab, pic_lab, foto_lab, status;
     
     public InformasiLab(){
         db = new database();
@@ -27,11 +27,27 @@ public class InformasiLab {
         this.id_lab = id_lab;
     }
 
-    public String getNo_lab() {
+    public int getId_pic() {
+        return id_pic;
+    }
+
+    public void setId_pic(int id_pic) {
+        this.id_pic = id_pic;
+    }
+
+    public int getId_kalab() {
+        return id_kalab;
+    }
+
+    public void setId_kalab(int id_kalab) {
+        this.id_kalab = id_kalab;
+    }
+
+    public int getNo_lab() {
         return no_lab;
     }
 
-    public void setNo_lab(String no_lab) {
+    public void setNo_lab(int no_lab) {
         this.no_lab = no_lab;
     }
 
@@ -43,11 +59,11 @@ public class InformasiLab {
         this.nama_lab = nama_lab;
     }
 
-    public String getKapasitas() {
+    public int getKapasitas() {
         return kapasitas;
     }
 
-    public void setKapasitas(String kapasitas) {
+    public void setKapasitas(int kapasitas) {
         this.kapasitas = kapasitas;
     }
 
