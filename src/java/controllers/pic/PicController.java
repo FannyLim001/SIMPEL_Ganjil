@@ -295,4 +295,36 @@ public class PicController {
             return lb;
         }
     }
+    
+    /* Akses ModelPic */
+    public ModelPic[] getAllDataPic() {
+        ModelPic[] p = null;
+        ModelPic temp = null;
+        ArrayList daftar = new ArrayList();
+        database db = new database();
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT * FROM tbl_pic_lab";
+            rs = db.getData(sql);
+            while (rs.next()) {
+                temp = new ModelPic();
+                temp.setId_pic(rs.getInt("id_pic"));
+                temp.setNama_pic(rs.getString("nama_pic"));
+                temp.setEmail_pic(rs.getString("email_pic"));
+                temp.setPass_pic(rs.getString("pass_pic"));
+                temp.setKontak_pic(rs.getString("kontak_pic"));
+                temp.setRuangan_pic(rs.getString("ruangan_pic"));
+                temp.setFoto_pic(rs.getString("foto_pic"));
+                
+                daftar.add(temp);
+            }
+            p = new ModelPic[daftar.size()];
+            daftar.toArray(p);
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex);
+        } finally {
+            db.disconnect(rs);
+            return p;
+        }
+    }
 }
