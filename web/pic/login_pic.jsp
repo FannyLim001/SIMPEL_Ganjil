@@ -3,7 +3,11 @@
     Created on : Feb 1, 2022, 5:49:29 PM
     Author     : USER
 --%>
+<%@page import="javax.servlet.http.HttpSession" %>
 
+<%
+    HttpSession nsession = request.getSession(false);
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,7 +125,13 @@
         <!-- bundle -->
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor.min.js"></script>
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/app.min.js"></script>
-
+        <%
+            if (nsession != null && nsession.getAttribute("kondisi_login").equals("gagal")) {
+        %>
+        <script>
+                alert("Login gagal!");
+        </script>
+        <% } %>                    
     </body>
 
 </html>

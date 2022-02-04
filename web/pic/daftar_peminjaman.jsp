@@ -3,7 +3,7 @@
     Created on : Jan 26, 2022, 2:25:41 PM
     Author     : Egy Dya Hermawan
 --%>
-
+<%@page session="false" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 
@@ -12,6 +12,13 @@
 
 <!-- Controllers -->
 <%@page import="controllers.pic.PicController"%>
+
+<%@page import="javax.servlet.http.HttpSession" %>
+
+<%
+    HttpSession nsession = request.getSession(false);
+    if (nsession != null && nsession.getAttribute("nama_pic") != null) {
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -191,6 +198,10 @@
                     });
                 });
             </script>
-
     </body>
 </html>
+<%
+    }else{
+        request.getRequestDispatcher("/pic/login_pic.jsp").include(request, response);
+    }
+%>

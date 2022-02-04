@@ -327,4 +327,11 @@ public class PicController {
             return p;
         }
     }
+    
+//    public static void main(String[] args) {
+//        ModelPic[] pic = new PicController().getAllDataPic();
+//        for (int i = 0; i < pic.length; i++) {
+//            System.out.println(pic[i].getEmail_pic());
+//        }
+//    }
 }
