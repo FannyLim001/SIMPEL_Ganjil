@@ -203,12 +203,14 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                    </span>\r\n");
       out.write("                    <span>\r\n");
       out.write("                        <span class=\"account-user-name\">Kelompok 2</span>\r\n");
-      out.write("                        <span class=\"account-position\">Kepala Lab</span>\r\n");
+      out.write("                        <span class=\"account-position\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.username }", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</span>\r\n");
       out.write("                    </span>\r\n");
       out.write("                </a>\r\n");
       out.write("                <div class=\"dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown\">\r\n");
       out.write("                    <!-- item-->\r\n");
-      out.write("                    <a href=\"http://localhost:8080/SIMPEL_Ganjil/admin/auth/logout\" class=\"dropdown-item notify-item\">\r\n");
+      out.write("                    <a href=\"logout.jsp\" class=\"dropdown-item notify-item\">\r\n");
       out.write("                        <i class=\"mdi mdi-logout me-1\"></i>\r\n");
       out.write("                        <span>Logout</span>\r\n");
       out.write("                    </a>\r\n");
@@ -235,7 +237,7 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                    <div class=\"page-title-right\">\r\n");
       out.write("                                        <ol class=\"breadcrumb m-0\">\r\n");
       out.write("                                            <li class=\"breadcrumb-item\"><a href=\"javascript: void(0);\">SIMPEL</a></li>\r\n");
-      out.write("                                            <li class=\"breadcrumb-item\"><a href=\"javascript: void(0);\">Kepala Lab</a></li>\r\n");
+      out.write("                                            <li class=\"breadcrumb-item\"><a href=\"dashboard.jsp\">Kepala Lab</a></li>\r\n");
       out.write("                                            <li class=\"breadcrumb-item active\">Daftar Peminjaman</li>\r\n");
       out.write("                                        </ol>\r\n");
       out.write("                                    </div>\r\n");
@@ -287,7 +289,7 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                                                    </thead>\r\n");
       out.write("                                                    <tbody>\r\n");
       out.write("                                                        ");
-
+  
                                                             for(int i=0; i<daftarPeminjaman.length; i++){
                                                             Peminjaman = daftarPeminjaman[i];
                                                         
@@ -350,9 +352,24 @@ Peminjaman.getId_peminjaman());
       out.write("                                                            <td>");
       out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getKontak_ketua())));
       out.write("</td>\r\n");
-      out.write("                                                            <td><span class=\"badge bg-warning p-2\">");
-      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getStatus_peminjaman())));
+      out.write("                                                            ");
+
+                                                                String status = Peminjaman.getStatus_peminjaman();
+                                                                if (status.equals("Diajukan")) { 
+      out.write("\r\n");
+      out.write("                                                                <td><span class=\"badge bg-warning p-2\">");
+      out.print( status );
       out.write("</span></td>\r\n");
+      out.write("                                                                ");
+ } else if (status.equals("Menunggu")) { 
+      out.write("\r\n");
+      out.write("                                                                <td><span class=\"badge bg-secondary p-2\">");
+      out.print( status );
+      out.write("</span></td>\r\n");
+      out.write("                                                                ");
+ }
+                                                            
+      out.write("\r\n");
       out.write("                                                            <td><a href=\"detail_peminjaman.jsp?id_peminjaman=");
       out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getId_peminjaman())));
       out.write("\" class=\"btn btn-primary mb-2\"><i class=\"mdi mdi-information\"></i>&nbsp;Detail</a></td>\r\n");
@@ -444,9 +461,36 @@ Peminjaman.getId_peminjaman());
       out.write("                                                            <td>");
       out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getKontak_ketua())));
       out.write("</td>\r\n");
-      out.write("                                                            <td><span class=\"badge bg-warning p-2\">");
-      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getStatus_peminjaman())));
+      out.write("                                                            ");
+
+                                                                String status = Peminjaman.getStatus_peminjaman();
+                                                                if (status.equals("Disetujui")) { 
+      out.write("\r\n");
+      out.write("                                                                <td><span class=\"badge bg-info p-2\">");
+      out.print( status );
       out.write("</span></td>\r\n");
+      out.write("                                                                ");
+ } else if (status.equals("Ditolak")) { 
+      out.write("\r\n");
+      out.write("                                                                <td><span class=\"badge bg-danger p-2\">");
+      out.print( status );
+      out.write("</span></td> \r\n");
+      out.write("                                                                ");
+ } else if (status.equals("Dibatalkan")) { 
+      out.write("\r\n");
+      out.write("                                                                <td><span class=\"badge bg-danger p-2\">");
+      out.print( status );
+      out.write("</span></td> \r\n");
+      out.write("                                                                ");
+ } else if (status.equals("Selesai")) { 
+      out.write("\r\n");
+      out.write("                                                                <td><span class=\"badge bg-success p-2\">");
+      out.print( status );
+      out.write("</span></td>   \r\n");
+      out.write("                                                                ");
+ }
+                                                            
+      out.write("\r\n");
       out.write("                                                            <td><a href=\"detail_peminjaman.jsp?id_peminjaman=");
       out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.PeminjamanModel)_jspx_page_context.findAttribute("Peminjaman")).getId_peminjaman())));
       out.write("\" class=\"btn btn-primary mb-2\"><i class=\"mdi mdi-information\"></i>&nbsp;Detail</a></td>\r\n");

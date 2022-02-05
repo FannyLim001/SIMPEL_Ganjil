@@ -124,4 +124,5 @@ public class PeminjamanModel {
     public void setStatus_peminjaman(String status_peminjaman) {
         this.status_peminjaman = status_peminjaman;
     }
+
 }

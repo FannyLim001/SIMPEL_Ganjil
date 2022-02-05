@@ -9,13 +9,8 @@
 <jsp:useBean id="Kalab" class="models.kalab.KalabModel" />
 <jsp:useBean id="KalabController" class="controllers.kalab.KalabController" />
 <% 
-    int id_kalab = 1;
-    Kalab = KalabController.getDataKalabbyID(id_kalab);
     KalabModel[] daftarKalab = KalabController.getDaftarKalab();
 %>
-
-<jsp:setProperty name = "Kalab" property = "email_kalab" value = "<%= Kalab.getEmail_kalab()%>" />
-<jsp:setProperty name = "Kalab" property = "pass_kalab" value = "<%= Kalab.getPass_kalab()%>" />
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -78,8 +73,19 @@
                                 </div>
 
                                 <form onsubmit ="return validateForm()" id="login_form" action="olahlogin_kalab.jsp" method="post">
+                                    
+                                    <%
+                                        for(int i=0; i<daftarKalab.length; i++){
+                                        Kalab = daftarKalab[i];
+                                    %>
+                                    
+                                    <jsp:setProperty name = "Kalab" property = "email_kalab" value = "<%= Kalab.getEmail_kalab()%>" />
+                                    <jsp:setProperty name = "Kalab" property = "pass_kalab" value = "<%= Kalab.getPass_kalab()%>" />
+                                    
                                     <input class="form-control" type="hidden" id="db_email" value="<jsp:getProperty name = "Kalab" property = "email_kalab" />">
                                     <input type="hidden" id="db_pass" class="form-control" value="<jsp:getProperty name = "Kalab" property = "pass_kalab" />">
+                                    
+                                    <% } %>
                                     
                                     <div class="mb-3">
                                         <label for="emailaddress" class="form-label">Email address</label>

@@ -181,7 +181,9 @@
                                                                 if (status.equals("Disetujui")) { %>
                                                                 <td><span class="badge bg-info p-2"><%= status %></span></td>
                                                                 <% } else if (status.equals("Ditolak")) { %>
-                                                                <td><span class="badge bg-danger p-2"><%= status %></span></td>   
+                                                                <td><span class="badge bg-danger p-2"><%= status %></span></td> 
+                                                                <% } else if (status.equals("Dibatalkan")) { %>
+                                                                <td><span class="badge bg-danger p-2"><%= status %></span></td> 
                                                                 <% } else if (status.equals("Selesai")) { %>
                                                                 <td><span class="badge bg-success p-2"><%= status %></span></td>   
                                                                 <% }
