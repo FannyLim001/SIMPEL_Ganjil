@@ -46,14 +46,12 @@
           document.getElementById("message1").innerHTML = "**Email salah!";  
           return false;  
         } else {
-            return true
-        }
-        
-        if(pw1!=pw2) {  
-          document.getElementById("message2").innerHTML = "**Password salah!";  
-          return false;  
-        } else {
-            return true;
+            if(pw1!=pw2) {  
+                document.getElementById("message2").innerHTML = "**Password salah!";  
+                return false;  
+              } else {
+                  return true;
+              }
         }
      }  
     </script> 
@@ -79,20 +77,20 @@
                                     <p class="text-muted mb-4">Masukkan email PCR dan password anda untuk mengakses sistem</p>
                                 </div>
 
-                                <form onsubmit ="return validateForm()" id="login_form" action="../Login" method="post">
+                                <form onsubmit ="return validateForm()" id="login_form" action="olahlogin_kalab.jsp" method="post">
                                     <input class="form-control" type="hidden" id="db_email" value="<jsp:getProperty name = "Kalab" property = "email_kalab" />">
                                     <input type="hidden" id="db_pass" class="form-control" value="<jsp:getProperty name = "Kalab" property = "pass_kalab" />">
                                     
                                     <div class="mb-3">
                                         <label for="emailaddress" class="form-label">Email address</label>
-                                        <input class="form-control" type="email" id="input_email" name="email" required="" placeholder="Enter your email"><br>
+                                        <input class="form-control" type="email" id="input_email" name="email_kalab" required="" placeholder="Enter your email"><br>
                                         <span id = "message1" style="color:red"> </span>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>
                                         <div class="input-group input-group-merge">
-                                            <input type="password" id="input_pass" class="form-control" name="password" placeholder="Enter your password">
+                                            <input type="password" id="input_pass" class="form-control" name="pass_kalab" placeholder="Enter your password">
                                             <div class="input-group-text" data-password="false">
                                                 <span class="password-eye"></span>
                                             </div>

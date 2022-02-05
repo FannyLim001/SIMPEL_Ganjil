@@ -39,12 +39,12 @@
                     </span>
                     <span>
                         <span class="account-user-name">Kelompok 2</span>
-                        <span class="account-position">Kepala Lab</span>
+                        <span class="account-position">${sessionScope.username }</span>
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                     <!-- item-->
-                    <a href="http://localhost:8080/SIMPEL_Ganjil/admin/auth/logout" class="dropdown-item notify-item">
+                    <a href="logout.jsp" class="dropdown-item notify-item">
                         <i class="mdi mdi-logout me-1"></i>
                         <span>Logout</span>
                     </a>
