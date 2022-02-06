@@ -9,6 +9,7 @@
 <%@page import="java.util.*,java.sql.*" %>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="com.google.gson.JsonObject"%>
+<%@page import="org.json.JSONArray"%>
 <%@page import="config.database"%>
 <%@page import="models.kalab.DashboardModel"%>
 <%
@@ -58,35 +59,65 @@
 
                         <%
                             Gson gson = new Gson();
+                            String no_lab=null;
+                            String jumlah_nolab=null;
+                            
+                            String kolom=null;
+                            String baris=null;
+                            
                             String nama_lab=null;
-                            String jumlah_pinjam=null;
-
+                            String jumlah_lab=null;
+                            
+                            String level=null;
+                            String jumlah_level=null;
+                            
+                            String thn_peminjaman=null;
+                            String jml_thn=null;
+                            
+                            String status_peminjaman=null;
+                            String jml_status=null;
+                            
                             database db = new database();
                             db.connection();
                             ResultSet rs = null;
                             int total= Dashboard.getTotal_peminjaman();
-                            String kolom [] = new String[total];
-                            int jumlah [] = new int[total];
+                            int id_kalab = (Integer) session.getAttribute("id");
                     
-                            try{    
-                                    String sql = "select count(*) as jml_pinjam, nama_lab from tbl_peminjaman p, tbl_lab l where level between 2 and 3 "
+                            try{
+                                String sql = "select l.no_lab from tbl_lab l, tbl_kepala_lab k where "
+                                            + "l.id_kalab=l.id_kalab and l.id_kalab='"+id_kalab+"'";
+                                String sql2 = "select count(*) as jml_pinjam, no_lab from tbl_peminjaman p, tbl_lab l where level between 2 and 3 "
                                             + "and p.id_lab=l.id_lab group by id_peminjaman";
-                                    rs = db.getData(sql);
-                    
-                                    for(int i=0; i<total; i++){
-                                        while(rs.next()){
-                                            jumlah[i] = rs.getInt("jml_pinjam");
-                                            kolom[i] = rs.getString("nama_lab");
-                                        }
-                                    }
-                                    jumlah_pinjam = gson.toJson(jumlah);
-                                    nama_lab = gson.toJson(kolom);
-                                    db.disconnect(rs);
+                                rs = db.getData(sql);
+                                
+                                ArrayList ar=new ArrayList();
+                                ArrayList ar2 = new ArrayList();
+
+                                while(rs.next())
+                                {
+                                    no_lab = rs.getString("no_lab");
+                                    ar.add(no_lab);
+                                }
+                                
+                                rs = db.getData(sql2);
+                                
+                                while(rs.next())
+                                {
+                                    no_lab = rs.getString("no_lab");
+                                    ar.add(no_lab);
+                                    jumlah_nolab = rs.getString("jml_pinjam");
+                                    ar2.add(jumlah_nolab);
+                                }
+                                
+                                kolom = gson.toJson(ar);
+                                baris = gson.toJson(ar2);
+                                
                             }
                             catch(SQLException e){
                                     out.println("<div  style='width: 50%; margin-left: auto; margin-right: auto; margin-top: 200px;'>Could not connect to the database. Please check if you have mySQL Connector installed on the machine - if not, try installing the same.</div>");
                             }
-                        %>               
+                        %>
+
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -95,9 +126,6 @@
                                             <div class="col-lg-10">
                                                 <h4>Data Peminjaman Lab</h4>
                                             </div>
-                                            <div class="col-lg-2 text-right">
-                                                <a href="print_laporan.jsp" class="btn btn-primary btn-sm"><i class="mdi mdi-printer"></i>&nbsp;&nbsp;Cetak</a>
-                                            </div>
                                         </div>
                                         <hr>
                                         <div class="row">
@@ -105,7 +133,7 @@
                                                 <h4>Tampilkan berdasarkan</h4>
                                                 <div class="col-7">
                                                     <select class="form-select" id="filter">
-                                                        <option value="12, 19, 3, 5, 2, 3">No Lab</option>
+                                                        <option value="<%= baris %>">No Lab</option>
                                                         <option value="5, 19, 3, 1, 2, 3">Nama Lab</option>
                                                         <option value="7, 14, 2, 5, 2, 3">Level</option>
                                                         <option value="9, 19, 3, 5, 2, 3">Tahun Peminjaman</option>
@@ -149,10 +177,10 @@
             const myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    labels: <%= kolom %>,
                     datasets: [{
                             label: 'No Lab',
-                            data: [12, 19, 3, 5, 2, 3],
+                            data: <%= baris %>,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
@@ -180,14 +208,14 @@
                     }
                 }
             });
-            
+
             const filter = document.getElementById('filter');
             filter.addEventListener('change', Tracker);
-            
-            function Tracker(){
+
+            function Tracker() {
                 const label = filter.options[filter.selectedIndex].text;
                 myChart.data.datasets[0].label = label;
-                myChart.data.datasets[0].data = filter.value.split(',');
+                myChart.data.datasets[0].data = filter.value;
                 myChart.update();
             }
 

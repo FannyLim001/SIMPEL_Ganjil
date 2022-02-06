@@ -212,7 +212,6 @@
                     out.println("<div  style='width: 50%; margin-left: auto; margin-right: auto; margin-top: 200px;'>Could not connect to the database. Please check if you have mySQL Connector installed on the machine - if not, try installing the same.</div>");
             }
         %>
-
         <script>
             const ctx = document.getElementById('dashboard_chart');
             const myChart = new Chart(ctx, {
