@@ -4,44 +4,26 @@
     Author     : FANNY
 --%>
 
-<%@page import="config.database"%>
-<%@page import="java.sql.*"%>
+<jsp:useBean id="Dashboard" class="models.kalab.DashboardModel" />
+<jsp:useBean id="KalabController" class="controllers.kalab.KalabController" />
+<%@page import="models.kalab.DashboardModel"%>
 <% 
     if(session.getAttribute("username")==null){
      response.sendRedirect("login.jsp");
     } else {
-    database db = new database();
-    db.connection();
-    ResultSet rs = null;
-    String sql = "select count(*) from tbl_peminjaman where level between 2 and 3";
-    String sql2 = "select count(*) from tbl_lab where id_kalab=1";
-    String sql3 = "select count(*) from tbl_peminjaman where status_peminjaman='Disetujui' and level between 2 and 3";
-    String sql4 = "select count(*) from tbl_peminjaman where status_peminjaman='Ditolak' and level between 2 and 3";
-
-    rs = db.getData(sql);
-    int total_peminjaman = 0;
-    while (rs.next()) {
-    total_peminjaman = rs.getInt(1);
-    }
-
-    rs = db.getData(sql2);
-    int total_lab = 0;
-    while (rs.next()) {
-    total_lab = rs.getInt(1);
-    }
-
-    rs = db.getData(sql3);
-    int total_disetujui = 0;
-    while (rs.next()) {
-    total_disetujui = rs.getInt(1);
-    }
-
-    rs = db.getData(sql4);
-    int total_ditolak = 0;
-    while (rs.next()) {
-    total_ditolak = rs.getInt(1);
+        int id_kalab = (Integer) session.getAttribute("id");
+        
+    DashboardModel[] dataDashboard = KalabController.getDataDashboard(id_kalab);
+    
+    for(int i=0; i<dataDashboard.length; i++){
+        Dashboard = dataDashboard[i];
     }
 %>
+
+<jsp:setProperty name = "Dashboard" property = "total_peminjaman" value = "<%=Dashboard.getTotal_peminjaman()%>" />
+<jsp:setProperty name = "Dashboard" property = "total_lab" value = "<%= Dashboard.getTotal_lab()%>" />
+<jsp:setProperty name = "Dashboard" property = "total_disetujui" value = "<%= Dashboard.getTotal_disetujui()%>" />
+<jsp:setProperty name = "Dashboard" property = "total_ditolak" value = "<%= Dashboard.getTotal_ditolak()%>" />
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -95,7 +77,7 @@
                                                     <i class="mdi mdi-account-multiple widget-icon"></i>
                                                 </div>
                                                 <h4 class="text-muted fw-normal mt-0" title="Total Peminjaman">Total Peminjaman</h4>
-                                                <h2 class="mt-3 mb-3"><%=total_peminjaman%></h2>
+                                                <h2 class="mt-3 mb-3"><jsp:getProperty name="Dashboard" property="total_peminjaman" /></h2>
                                             </div> <!-- end card-body-->
                                         </div> <!-- end card-->
                                     </div> <!-- end col-->
@@ -107,7 +89,7 @@
                                                     <i class="mdi mdi-cart-plus widget-icon"></i>
                                                 </div>
                                                 <h4 class="text-muted fw-normal mt-0" title="Total Lab">Total Lab</h4>
-                                                <h2 class="mt-3 mb-3"><%=total_lab%></h2>
+                                                <h2 class="mt-3 mb-3"><jsp:getProperty name="Dashboard" property="total_lab" /></h2>
                                             </div> <!-- end card-body-->
                                         </div> <!-- end card-->
                                     </div> <!-- end col-->
@@ -121,7 +103,7 @@
                                                     <i class="mdi mdi-currency-usd widget-icon"></i>
                                                 </div>
                                                 <h4 class="text-muted fw-normal mt-0" title="Average Revenue">Peminjaman disetujui</h4>
-                                                <h2 class="mt-3 mb-3"><%=total_disetujui%></h2>
+                                                <h2 class="mt-3 mb-3"><jsp:getProperty name="Dashboard" property="total_disetujui" /></h2>
                                             </div> <!-- end card-body-->
                                         </div> <!-- end card-->
                                     </div> <!-- end col-->
@@ -133,7 +115,7 @@
                                                     <i class="mdi mdi-pulse widget-icon"></i>
                                                 </div>
                                                 <h4 class="text-muted fw-normal mt-0" title="Growth">Peminjaman ditolak</h4>
-                                                <h2 class="mt-3 mb-3"><%=total_ditolak%></h2>
+                                                <h2 class="mt-3 mb-3"><jsp:getProperty name="Dashboard" property="total_ditolak" /></h2>
                                             </div> <!-- end card-body-->
                                         </div> <!-- end card-->
                                     </div> <!-- end col-->

@@ -301,45 +301,53 @@ public class KalabController {
             return daftarLab;
         }
     }
-
-//    public void getDataDashboard() {
-//        try {
-//            LabModel l = new LabModel();
-//            database db = new database();
-//            db.connection();
-//            ResultSet rs = null;
-//            String sql = "select count(*) from tbl_peminjaman where level between 2 and 3";
-//            String sql2 = "select count(*) from tbl_lab where id_kalab=1";
-//            String sql3 = "select count(*) from tbl_peminjaman where status_peminjaman='Disetujui' and level between 2 and 3";
-//            String sql4 = "select count(*) from tbl_peminjaman where status_peminjaman='Ditolak' and level between 2 and 3";
-//            
-//            rs = db.getData(sql);
-//            int total_peminjaman = 0;
-//            while (rs.next()) {
-//                total_peminjaman = rs.getInt(1);
-//            }
-//            
-//            rs = db.getData(sql2);
-//            int total_lab = 0;
-//            while (rs.next()) {
-//                total_lab = rs.getInt(1);
-//            }
-//            
-//            rs = db.getData(sql3);
-//            int total_disetujui = 0;
-//            while (rs.next()) {
-//                total_disetujui = rs.getInt(1);
-//            }
-//            
-//            rs = db.getData(sql4);
-//            int total_ditolak = 0;
-//            while (rs.next()) {
-//                total_ditolak = rs.getInt(1);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    
+    public DashboardModel[] getDataDashboard(int id_kalab) {
+        DashboardModel[] dataDashboard = null;
+        DashboardModel tempData = null;
+        ArrayList listData = new ArrayList();
+        database db = new database();
+        db.connection();
+        ResultSet rs = null;
+        String sql = "select count(id_peminjaman) from tbl_peminjaman p, tbl_lab l where level between 2 and 3 and "
+                + "p.id_lab=l.id_lab and l.id_kalab='"+id_kalab+"'";
+        String sql2 = "select count(*) from tbl_lab where id_kalab='"+id_kalab+"'";
+        String sql3 = "select count(id_peminjaman) from tbl_peminjaman p, tbl_lab l where status_peminjaman='Disetujui' and level between 2 and 3 and "
+                + "p.id_lab=l.id_lab and l.id_kalab='"+id_kalab+"'";
+        String sql4 = "select count(id_peminjaman) from tbl_peminjaman p, tbl_lab l where status_peminjaman='Ditolak' and level between 2 and 3 and "
+                + "p.id_lab=l.id_lab and l.id_kalab='"+id_kalab+"'";
+        try {
+            
+            rs = db.getData(sql);
+            tempData = new DashboardModel();
+            while (rs.next()) {
+                tempData.setTotal_peminjaman(rs.getInt(1));
+            }
+            
+            rs = db.getData(sql2);
+            while (rs.next()) {
+                tempData.setTotal_lab(rs.getInt(1));
+            }
+            
+            rs = db.getData(sql3);
+            while (rs.next()) {
+                tempData.setTotal_disetujui(rs.getInt(1));
+            }
+            
+            rs = db.getData(sql4);
+            while (rs.next()) {
+                tempData.setTotal_ditolak(rs.getInt(1));
+            }
+            listData.add(tempData);
+            dataDashboard = new DashboardModel[listData.size()];
+            listData.toArray(dataDashboard);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.disconnect(rs);
+            return dataDashboard;
+        }
+    }
 
     public static void UpdateStatus(PeminjamanModel p) {
         database db = new database();
@@ -405,6 +413,7 @@ public class KalabController {
 
                 if(k.getEmail_kalab().equals(db_email) && k.getPass_kalab().equals(db_pass)){
                     k.setNama_kalab(rs.getString("nama_kalab"));
+                    k.setId_kalab(rs.getInt("id_kalab"));
                     status = true;
                 }
             }

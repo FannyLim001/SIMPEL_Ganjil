@@ -38,7 +38,7 @@
                         <img src="http://localhost:8080/SIMPEL_Ganjil/assets/images/users/avatar-2.jpg" alt="user-image" class="rounded-circle">
                     </span>
                     <span>
-                        <span class="account-user-name">Kelompok 2</span>
+                        <span class="account-user-name">Kepala Lab ${sessionScope.id }</span>
                         <span class="account-position">${sessionScope.username }</span>
                     </span>
                 </a>

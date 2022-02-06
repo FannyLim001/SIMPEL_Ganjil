@@ -20,6 +20,7 @@
     
     boolean status = KalabController.CekLogin(Kalab);
         if(status){
+            session.setAttribute("id", Kalab.getId_kalab());
             session.setAttribute("username", Kalab.getNama_kalab());
             response.sendRedirect("dashboard.jsp");
         } else {

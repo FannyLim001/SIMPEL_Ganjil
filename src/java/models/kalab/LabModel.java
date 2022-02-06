@@ -76,5 +76,5 @@ public class LabModel {
     public void setStatus_lab(String status_lab) {
         this.status_lab = status_lab;
     }
-    
+        
 }
