@@ -181,35 +181,43 @@ public class PicController {
     }
 
     /* Akses models InformasiLab */
-    public static void insertDataLab(InformasiLab l){
+    public static void insertDataLab(InformasiLab l) {
         database db = new database();
         try {
-                String Sql = "INSERT INTO tbl_lab(id_pic, id_kalab, no_lab, nama_lab, kapasitas_lab, foto_lab, status_lab)"
-                        + "VALUES('"+ l.getId_pic() +"','"+l.getId_kalab()+"','"+l.getNo_lab()+"','"+l.getNama_lab()+"','"+l.getKapasitas()+"','"+l.getFoto_lab()+"','"+l.getStatus()+"')";
-                db.saveData(Sql);
+            String Sql = "INSERT INTO tbl_lab(id_pic, id_kalab, no_lab, nama_lab, kapasitas_lab, foto_lab, status_lab)"
+                    + "VALUES('" + l.getId_pic() + "','" + l.getId_kalab() + "','" + l.getNo_lab() + "','" + l.getNama_lab() + "','" + l.getKapasitas() + "','" + l.getFoto_lab() + "','" + l.getStatus() + "')";
+            db.saveData(Sql);
         } catch (Exception ex) {
             System.out.println("Terjadi Kesalahan Saat menyimpan data lab" + ex);
-        } 
+        }
     }
 
-    public static void updateDataLab(InformasiLab l){
+    public static void updateDataLab(InformasiLab l) {
         database db = new database();
         try {
-                String Sql = "UPDATE tbl_lab SET id_pic='"+l.getId_pic()+"', id_kalab='"+l.getId_kalab()+"', no_lab='"+l.getNo_lab()+"', nama_lab='"+l.getNama_lab()+"', kapasitas_lab='"+l.getKapasitas()+"', foto_lab='"+l.getFoto_lab()+"', status_lab='"+l.getStatus()+"' WHERE id_lab='"+l.getId_lab()+"'";
-                db.saveData(Sql);
+            String Sql = "UPDATE tbl_lab SET\n"
+                    + "id_pic = '"+l.getId_pic()+"',\n"
+                    + "id_kalab = '"+l.getId_kalab()+"',\n"
+                    + "no_lab = '"+l.getNo_lab()+"',\n"
+                    + "nama_lab = \""+l.getNama_lab()+"\",\n"
+                    + "kapasitas_lab = '"+l.getKapasitasLab()+"',\n"
+                    + "foto_lab = \""+l.getFoto_lab()+"\",\n"
+                    + "status_lab = \""+l.getStatus()+"\"\n"
+                    + "WHERE id_lab = '"+l.getId_lab()+"'";
+            db.saveData(Sql);
         } catch (Exception ex) {
             System.out.println("Terjadi Kesalahan Saat menyimpan data lab" + ex);
-        } 
+        }
     }
 
-    public static void hapusDataLab(InformasiLab l){
+    public static void hapusDataLab(InformasiLab l) {
         database db = new database();
         try {
-                String Sql = "DELETE FROM tbl_lab WHERE id_lab='"+l.getId_lab()+"'";
-                db.saveData(Sql);
+            String Sql = "DELETE FROM tbl_lab WHERE id_lab='" + l.getId_lab() + "'";
+            db.saveData(Sql);
         } catch (Exception ex) {
             System.out.println("Terjadi Kesalahan Saat menghapus data lab" + ex);
-        } 
+        }
     }
 
     public InformasiLab[] getDataLab() {
@@ -219,12 +227,12 @@ public class PicController {
         database db = new database();
         ResultSet rs = null;
         try {
-            String sql = "SELECT p.id_lab, c.nama_pic, l.nama_kalab,\n" +
-                "p.no_lab, p.nama_lab, p.kapasitas_lab,\n" +
-                "p.foto_lab, p.status_lab\n" +
-                "FROM tbl_lab p, tbl_kepala_lab l, tbl_pic_lab c\n" +
-                "WHERE p.id_pic = c.id_pic and p.id_kalab = l.id_kalab\n" +
-                "ORDER BY p.id_lab DESC";
+            String sql = "SELECT p.id_lab, c.nama_pic, l.nama_kalab,\n"
+                    + "p.no_lab, p.nama_lab, p.kapasitas_lab,\n"
+                    + "p.foto_lab, p.status_lab\n"
+                    + "FROM tbl_lab p, tbl_kepala_lab l, tbl_pic_lab c\n"
+                    + "WHERE p.id_pic = c.id_pic and p.id_kalab = l.id_kalab\n"
+                    + "ORDER BY p.id_lab DESC";
             rs = db.getData(sql);
             while (rs.next()) {
                 temp = new InformasiLab();
@@ -278,7 +286,7 @@ public class PicController {
         ResultSet rs = null;
         try {
             String sql = "SELECT l.no_lab, l.nama_lab, l.kapasitas_lab, ka.nama_kalab,\n"
-                    + "pic.nama_pic, l.foto_lab\n"
+                    + "pic.nama_pic, l.foto_lab, l.id_pic, l.id_kalab\n"
                     + "FROM tbl_lab l, tbl_kepala_lab ka, tbl_pic_lab pic, tbl_peminjaman p\n"
                     + "WHERE l.id_kalab = ka.id_kalab AND l.id_pic = pic.id_pic\n"
                     + "AND p.id_lab = l.id_lab AND p.id_peminjaman = '" + id_peminjaman + "'";
@@ -291,6 +299,8 @@ public class PicController {
                 info.setKetua_lab(rs.getString("nama_kalab"));
                 info.setPic_lab(rs.getString("nama_pic"));
                 info.setFoto_lab(rs.getString("foto_lab"));
+                info.setId_pic(rs.getInt("id_pic"));
+                info.setId_kalab(rs.getInt("id_kalab"));
             }
         } catch (Exception ex) {
             System.out.println("Terjadi Kesalahan Saat menampilkan detail peminjaman" + ex);
@@ -305,7 +315,12 @@ public class PicController {
         database db = new database();
         ResultSet rs = null;
         try {
-            String sql = "SELECT * FROM tbl_lab WHERE id_lab ='"+id_lab+"'";
+            String sql = "SELECT l.id_lab, l.id_pic, l.id_kalab,\n" +
+                "l.no_lab, l.nama_lab, l.kapasitas_lab,\n" +
+                "l.foto_lab, l.status_lab, p.nama_pic, k.nama_kalab\n" +
+                "FROM tbl_lab l, tbl_pic_lab p, tbl_kepala_lab k\n" +
+                "WHERE l.id_pic = p.id_pic AND l.id_kalab = k.id_kalab\n" +
+                "AND l.id_lab = '"+id_lab+"'";
             rs = db.getData(sql);
             if (rs.next()) {
                 info = new InformasiLab();
@@ -314,9 +329,11 @@ public class PicController {
                 info.setId_kalab(rs.getInt("id_kalab"));
                 info.setNo_lab(rs.getInt("no_lab"));
                 info.setNama_lab(rs.getString("nama_lab"));
-                info.setKapasitas(rs.getInt("kapasitas_lab"));
+                info.setKapasitasLab(rs.getInt("kapasitas_lab"));
                 info.setFoto_lab(rs.getString("foto_lab"));
                 info.setStatus(rs.getString("status_lab"));
+                info.setPic_lab(rs.getString("nama_pic"));
+                info.setKetua_lab(rs.getString("nama_kalab"));
             }
         } catch (Exception ex) {
             System.out.println("Terjadi Kesalahan Saat menampilkan detail peminjaman" + ex);
@@ -352,7 +369,7 @@ public class PicController {
             return lb;
         }
     }
-    
+
     /* Akses ModelPic */
     public ModelPic[] getAllDataPic() {
         ModelPic[] p = null;
@@ -372,7 +389,7 @@ public class PicController {
                 temp.setKontak_pic(rs.getString("kontak_pic"));
                 temp.setRuangan_pic(rs.getString("ruangan_pic"));
                 temp.setFoto_pic(rs.getString("foto_pic"));
-                
+
                 daftar.add(temp);
             }
             p = new ModelPic[daftar.size()];
@@ -385,10 +402,42 @@ public class PicController {
         }
     }
     
-//    public static void main(String[] args) {
-//        ModelPic[] pic = new PicController().getAllDataPic();
-//        for (int i = 0; i < pic.length; i++) {
-//            System.out.println(pic[i].getEmail_pic());
-//        }
-//    }
+    /* Akses ModelKalab */
+    public ModelKalab[] getAllDataKalab() {
+        ModelKalab[] k = null;
+        ModelKalab temp = null;
+        ArrayList daftar = new ArrayList();
+        database db = new database();
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT * FROM tbl_kepala_lab";
+            rs = db.getData(sql);
+            while (rs.next()) {
+                temp = new ModelKalab();
+                temp.setId_kalab(rs.getInt("id_kalab"));
+                temp.setNama_kalab(rs.getString("nama_kalab"));
+                temp.setEmail_kalab(rs.getString("email_kalab"));
+                temp.setPass_kalab(rs.getString("pass_kalab"));
+                temp.setKontak_kalab(rs.getString("kontak_kalab"));
+                temp.setRuangan_kalab(rs.getString("ruangan_kalab"));
+                temp.setFoto_kalab(rs.getString("foto_kalab"));
+
+                daftar.add(temp);
+            }
+            k = new ModelKalab[daftar.size()];
+            daftar.toArray(k);
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex);
+        } finally {
+            db.disconnect(rs);
+            return k;
+        }
+    }
+
+    public static void main(String[] args) {
+        ModelKalab[] info = new PicController().getAllDataKalab();
+        for (int i = 0; i < info.length; i++) {
+            System.out.println(info[i].getNama_kalab());
+        }
+    }
 }

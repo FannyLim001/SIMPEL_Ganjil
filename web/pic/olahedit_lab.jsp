@@ -4,6 +4,8 @@
     Author     : andre
 --%>
 
+<%@page import="models.pic.*"%>
+<%@page import="controllers.pic.*"%>
 <jsp:useBean id="PicController" class="controllers.pic.PicController" />
 <jsp:useBean id="Lab" class="models.pic.InformasiLab" />
 <%@page import="java.sql.*"%>
@@ -19,22 +21,24 @@
     String foto_lab = request.getParameter("foto_lab");
     String status_lab = request.getParameter("status_lab");
     
+    Lab.setId_lab(id_lab);
+    Lab.setNama_lab(nama_lab);
+    Lab.setNo_lab(no_lab);
+    Lab.setKapasitasLab(kapasitas_lab);
+    Lab.setId_pic(id_pic);
+    Lab.setId_kalab(id_kalab);
+    Lab.setFoto_lab(foto_lab);
+    Lab.setStatus(status_lab);
     
-    Lab.setNama_lab("1");
-    Lab.setNo_lab(1);
-    Lab.setKapasitas(1);
-    Lab.setId_pic(1);
-    Lab.setId_kalab(1);
-    Lab.setFoto_lab("1");
-    Lab.setStatus("1");
+//    out.print(Lab.getId_lab() + "<br>");
+//    out.print(Lab.getNama_lab()+ "<br>");
+//    out.print(Lab.getNo_lab()+ "<br>");
+//    out.print(Lab.getKapasitasLab()+ "<br>");
+//    out.print(Lab.getId_pic()+ "<br>");
+//    out.print(Lab.getId_kalab()+ "<br>");
+//    out.print(Lab.getFoto_lab()+ "<br>");
+//    out.print(Lab.getStatus()+ "<br>");
+    
     PicController.updateDataLab(Lab);
-//    
-//    out.write(nama_lab);
-//    out.write(no_lab);
-//    out.write(kapasitas_lab);
-//    out.write(id_pic);
-//    out.write(id_kalab);
-//    out.write(foto_lab);
-//    out.write(status_lab);
     response.sendRedirect("daftar_lab.jsp");
 %>
