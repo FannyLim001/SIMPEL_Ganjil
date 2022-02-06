@@ -9,6 +9,10 @@
 <jsp:useBean id="Peminjaman" class="models.kalab.PeminjamanModel" />
 <jsp:useBean id="KalabController" class="controllers.kalab.KalabController" />
 <% 
+    if(session.getAttribute("username")==null){
+     response.sendRedirect("login.jsp");
+    } else {
+    
     int id_peminjaman = Integer.parseInt(request.getParameter("id_peminjaman"));
     Peminjaman = KalabController.getDataPeminjamanbyID(id_peminjaman);
     PeminjamanModel[] daftarPeminjaman = KalabController.getDaftarPeminjaman();
@@ -194,3 +198,4 @@
         <!-- /End-bar -->
     </body>
 </html>
+<% } %>

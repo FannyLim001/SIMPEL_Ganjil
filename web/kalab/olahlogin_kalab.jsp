@@ -5,6 +5,7 @@
 --%>
 
 <jsp:useBean id="KalabController" class="controllers.kalab.KalabController" />
+<jsp:useBean id="Kalab" class="models.kalab.KalabModel" />
 <%@page import="java.sql.*"%>
 <%@page import="models.kalab.KalabModel"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,17 +14,15 @@
     
     String email_kalab=request.getParameter("email_kalab");
     String pass_kalab=request.getParameter("pass_kalab");
-
-    KalabModel [] daftarKalab = KalabController.getDaftarKalab();
     
-    for(int i=0; i<=daftarKalab.length; i++){
-        if(email_kalab.equals(daftarKalab[i].getEmail_kalab()) && pass_kalab.equals(daftarKalab[i].getPass_kalab())){
-            session.setAttribute("username", daftarKalab[i].getNama_kalab());
-            session.setAttribute("login", "Berhasil");
-            request.getRequestDispatcher("dashboard.jsp").include(request, response);
+    Kalab.setEmail_kalab(email_kalab);
+    Kalab.setPass_kalab(pass_kalab);
+    
+    boolean status = KalabController.CekLogin(Kalab);
+        if(status){
+            session.setAttribute("username", Kalab.getNama_kalab());
+            response.sendRedirect("dashboard.jsp");
         } else {
-            session.setAttribute("login", "Gagal");
-            request.getRequestDispatcher("login.jsp").include(request, response);
+            response.sendRedirect("login.jsp");
         }
-    }
 %>

@@ -64,16 +64,9 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
         }
       }
       out.write('\n');
- 
+  
     KalabModel[] daftarKalab = KalabController.getDaftarKalab();
 
-      out.write('\n');
-      out.write('\n');
-      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Kalab"), "email_kalab",
- Kalab.getEmail_kalab());
-      out.write('\n');
-      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Kalab"), "pass_kalab",
- Kalab.getPass_kalab());
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -105,14 +98,12 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("          document.getElementById(\"message1\").innerHTML = \"**Email salah!\";  \n");
       out.write("          return false;  \n");
       out.write("        } else {\n");
-      out.write("            return true\n");
-      out.write("        }\n");
-      out.write("        \n");
-      out.write("        if(pw1!=pw2) {  \n");
-      out.write("          document.getElementById(\"message2\").innerHTML = \"**Password salah!\";  \n");
-      out.write("          return false;  \n");
-      out.write("        } else {\n");
-      out.write("            return true;\n");
+      out.write("            if(pw1!=pw2) {  \n");
+      out.write("                document.getElementById(\"message2\").innerHTML = \"**Password salah!\";  \n");
+      out.write("                return false;  \n");
+      out.write("              } else {\n");
+      out.write("                  return true;\n");
+      out.write("              }\n");
       out.write("        }\n");
       out.write("     }  \n");
       out.write("    </script> \n");
@@ -137,8 +128,35 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <h4 class=\"text-dark-50 text-center pb-0 fw-bold\">Log In</h4>\n");
       out.write("                                    <p class=\"text-muted mb-4\">Masukkan email PCR dan password anda untuk mengakses sistem</p>\n");
       out.write("                                </div>\n");
-      out.write("\n");
+      out.write("                                \n");
+      out.write("                                <div id=\"message1\" class=\"alert alert-danger alert-dismissible bg-danger text-white border-0 fade show\" role=\"alert\">\n");
+      out.write("                                        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n");
+      out.write("                                        Email anda salah!\n");
+      out.write("                                </div>\n");
+      out.write("                                \n");
+      out.write("                                <div id=\"message2\" class=\"alert alert-danger alert-dismissible bg-danger text-white border-0 fade show\" role=\"alert\">\n");
+      out.write("                                        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n");
+      out.write("                                        Password anda salah!\n");
+      out.write("                                    </div>\n");
+      out.write("                                \n");
       out.write("                                <form onsubmit =\"return validateForm()\" id=\"login_form\" action=\"olahlogin_kalab.jsp\" method=\"post\">\n");
+      out.write("                                    \n");
+      out.write("                                    ");
+
+                                        for(int i=0; i<daftarKalab.length; i++){
+                                        Kalab = daftarKalab[i];
+                                    
+      out.write("\n");
+      out.write("                                    \n");
+      out.write("                                    ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Kalab"), "email_kalab",
+ Kalab.getEmail_kalab());
+      out.write("\n");
+      out.write("                                    ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Kalab"), "pass_kalab",
+ Kalab.getPass_kalab());
+      out.write("\n");
+      out.write("                                    \n");
       out.write("                                    <input class=\"form-control\" type=\"hidden\" id=\"db_email\" value=\"");
       out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.KalabModel)_jspx_page_context.findAttribute("Kalab")).getEmail_kalab())));
       out.write("\">\n");
@@ -146,10 +164,13 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.KalabModel)_jspx_page_context.findAttribute("Kalab")).getPass_kalab())));
       out.write("\">\n");
       out.write("                                    \n");
+      out.write("                                    ");
+ } 
+      out.write("\n");
+      out.write("                                    \n");
       out.write("                                    <div class=\"mb-3\">\n");
       out.write("                                        <label for=\"emailaddress\" class=\"form-label\">Email address</label>\n");
-      out.write("                                        <input class=\"form-control\" type=\"email\" id=\"input_email\" name=\"email_kalab\" required=\"\" placeholder=\"Enter your email\"><br>\n");
-      out.write("                                        <span id = \"message1\" style=\"color:red\"> </span>\n");
+      out.write("                                        <input class=\"form-control\" type=\"email\" id=\"input_email\" name=\"email_kalab\" required=\"\" placeholder=\"Enter your email\">\n");
       out.write("                                    </div>\n");
       out.write("\n");
       out.write("                                    <div class=\"mb-3\">\n");
@@ -160,8 +181,6 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                <span class=\"password-eye\"></span>\n");
       out.write("                                            </div>\n");
       out.write("                                        </div>\n");
-      out.write("                                        <br>\n");
-      out.write("                                            <span id = \"message2\" style=\"color:red\"> </span>\n");
       out.write("                                    </div>\n");
       out.write("\n");
       out.write("                                    <div class=\"mb-3 mb-0 text-center\">\n");
@@ -188,7 +207,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor.min.js\"></script>\n");
       out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/app.min.js\"></script>\n");
       out.write("    </body>\n");
-      out.write("</html>\n");
+      out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

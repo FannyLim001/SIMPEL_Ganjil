@@ -4,6 +4,12 @@
     Author     : FANNY
 --%>
 
+
+<%
+    if(session.getAttribute("username")==null){
+     response.sendRedirect("login.jsp");
+    } else {
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -117,3 +123,4 @@
         <!-- /End-bar -->
     </body>
 </html>
+<% } %>

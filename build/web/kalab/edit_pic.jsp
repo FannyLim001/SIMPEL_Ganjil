@@ -9,6 +9,10 @@
 <jsp:useBean id="Pic" class="models.kalab.PicModel" />
 <jsp:useBean id="KalabController" class="controllers.kalab.KalabController" />
 <% 
+    if(session.getAttribute("username")==null){
+     response.sendRedirect("login.jsp");
+    } else {
+    
     int id_pic = Integer.parseInt(request.getParameter("id_pic"));
     Pic = KalabController.getDataPicbyID(id_pic);
     PicModel[] daftarPic = KalabController.getDaftarPic();
@@ -131,3 +135,4 @@
         <!-- /End-bar -->
     </body>
 </html>
+<% } %>

@@ -389,4 +389,29 @@ public class KalabController {
         }
     }
 
+    public static boolean CekLogin(KalabModel k){
+        boolean status=false;
+        database db = new database();
+        db.connection();
+        ResultSet rs = null;
+        String sql = "select * from tbl_kepala_lab where email_kalab='" + k.getEmail_kalab() + "' and pass_kalab='"+k.getPass_kalab()+"'";
+        try {
+            rs = db.getData(sql);
+            
+            while (rs.next()) {
+            
+                String db_email = rs.getString("email_kalab");
+                String db_pass = rs.getString("pass_kalab");
+
+                if(k.getEmail_kalab().equals(db_email) && k.getPass_kalab().equals(db_pass)){
+                    k.setNama_kalab(rs.getString("nama_kalab"));
+                    status = true;
+                }
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
 }

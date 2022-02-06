@@ -3,6 +3,8 @@ package org.apache.jsp.kalab;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import config.database;
+import java.sql.*;
 
 public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -47,6 +49,51 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out = pageContext.getOut();
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
+
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+ 
+    if(session.getAttribute("username")==null){ 
+      out.write("\r\n");
+      out.write("<div class=\"alert alert-danger alert-dismissible bg-danger text-white border-0 fade show\" role=\"alert\">\r\n");
+      out.write("    <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\r\n");
+      out.write("    <strong>Error - </strong> Silahkan login terlebih dahulu!\r\n");
+      out.write("</div>\r\n");
+ response.sendRedirect("login.jsp");
+    } else {
+    database db = new database();
+    db.connection();
+    ResultSet rs = null;
+    String sql = "select count(*) from tbl_peminjaman where level between 2 and 3";
+    String sql2 = "select count(*) from tbl_lab where id_kalab=1";
+    String sql3 = "select count(*) from tbl_peminjaman where status_peminjaman='Disetujui' and level between 2 and 3";
+    String sql4 = "select count(*) from tbl_peminjaman where status_peminjaman='Ditolak' and level between 2 and 3";
+
+    rs = db.getData(sql);
+    int total_peminjaman = 0;
+    while (rs.next()) {
+    total_peminjaman = rs.getInt(1);
+    }
+
+    rs = db.getData(sql2);
+    int total_lab = 0;
+    while (rs.next()) {
+    total_lab = rs.getInt(1);
+    }
+
+    rs = db.getData(sql3);
+    int total_disetujui = 0;
+    while (rs.next()) {
+    total_disetujui = rs.getInt(1);
+    }
+
+    rs = db.getData(sql4);
+    int total_ditolak = 0;
+    while (rs.next()) {
+    total_ditolak = rs.getInt(1);
+    }
 
       out.write("\r\n");
       out.write("\r\n");
@@ -131,7 +178,7 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("            <div class=\"content-page\">\r\n");
       out.write("                <div class=\"content\">\r\n");
-      out.write("                ");
+      out.write("                    ");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -169,12 +216,14 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    </span>\r\n");
       out.write("                    <span>\r\n");
       out.write("                        <span class=\"account-user-name\">Kelompok 2</span>\r\n");
-      out.write("                        <span class=\"account-position\">Kepala Lab</span>\r\n");
+      out.write("                        <span class=\"account-position\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.username }", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</span>\r\n");
       out.write("                    </span>\r\n");
       out.write("                </a>\r\n");
       out.write("                <div class=\"dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown\">\r\n");
       out.write("                    <!-- item-->\r\n");
-      out.write("                    <a href=\"http://localhost:8080/SIMPEL_Ganjil/admin/auth/logout\" class=\"dropdown-item notify-item\">\r\n");
+      out.write("                    <a href=\"logout.jsp\" class=\"dropdown-item notify-item\">\r\n");
       out.write("                        <i class=\"mdi mdi-logout me-1\"></i>\r\n");
       out.write("                        <span>Logout</span>\r\n");
       out.write("                    </a>\r\n");
@@ -207,7 +256,7 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
       out.write("                        <!-- end page title --> \r\n");
-      out.write("                        \r\n");
+      out.write("\r\n");
       out.write("                        <div class=\"row\">\r\n");
       out.write("                            <div class=\"col-xl-5 col-lg-6\">\r\n");
       out.write("\r\n");
@@ -219,7 +268,9 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                    <i class=\"mdi mdi-account-multiple widget-icon\"></i>\r\n");
       out.write("                                                </div>\r\n");
       out.write("                                                <h4 class=\"text-muted fw-normal mt-0\" title=\"Total Peminjaman\">Total Peminjaman</h4>\r\n");
-      out.write("                                                <h2 class=\"mt-3 mb-3\">1340</h2>\r\n");
+      out.write("                                                <h2 class=\"mt-3 mb-3\">");
+      out.print(total_peminjaman);
+      out.write("</h2>\r\n");
       out.write("                                            </div> <!-- end card-body-->\r\n");
       out.write("                                        </div> <!-- end card-->\r\n");
       out.write("                                    </div> <!-- end col-->\r\n");
@@ -231,7 +282,9 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                    <i class=\"mdi mdi-cart-plus widget-icon\"></i>\r\n");
       out.write("                                                </div>\r\n");
       out.write("                                                <h4 class=\"text-muted fw-normal mt-0\" title=\"Total Lab\">Total Lab</h4>\r\n");
-      out.write("                                                <h2 class=\"mt-3 mb-3\">12</h2>\r\n");
+      out.write("                                                <h2 class=\"mt-3 mb-3\">");
+      out.print(total_lab);
+      out.write("</h2>\r\n");
       out.write("                                            </div> <!-- end card-body-->\r\n");
       out.write("                                        </div> <!-- end card-->\r\n");
       out.write("                                    </div> <!-- end col-->\r\n");
@@ -245,7 +298,9 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                    <i class=\"mdi mdi-currency-usd widget-icon\"></i>\r\n");
       out.write("                                                </div>\r\n");
       out.write("                                                <h4 class=\"text-muted fw-normal mt-0\" title=\"Average Revenue\">Peminjaman disetujui</h4>\r\n");
-      out.write("                                                <h2 class=\"mt-3 mb-3\">723</h2>\r\n");
+      out.write("                                                <h2 class=\"mt-3 mb-3\">");
+      out.print(total_disetujui);
+      out.write("</h2>\r\n");
       out.write("                                            </div> <!-- end card-body-->\r\n");
       out.write("                                        </div> <!-- end card-->\r\n");
       out.write("                                    </div> <!-- end col-->\r\n");
@@ -257,7 +312,9 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                    <i class=\"mdi mdi-pulse widget-icon\"></i>\r\n");
       out.write("                                                </div>\r\n");
       out.write("                                                <h4 class=\"text-muted fw-normal mt-0\" title=\"Growth\">Peminjaman ditolak</h4>\r\n");
-      out.write("                                                <h2 class=\"mt-3 mb-3\">277</h2>\r\n");
+      out.write("                                                <h2 class=\"mt-3 mb-3\">");
+      out.print(total_ditolak);
+      out.write("</h2>\r\n");
       out.write("                                            </div> <!-- end card-body-->\r\n");
       out.write("                                        </div> <!-- end card-->\r\n");
       out.write("                                    </div> <!-- end col-->\r\n");
@@ -271,9 +328,10 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        <h4 class=\"header-title mb-3\">Peminjaman per-bulan</h4>\r\n");
       out.write("\r\n");
       out.write("                                        <div dir=\"ltr\">\r\n");
-      out.write("                                            <div id=\"high-performing-product\" class=\"apex-charts\" data-colors=\"#727cf5,#e3eaef\"></div>\r\n");
+      out.write("                                            <!--<div id=\"high-performing-product\" class=\"apex-charts\" data-colors=\"#727cf5,#e3eaef\"></div>-->\r\n");
+      out.write("                                            <canvas id=\"dashboard_chart\"></canvas>\r\n");
       out.write("                                        </div>\r\n");
-      out.write("                                            \r\n");
+      out.write("\r\n");
       out.write("                                    </div> <!-- end card-body-->\r\n");
       out.write("                                </div> <!-- end card-->\r\n");
       out.write("\r\n");
@@ -284,7 +342,7 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    </div> <!-- container -->\r\n");
       out.write("\r\n");
       out.write("                </div> <!-- content -->\r\n");
-      out.write("             ");
+      out.write("                ");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -361,8 +419,50 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("        <div class=\"rightbar-overlay\"></div>\r\n");
       out.write("        <!-- /End-bar -->\r\n");
+      out.write("\r\n");
+      out.write("        <script>\r\n");
+      out.write("            const ctx = document.getElementById('dashboard_chart');\r\n");
+      out.write("            const myChart = new Chart(ctx, {\r\n");
+      out.write("                type: 'bar',\r\n");
+      out.write("                data: {\r\n");
+      out.write("                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],\r\n");
+      out.write("                    datasets: [{\r\n");
+      out.write("                            label: '# of Votes',\r\n");
+      out.write("                            data: [12, 19, 3, 5, 2, 3],\r\n");
+      out.write("                            backgroundColor: [\r\n");
+      out.write("                                'rgba(255, 99, 132, 0.2)',\r\n");
+      out.write("                                'rgba(54, 162, 235, 0.2)',\r\n");
+      out.write("                                'rgba(255, 206, 86, 0.2)',\r\n");
+      out.write("                                'rgba(75, 192, 192, 0.2)',\r\n");
+      out.write("                                'rgba(153, 102, 255, 0.2)',\r\n");
+      out.write("                                'rgba(255, 159, 64, 0.2)'\r\n");
+      out.write("                            ],\r\n");
+      out.write("                            borderColor: [\r\n");
+      out.write("                                'rgba(255, 99, 132, 1)',\r\n");
+      out.write("                                'rgba(54, 162, 235, 1)',\r\n");
+      out.write("                                'rgba(255, 206, 86, 1)',\r\n");
+      out.write("                                'rgba(75, 192, 192, 1)',\r\n");
+      out.write("                                'rgba(153, 102, 255, 1)',\r\n");
+      out.write("                                'rgba(255, 159, 64, 1)'\r\n");
+      out.write("                            ],\r\n");
+      out.write("                            borderWidth: 1,\r\n");
+      out.write("                            barPercentage: 0.5,\r\n");
+      out.write("                        }]\r\n");
+      out.write("                },\r\n");
+      out.write("                options: {\r\n");
+      out.write("                    scales: {\r\n");
+      out.write("                        y: {\r\n");
+      out.write("                            beginAtZero: true\r\n");
+      out.write("                        }\r\n");
+      out.write("                    }\r\n");
+      out.write("                }\r\n");
+      out.write("            });\r\n");
+      out.write("        </script>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
+ } 
+      out.write('\r');
+      out.write('\n');
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

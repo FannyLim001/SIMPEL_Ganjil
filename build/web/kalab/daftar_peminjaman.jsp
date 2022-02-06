@@ -9,6 +9,10 @@
 <jsp:useBean id="Peminjaman" class="models.kalab.PeminjamanModel" />
 <jsp:useBean id="KalabController" class="controllers.kalab.KalabController" />
 <% 
+    if(session.getAttribute("username")==null){
+     response.sendRedirect("login.jsp");
+    } else {
+    
     PeminjamanModel[] daftarPeminjaman = KalabController.getDaftarPeminjamanBelumSelesai();
     PeminjamanModel[] daftarPeminjaman2 = KalabController.getDaftarPeminjamanSelesai();
 %>
@@ -220,3 +224,4 @@
             <!-- /End-bar -->
     </body>
 </html>
+<% } %>

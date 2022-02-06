@@ -7,37 +7,40 @@
 <%@page import="config.database"%>
 <%@page import="java.sql.*"%>
 <% 
+    if(session.getAttribute("username")==null){
+     response.sendRedirect("login.jsp");
+    } else {
     database db = new database();
-            db.connection();
-            ResultSet rs = null;
-            String sql = "select count(*) from tbl_peminjaman where level between 2 and 3";
-            String sql2 = "select count(*) from tbl_lab where id_kalab=1";
-            String sql3 = "select count(*) from tbl_peminjaman where status_peminjaman='Disetujui' and level between 2 and 3";
-            String sql4 = "select count(*) from tbl_peminjaman where status_peminjaman='Ditolak' and level between 2 and 3";
-            
-            rs = db.getData(sql);
-            int total_peminjaman = 0;
-            while (rs.next()) {
-                total_peminjaman = rs.getInt(1);
-            }
-            
-            rs = db.getData(sql2);
-            int total_lab = 0;
-            while (rs.next()) {
-                total_lab = rs.getInt(1);
-            }
-            
-            rs = db.getData(sql3);
-            int total_disetujui = 0;
-            while (rs.next()) {
-                total_disetujui = rs.getInt(1);
-            }
-            
-            rs = db.getData(sql4);
-            int total_ditolak = 0;
-            while (rs.next()) {
-                total_ditolak = rs.getInt(1);
-            }
+    db.connection();
+    ResultSet rs = null;
+    String sql = "select count(*) from tbl_peminjaman where level between 2 and 3";
+    String sql2 = "select count(*) from tbl_lab where id_kalab=1";
+    String sql3 = "select count(*) from tbl_peminjaman where status_peminjaman='Disetujui' and level between 2 and 3";
+    String sql4 = "select count(*) from tbl_peminjaman where status_peminjaman='Ditolak' and level between 2 and 3";
+
+    rs = db.getData(sql);
+    int total_peminjaman = 0;
+    while (rs.next()) {
+    total_peminjaman = rs.getInt(1);
+    }
+
+    rs = db.getData(sql2);
+    int total_lab = 0;
+    while (rs.next()) {
+    total_lab = rs.getInt(1);
+    }
+
+    rs = db.getData(sql3);
+    int total_disetujui = 0;
+    while (rs.next()) {
+    total_disetujui = rs.getInt(1);
+    }
+
+    rs = db.getData(sql4);
+    int total_ditolak = 0;
+    while (rs.next()) {
+    total_ditolak = rs.getInt(1);
+    }
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -213,3 +216,4 @@
         </script>
     </body>
 </html>
+<% } %>
