@@ -96,26 +96,26 @@
                                                         <p class="text-muted mb-4">Fill the form below in order to
                                                             input new lab data.</p>
 
-                                                        <form>
+                                                        <form action="simpan_lab.jsp" method="post">
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="mb-3">
-                                                                        <label for="billing-first-name" class="form-label">Nama Lab</label>
-                                                                        <input class="form-control" type="text" placeholder="Masukkan Nama Lab" id="billing-first-name" />
+                                                                        <label for="nama_lab" class="form-label">Nama Lab</label>
+                                                                        <input class="form-control" type="text" placeholder="Masukkan Nama Lab" id="nama_lab" name="nama_lab"/>
                                                                     </div>
                                                                 </div>
                                                             </div> <!-- end row -->
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="mb-3">
-                                                                        <label for="billing-email-address" class="form-label">Nomor Ruangan <span class="text-danger">*</span></label>
-                                                                        <input class="form-control" type="text" placeholder="Masukkan Nomor Ruangan" id="billing-email-address" />
+                                                                        <label for="no_lab" class="form-label">Nomor Ruangan <span class="text-danger">*</span></label>
+                                                                        <input class="form-control" type="text" placeholder="Masukkan Nomor Ruangan" id="no_lab" name="no_lab"/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="mb-3">
-                                                                        <label for="billing-phone" class="form-label">Kapasitas <span class="text-danger">*</span></label>
-                                                                        <input class="form-control" type="text" placeholder="Masukkan Kapasitas Lab" id="billing-phone" />
+                                                                        <label for="kapasitas_lab" class="form-label">Kapasitas <span class="text-danger">*</span></label>
+                                                                        <input class="form-control" type="text" placeholder="Masukkan Kapasitas Lab" id="kapasitas_lab" name="kapasitas_lab"/>
                                                                     </div>
                                                                 </div>
                                                             </div> <!-- end row -->
@@ -124,22 +124,23 @@
                                                                 <div class="col-12">
                                                                     <div class="mb-3">
                                                                         <label class="form-label">PIC</label>
-                                                                        <select data-toggle="select2" title="Country">
+                                                                        <select data-toggle="select2" title="id_pic" name="id_pic">
                                                                             <option value="0">Pilih Pic Lab</option>
-                                                                            <option value="HRM">Harumin</option>
-                                                                            <option value="SST">Susiyanti</option>                           
+                                                                            <option value="1">Harumin</option>
+                                                                            <option value="2">Susiyanti</option>                           
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                             </div> <!-- end row -->
+                                                            
                                                             <div class="row">
                                                                 <div class="col-12">
                                                                     <div class="mb-3">
                                                                         <label class="form-label">Kepala Lab</label>
-                                                                        <select data-toggle="select2" title="Country">
+                                                                        <select data-toggle="select2" title="id_kalab" name="id_kalab">
                                                                             <option value="0">Pilih Kepala Lab</option>
-                                                                            <option value="HRM">Wenda Novayani</option>
-                                                                            <option value="SST">Shumaya</option>                           
+                                                                            <option value="1">Wenda Novayani</option>
+                                                                            <option value="2">Shumaya</option>                           
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -148,8 +149,8 @@
                                                             <div clas="row">
                                                                 <div class="col-12">
                                                                     <div class="mb-3">
-                                                                        <label for="example-fileinput" class="form-label">Gambar</label>
-                                                                        <input type="file" id="example-fileinput" class="form-control">
+                                                                        <label for="foto_lab" class="form-label">Gambar</label>
+                                                                        <input type="file" id="foto_lab" name="foto_lab" class="form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -158,10 +159,10 @@
                                                                 <div class="col-12">
                                                                     <div class="mb-3">
                                                                         <label class="form-label">Status Lab</label>
-                                                                        <select data-toggle="select2" title="Country">
+                                                                        <select data-toggle="select2" title="status_lab" name="status_lab">
                                                                             <option value="0">Pilih Status Lab</option>
-                                                                            <option value="HRM">Available</option>
-                                                                            <option value="SST">Unavailable</option>                           
+                                                                            <option value="Available">Available</option>
+                                                                            <option value="Not Available">Not Available</option>                           
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -174,8 +175,7 @@
                                                                 </div> <!-- end col -->
                                                                 <div class="col-sm-6">
                                                                     <div class="text-sm-end">
-                                                                        <a href="apps-ecommerce-checkout.html" class="btn btn-primary">
-                                                                            <i class="mdi mdi-plus-circle me-2"></i>Tambah Lab</a>
+                                                                         <button type="submit" class="btn btn-primary btn-sm"><i class="mdi mdi-plus-circle me-2"></i>Tambah</button
                                                                     </div>
                                                                 </div> <!-- end col -->
                                                             </div> <!-- end row -->

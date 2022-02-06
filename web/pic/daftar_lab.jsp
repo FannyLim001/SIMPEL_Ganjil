@@ -132,8 +132,8 @@
                                                                 %>
                                                             </td>
                                                             <td class="table-action">
-                                                                <a href="edit_lab.jsp" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                                                <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                                <a href="edit_lab.jsp?id_lab=<%= daftar[i].getId_lab() %>" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                                                <a href="hapus_lab.jsp?id_lab=<%= daftar[i].getId_lab() %>"  class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                                             </td>
                                                         </tr>
                                                         <% }%>

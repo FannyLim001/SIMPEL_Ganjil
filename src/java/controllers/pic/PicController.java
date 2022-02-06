@@ -181,6 +181,37 @@ public class PicController {
     }
 
     /* Akses models InformasiLab */
+    public static void insertDataLab(InformasiLab l){
+        database db = new database();
+        try {
+                String Sql = "INSERT INTO tbl_lab(id_pic, id_kalab, no_lab, nama_lab, kapasitas_lab, foto_lab, status_lab)"
+                        + "VALUES('"+ l.getId_pic() +"','"+l.getId_kalab()+"','"+l.getNo_lab()+"','"+l.getNama_lab()+"','"+l.getKapasitas()+"','"+l.getFoto_lab()+"','"+l.getStatus()+"')";
+                db.saveData(Sql);
+        } catch (Exception ex) {
+            System.out.println("Terjadi Kesalahan Saat menyimpan data lab" + ex);
+        } 
+    }
+
+    public static void updateDataLab(InformasiLab l){
+        database db = new database();
+        try {
+                String Sql = "UPDATE tbl_lab SET id_pic='"+l.getId_pic()+"', id_kalab='"+l.getId_kalab()+"', no_lab='"+l.getNo_lab()+"', nama_lab='"+l.getNama_lab()+"', kapasitas_lab='"+l.getKapasitas()+"', foto_lab='"+l.getFoto_lab()+"', status_lab='"+l.getStatus()+"' WHERE id_lab='"+l.getId_lab()+"'";
+                db.saveData(Sql);
+        } catch (Exception ex) {
+            System.out.println("Terjadi Kesalahan Saat menyimpan data lab" + ex);
+        } 
+    }
+
+    public static void hapusDataLab(InformasiLab l){
+        database db = new database();
+        try {
+                String Sql = "DELETE FROM tbl_lab WHERE id_lab='"+l.getId_lab()+"'";
+                db.saveData(Sql);
+        } catch (Exception ex) {
+            System.out.println("Terjadi Kesalahan Saat menghapus data lab" + ex);
+        } 
+    }
+
     public InformasiLab[] getDataLab() {
         InformasiLab[] p = null;
         InformasiLab temp = null;
@@ -260,6 +291,32 @@ public class PicController {
                 info.setKetua_lab(rs.getString("nama_kalab"));
                 info.setPic_lab(rs.getString("nama_pic"));
                 info.setFoto_lab(rs.getString("foto_lab"));
+            }
+        } catch (Exception ex) {
+            System.out.println("Terjadi Kesalahan Saat menampilkan detail peminjaman" + ex);
+        } finally {
+            db.disconnect(rs);
+            return info;
+        }
+    }
+
+    public InformasiLab getDataLabById(int id_lab) {
+        InformasiLab info = null;
+        database db = new database();
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT * FROM tbl_lab WHERE id_lab ='"+id_lab+"'";
+            rs = db.getData(sql);
+            if (rs.next()) {
+                info = new InformasiLab();
+                info.setId_lab(rs.getInt("id_lab"));
+                info.setId_pic(rs.getInt("id_pic"));
+                info.setId_kalab(rs.getInt("id_kalab"));
+                info.setNo_lab(rs.getInt("no_lab"));
+                info.setNama_lab(rs.getString("nama_lab"));
+                info.setKapasitas(rs.getInt("kapasitas_lab"));
+                info.setFoto_lab(rs.getString("foto_lab"));
+                info.setStatus(rs.getString("status_lab"));
             }
         } catch (Exception ex) {
             System.out.println("Terjadi Kesalahan Saat menampilkan detail peminjaman" + ex);
