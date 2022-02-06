@@ -6,6 +6,10 @@
 
 <jsp:useBean id="Dashboard" class="models.kalab.DashboardModel" />
 <jsp:useBean id="KalabController" class="controllers.kalab.KalabController" />
+<%@page import="java.util.*,java.sql.*" %>
+<%@page import="com.google.gson.Gson"%>
+<%@page import="com.google.gson.JsonObject"%>
+<%@page import="config.database"%>
 <%@page import="models.kalab.DashboardModel"%>
 <% 
     if(session.getAttribute("username")==null){
@@ -74,7 +78,7 @@
                                         <div class="card widget-flat">
                                             <div class="card-body">
                                                 <div class="float-end">
-                                                    <i class="mdi mdi-account-multiple widget-icon"></i>
+                                                    <i class="mdi mdi-clipboard-multiple widget-icon"></i>
                                                 </div>
                                                 <h4 class="text-muted fw-normal mt-0" title="Total Peminjaman">Total Peminjaman</h4>
                                                 <h2 class="mt-3 mb-3"><jsp:getProperty name="Dashboard" property="total_peminjaman" /></h2>
@@ -86,7 +90,7 @@
                                         <div class="card widget-flat">
                                             <div class="card-body">
                                                 <div class="float-end">
-                                                    <i class="mdi mdi-cart-plus widget-icon"></i>
+                                                    <i class="mdi mdi-desktop-tower-monitor widget-icon"></i>
                                                 </div>
                                                 <h4 class="text-muted fw-normal mt-0" title="Total Lab">Total Lab</h4>
                                                 <h2 class="mt-3 mb-3"><jsp:getProperty name="Dashboard" property="total_lab" /></h2>
@@ -100,7 +104,7 @@
                                         <div class="card widget-flat">
                                             <div class="card-body">
                                                 <div class="float-end">
-                                                    <i class="mdi mdi-currency-usd widget-icon"></i>
+                                                    <i class="mdi mdi-clipboard-check-multiple widget-icon"></i>
                                                 </div>
                                                 <h4 class="text-muted fw-normal mt-0" title="Average Revenue">Peminjaman disetujui</h4>
                                                 <h2 class="mt-3 mb-3"><jsp:getProperty name="Dashboard" property="total_disetujui" /></h2>
@@ -112,7 +116,7 @@
                                         <div class="card widget-flat">
                                             <div class="card-body">
                                                 <div class="float-end">
-                                                    <i class="mdi mdi-pulse widget-icon"></i>
+                                                    <i class="mdi mdi-clipboard-off widget-icon"></i>
                                                 </div>
                                                 <h4 class="text-muted fw-normal mt-0" title="Growth">Peminjaman ditolak</h4>
                                                 <h2 class="mt-3 mb-3"><jsp:getProperty name="Dashboard" property="total_ditolak" /></h2>
@@ -158,22 +162,73 @@
         <div class="rightbar-overlay"></div>
         <!-- /End-bar -->
 
+        <%
+            Gson gson = new Gson();
+            String data_bulan=null;
+
+            database db = new database();
+            db.connection();
+            int yVal [] = new int[12];
+            ResultSet rs = null;
+            int total= Dashboard.getTotal_peminjaman();
+                    
+            try{    
+                    String sql = "select monthname(tgl_peminjaman) as bulan from tbl_peminjaman where level between 2 and 3";
+                    rs = db.getData(sql);
+                    
+                    for(int i=1; i<total; i++){
+                        while(rs.next()){
+                                if(rs.getString("bulan").equals("January")){
+                                    yVal[0]=yVal[0]+1;
+                                } else if(rs.getString("bulan").equals("February")){
+                                    yVal[1]=yVal[1]+1;
+                                } else if(rs.getString("bulan").equals("March")){
+                                    yVal[2]=yVal[2]+1;
+                                } else if(rs.getString("bulan").equals("April")){
+                                    yVal[3]=yVal[3]+1;
+                                } else if(rs.getString("bulan").equals("May")){
+                                    yVal[4]=yVal[4]+1;
+                                } else if(rs.getString("bulan").equals("June")){
+                                    yVal[5]=yVal[5]+1;
+                                } else if(rs.getString("bulan").equals("July")){
+                                    yVal[6]=yVal[6]+1;
+                                } else if(rs.getString("bulan").equals("August")){
+                                    yVal[7]=yVal[7]+1;
+                                } else if(rs.getString("bulan").equals("September")){
+                                    yVal[8]=yVal[8]+1;
+                                } else if(rs.getString("bulan").equals("October")){
+                                    yVal[9]=yVal[9]+1;
+                                } else if(rs.getString("bulan").equals("November")){
+                                    yVal[10]=yVal[10]+1;
+                                } else if(rs.getString("bulan").equals("December")){
+                                    yVal[11]=yVal[11]+1;
+                                }
+                        }
+                    }
+                    data_bulan = gson.toJson(yVal);
+                    db.disconnect(rs);
+            }
+            catch(SQLException e){
+                    out.println("<div  style='width: 50%; margin-left: auto; margin-right: auto; margin-top: 200px;'>Could not connect to the database. Please check if you have mySQL Connector installed on the machine - if not, try installing the same.</div>");
+            }
+        %>
+        
         <script>
             const ctx = document.getElementById('dashboard_chart');
             const myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
                     datasets: [{
-                            label: '# of Votes',
-                            data: [12, 19, 3, 5, 2, 3],
+                            label: 'Data Peminjaman tiap bulan',
+                            data: <%= data_bulan %>,
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(153, 102, 255, 0.7)',
+                                'rgba(255, 159, 64, 0.7)'
                             ],
                             borderColor: [
                                 'rgba(255, 99, 132, 1)',
