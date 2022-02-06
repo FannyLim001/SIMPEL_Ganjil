@@ -4,7 +4,13 @@
     Author     : FANNY
 --%>
 
-
+<jsp:useBean id="Dashboard" class="models.kalab.DashboardModel" />
+<jsp:useBean id="KalabController" class="controllers.kalab.KalabController" />
+<%@page import="java.util.*,java.sql.*" %>
+<%@page import="com.google.gson.Gson"%>
+<%@page import="com.google.gson.JsonObject"%>
+<%@page import="config.database"%>
+<%@page import="models.kalab.DashboardModel"%>
 <%
     if(session.getAttribute("username")==null){
      response.sendRedirect("login.jsp");
@@ -49,6 +55,38 @@
                             </div>
                         </div>
                         <!-- end page title --> 
+
+                        <%
+                            Gson gson = new Gson();
+                            String nama_lab=null;
+                            String jumlah_pinjam=null;
+
+                            database db = new database();
+                            db.connection();
+                            ResultSet rs = null;
+                            int total= Dashboard.getTotal_peminjaman();
+                            String kolom [] = new String[total];
+                            int jumlah [] = new int[total];
+                    
+                            try{    
+                                    String sql = "select count(*) as jml_pinjam, nama_lab from tbl_peminjaman p, tbl_lab l where level between 2 and 3 "
+                                            + "and p.id_lab=l.id_lab group by id_peminjaman";
+                                    rs = db.getData(sql);
+                    
+                                    for(int i=0; i<total; i++){
+                                        while(rs.next()){
+                                            jumlah[i] = rs.getInt("jml_pinjam");
+                                            kolom[i] = rs.getString("nama_lab");
+                                        }
+                                    }
+                                    jumlah_pinjam = gson.toJson(jumlah);
+                                    nama_lab = gson.toJson(kolom);
+                                    db.disconnect(rs);
+                            }
+                            catch(SQLException e){
+                                    out.println("<div  style='width: 50%; margin-left: auto; margin-right: auto; margin-top: 200px;'>Could not connect to the database. Please check if you have mySQL Connector installed on the machine - if not, try installing the same.</div>");
+                            }
+                        %>               
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -65,36 +103,20 @@
                                         <div class="row">
                                             <div class="col-xl-3">
                                                 <h4>Tampilkan berdasarkan</h4>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        Nomor Lab
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#">Nama Lab</a>
-                                                        <a class="dropdown-item" href="#">Level</a>
-                                                        <a class="dropdown-item" href="#">Tahun Peminjaman</a>
-                                                        <a class="dropdown-item" href="#">Status Peminjaman</a>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <h4>PIC Lab</h4>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        Dwi Listiyanti
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#">Susiyanti</a>
-                                                        <a class="dropdown-item" href="#">Aida Kamila</a>
-                                                        <a class="dropdown-item" href="#">Harumin</a>
-                                                    </div>
+                                                <div class="col-7">
+                                                    <select class="form-select" id="filter">
+                                                        <option value="12, 19, 3, 5, 2, 3">No Lab</option>
+                                                        <option value="5, 19, 3, 1, 2, 3">Nama Lab</option>
+                                                        <option value="7, 14, 2, 5, 2, 3">Level</option>
+                                                        <option value="9, 19, 3, 5, 2, 3">Tahun Peminjaman</option>
+                                                        <option value="13, 19, 5, 5, 2, 3">Status Peminjaman</option>
+                                                    </select>
                                                 </div>
                                             </div><!-- end col-->
 
                                             <div class="col-xl-9">
                                                 <div dir="ltr">
-                                                    <div class="mt-3 chartjs-chart" style="height: 320px;">
-                                                        <canvas id="bar-chart-example" data-colors="#fa5c7c,#727cf5"></canvas>
-                                                    </div>
+                                                    <canvas id="myChart"></canvas>
                                                 </div>
                                             </div><!-- end col-->
                                         </div>
@@ -121,6 +143,55 @@
 
         <div class="rightbar-overlay"></div>
         <!-- /End-bar -->
+
+        <script>
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                            label: 'No Lab',
+                            data: [12, 19, 3, 5, 2, 3],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            const filter = document.getElementById('filter');
+            filter.addEventListener('change', Tracker);
+            
+            function Tracker(){
+                const label = filter.options[filter.selectedIndex].text;
+                myChart.data.datasets[0].label = label;
+                myChart.data.datasets[0].data = filter.value.split(',');
+                myChart.update();
+            }
+
+        </script>
     </body>
 </html>
 <% } %>

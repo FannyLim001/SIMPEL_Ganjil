@@ -48,7 +48,6 @@
         <!-- demo app -->
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.datatable-init.js"></script>
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.dashboard.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.chartjs.js"></script>
         <!-- end demo js-->
 
         <script>
