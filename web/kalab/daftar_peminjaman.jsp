@@ -95,6 +95,7 @@
                                                 <table id="tbl-proses" class="table dt-responsive nowrap w-100">
                                                     <thead class="table-light">
                                                         <tr class="text-center">
+                                                            <th>No</th>
                                                             <th>Lab</th>
                                                             <th>Level</th>
                                                             <th>Tgl Peminjaman</th>
@@ -108,6 +109,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <%  
+                                                            int num=1;
                                                             for(int i=0; i<daftarPeminjaman.length; i++){
                                                             Peminjaman = daftarPeminjaman[i];
                                                         %>
@@ -121,6 +123,7 @@
                                                         <jsp:setProperty name = "Peminjaman" property = "kontak_ketua" value = "<%= Peminjaman.getKontak_ketua()%>" />
                                                         <jsp:setProperty name = "Peminjaman" property = "status_peminjaman" value = "<%= Peminjaman.getStatus_peminjaman()%>" />
                                                         <tr>
+                                                            <td><%=num++%></td>
                                                             <td><jsp:getProperty name="Peminjaman" property="no_lab" /></td>
                                                             <td><jsp:getProperty name="Peminjaman" property="level" /></td>
                                                             <td><jsp:getProperty name="Peminjaman" property="tgl_peminjaman" /></td>
@@ -130,9 +133,7 @@
                                                             <td><jsp:getProperty name="Peminjaman" property="kontak_ketua" /></td>
                                                             <%
                                                                 String status = Peminjaman.getStatus_peminjaman();
-                                                                if (status.equals("Diajukan")) { %>
-                                                                <td><span class="badge bg-warning p-2"><%= status %></span></td>
-                                                                <% } else if (status.equals("Menunggu")) { %>
+                                                                if (status.equals("Menunggu")) { %>
                                                                 <td><span class="badge bg-secondary p-2"><%= status %></span></td>
                                                                 <% }
                                                             %>
@@ -147,6 +148,7 @@
                                                 <table id="tbl-selesai" class="table dt-responsive nowrap w-100">
                                                     <thead class="table-light">
                                                         <tr class="text-center">
+                                                            <th>No</th>
                                                             <th>Lab</th>
                                                             <th>Level</th>
                                                             <th>Tgl Peminjaman</th>
@@ -160,6 +162,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <%
+                                                            int num2=1;
                                                             for(int i=0; i<daftarPeminjaman2.length; i++){
                                                             Peminjaman = daftarPeminjaman2[i];
                                                         %>
@@ -173,6 +176,7 @@
                                                         <jsp:setProperty name = "Peminjaman" property = "kontak_ketua" value = "<%= Peminjaman.getKontak_ketua()%>" />
                                                         <jsp:setProperty name = "Peminjaman" property = "status_peminjaman" value = "<%= Peminjaman.getStatus_peminjaman()%>" />
                                                         <tr>
+                                                            <td><%=num2++%></td>
                                                             <td><jsp:getProperty name="Peminjaman" property="no_lab" /></td>
                                                             <td><jsp:getProperty name="Peminjaman" property="level" /></td>
                                                             <td><jsp:getProperty name="Peminjaman" property="tgl_peminjaman" /></td>

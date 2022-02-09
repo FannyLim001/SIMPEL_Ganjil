@@ -128,48 +128,37 @@
                                                 <label class="form-label"><b>Keterangan</b></label><br>
                                                 <label class="form-label"><jsp:getProperty name="Peminjaman" property="keterangan" /></label>
                                             </div>
+                                            <div class="col-3">
+                                                <label class="form-label"><b>Status</b></label><br>
+                                                <%
+                                                    String status_peminjaman = Peminjaman.getStatus_peminjaman();
+                                                    if (status_peminjaman.equals("Disetujui")) { %>
+                                                <td><span class="badge bg-info p-2"><%= status_peminjaman %></span></td>
+                                                    <% } else if (status_peminjaman.equals("Ditolak")) { %>
+                                                <td><span class="badge bg-danger p-2"><%= status_peminjaman %></span></td> 
+                                                    <% } else if (status_peminjaman.equals("Dibatalkan")) { %>
+                                                <td><span class="badge bg-danger p-2"><%= status_peminjaman %></span></td> 
+                                                    <% } else if (status_peminjaman.equals("Selesai")) { %>
+                                                <td><span class="badge bg-success p-2"><%= status_peminjaman %></span></td>   
+                                                    <% } else if (status_peminjaman.equals("Menunggu")) { %>
+                                                <td><span class="badge bg-secondary p-2"><%= status_peminjaman %></span></td>
+                                                    <% }
+                                                %>
+                                            </div>
                                         </div><!-- end col-->
                                         <br>
-<!--                                        <div class="row">
-                                            <div class="col-12">
-                                                <label class="form-label"><b>Daftar Mahasiswa</b></label><br>
-                                                <div class="row">
-                                                    <div class="col-2">
-                                                        <label class="form-label">Ayu Anita</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <label class="form-label">Ayu Anita</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <label class="form-label">Ayu Anita</label>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-2">
-                                                        <label class="form-label">Ayu Anita</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <label class="form-label">Ayu Anita</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <label class="form-label">Ayu Anita</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>-->
                                         <%
                                             String status = Peminjaman.getStatus_peminjaman();
                                             if (!status.equals("Selesai")) { %>
-                                            <form action="konfirmasi_peminjaman.jsp" method="post">
-                                                <input type="hidden" name="id_peminjaman" value="<jsp:getProperty name="Peminjaman" property="id_peminjaman" />">
-                                                <div class="row">
-                                                    <div class="col-3">
-                                                        <button type="submit" class="btn btn-primary btn-sm" name="konfirmasi" value="Disetujui"><i class="mdi mdi-clipboard-check-multiple"></i>&nbsp;&nbsp;Setujui&nbsp;&nbsp;</button>
-                                                        <button type="submit" class="btn btn-danger btn-sm" name="konfirmasi" value="Ditolak"><i class="mdi mdi-clipboard-off"></i>&nbsp;&nbsp;Tolak</button>
-                                                    </div>
+                                        <form action="konfirmasi_peminjaman.jsp" method="post">
+                                            <input type="hidden" name="id_peminjaman" value="<jsp:getProperty name="Peminjaman" property="id_peminjaman" />">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <button type="submit" class="btn btn-primary btn-sm" name="konfirmasi" value="Disetujui"><i class="mdi mdi-clipboard-check-multiple"></i>&nbsp;&nbsp;Setujui&nbsp;&nbsp;</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" name="konfirmasi" value="Ditolak"><i class="mdi mdi-clipboard-off"></i>&nbsp;&nbsp;Tolak</button>
                                                 </div>
-                                            </form>
+                                            </div>
+                                        </form>
                                         <% } %>
                                     </div>
                                 </div> <!-- end card -->

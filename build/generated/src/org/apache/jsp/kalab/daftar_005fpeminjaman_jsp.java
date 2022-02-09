@@ -74,6 +74,10 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write('\r');
       out.write('\n');
  
+    if(session.getAttribute("username")==null){
+     response.sendRedirect("login.jsp");
+    } else {
+    
     PeminjamanModel[] daftarPeminjaman = KalabController.getDaftarPeminjamanBelumSelesai();
     PeminjamanModel[] daftarPeminjaman2 = KalabController.getDaftarPeminjamanSelesai();
 
@@ -202,7 +206,9 @@ public final class daftar_005fpeminjaman_jsp extends org.apache.jasper.runtime.H
       out.write("                        <img src=\"http://localhost:8080/SIMPEL_Ganjil/assets/images/users/avatar-2.jpg\" alt=\"user-image\" class=\"rounded-circle\">\r\n");
       out.write("                    </span>\r\n");
       out.write("                    <span>\r\n");
-      out.write("                        <span class=\"account-user-name\">Kelompok 2</span>\r\n");
+      out.write("                        <span class=\"account-user-name\">Kepala Lab ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.id }", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</span>\r\n");
       out.write("                        <span class=\"account-position\">");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.username }", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</span>\r\n");
@@ -557,12 +563,14 @@ Peminjaman.getId_peminjaman());
       out.write("        <!-- demo app -->\r\n");
       out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.datatable-init.js\"></script>\r\n");
       out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.dashboard.js\"></script>\r\n");
-      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.chartjs.js\"></script>\r\n");
       out.write("        <!-- end demo js-->\r\n");
       out.write("\r\n");
       out.write("        <script>\r\n");
       out.write("                    $(document).ready(function () {\r\n");
       out.write("                        $('#tbl-proses').DataTable({\r\n");
+      out.write("                            buttons: [\r\n");
+      out.write("                            'copy', 'excel', 'pdf'\r\n");
+      out.write("                            ]\r\n");
       out.write("                        });\r\n");
       out.write("                    });\r\n");
       out.write("                    $(document).ready(function () {\r\n");
@@ -590,6 +598,9 @@ Peminjaman.getId_peminjaman());
       out.write("            <!-- /End-bar -->\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
+ } 
+      out.write('\r');
+      out.write('\n');
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

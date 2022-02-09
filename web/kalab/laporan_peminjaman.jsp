@@ -62,9 +62,6 @@
                             String no_lab=null;
                             String jumlah_nolab=null;
                             
-                            String kolom=null;
-                            String baris=null;
-                            
                             String nama_lab=null;
                             String jumlah_lab=null;
                             
@@ -72,10 +69,10 @@
                             String jumlah_level=null;
                             
                             String thn_peminjaman=null;
-                            String jml_thn=null;
+                            String jumlah_thn=null;
                             
                             String status_peminjaman=null;
-                            String jml_status=null;
+                            String jumlah_status=null;
                             
                             database db = new database();
                             db.connection();
@@ -85,8 +82,18 @@
                     
                             try{
                                 String sql = "select l.no_lab from tbl_lab l, tbl_kepala_lab k where "
-                                            + "l.id_kalab=l.id_kalab and l.id_kalab='"+id_kalab+"'";
-                                String sql2 = "select count(*) as jml_pinjam, no_lab from tbl_peminjaman p, tbl_lab l where level between 2 and 3 "
+                                            + "l.id_kalab=k.id_kalab and l.id_kalab='"+id_kalab+"'";
+                                
+                                String sql2 = "select count(*) as jml_pinjam from tbl_peminjaman p, tbl_lab l where level between 2 and 3 "
+                                            + "and p.id_lab=l.id_lab group by id_peminjaman";
+                                
+                                String sql3 = "select distinct l.nama_lab from tbl_lab l, tbl_kepala_lab k where "
+                                            + "l.id_kalab=k.id_kalab and l.id_kalab='"+id_kalab+"'";
+                                
+                                String sql4 = "select count(nama_lab) as jml_lab from tbl_lab l where "
+                                            + "l.id_lab=l.id_lab group by nama_lab";
+                                
+                                String sql5 = "select count(*) as jml_pinjam, no_lab from tbl_peminjaman p, tbl_lab l where level between 2 and 3 "
                                             + "and p.id_lab=l.id_lab group by id_peminjaman";
                                 rs = db.getData(sql);
                                 
@@ -103,14 +110,12 @@
                                 
                                 while(rs.next())
                                 {
-                                    no_lab = rs.getString("no_lab");
-                                    ar.add(no_lab);
                                     jumlah_nolab = rs.getString("jml_pinjam");
                                     ar2.add(jumlah_nolab);
                                 }
                                 
-                                kolom = gson.toJson(ar);
-                                baris = gson.toJson(ar2);
+                                no_lab = gson.toJson(ar);
+                                jumlah_nolab = gson.toJson(ar2);
                                 
                             }
                             catch(SQLException e){
@@ -126,6 +131,38 @@
                                             <div class="col-lg-10">
                                                 <h4>Data Peminjaman Lab</h4>
                                             </div>
+                                            <div class="col-lg-2">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal"><i class="mdi mdi-printer"></i>&nbsp;&nbsp;Cetak</button>
+                                                <div id="standard-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-sm modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="standard-modalLabel">Cetak Data Peminjaman</h4>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form class="ps-3 pe-3" action="format_laporan.jsp">
+                                                                    <div class="mb-3">
+                                                                        <div class="form-check">
+                                                                            <input type="radio" id="customRadio3" name="format" value="xlsx" class="form-check-input">
+                                                                            <label class="form-check-label" for="customRadio3">Excel (.xlsx)</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <div class="form-check">
+                                                                            <input type="radio" id="customRadio4" name="format" value="pdf" class="form-check-input">
+                                                                            <label class="form-check-label" for="customRadio4">PDF (.pdf)</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mb-3 text-center">
+                                                                        <button class="btn btn-primary" type="submit">Cetak</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
+                                            </div>
                                         </div>
                                         <hr>
                                         <div class="row">
@@ -133,7 +170,7 @@
                                                 <h4>Tampilkan berdasarkan</h4>
                                                 <div class="col-7">
                                                     <select class="form-select" id="filter">
-                                                        <option value="<%= baris %>">No Lab</option>
+                                                        <option value="<%= jumlah_nolab %>">No Lab</option>
                                                         <option value="5, 19, 3, 1, 2, 3">Nama Lab</option>
                                                         <option value="7, 14, 2, 5, 2, 3">Level</option>
                                                         <option value="9, 19, 3, 5, 2, 3">Tahun Peminjaman</option>
@@ -177,10 +214,10 @@
             const myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: <%= kolom %>,
+                    labels: <%= no_lab %>,
                     datasets: [{
                             label: 'No Lab',
-                            data: <%= baris %>,
+                            data: <%= jumlah_nolab %>,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',

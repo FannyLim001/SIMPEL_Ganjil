@@ -3,8 +3,12 @@ package org.apache.jsp.kalab;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import config.database;
+import java.util.*;
 import java.sql.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import config.database;
+import models.kalab.DashboardModel;
 
 public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -52,49 +56,58 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
 
       out.write("\r\n");
       out.write("\r\n");
+      models.kalab.DashboardModel Dashboard = null;
+      synchronized (_jspx_page_context) {
+        Dashboard = (models.kalab.DashboardModel) _jspx_page_context.getAttribute("Dashboard", PageContext.PAGE_SCOPE);
+        if (Dashboard == null){
+          Dashboard = new models.kalab.DashboardModel();
+          _jspx_page_context.setAttribute("Dashboard", Dashboard, PageContext.PAGE_SCOPE);
+        }
+      }
+      out.write('\r');
+      out.write('\n');
+      controllers.kalab.KalabController KalabController = null;
+      synchronized (_jspx_page_context) {
+        KalabController = (controllers.kalab.KalabController) _jspx_page_context.getAttribute("KalabController", PageContext.PAGE_SCOPE);
+        if (KalabController == null){
+          KalabController = new controllers.kalab.KalabController();
+          _jspx_page_context.setAttribute("KalabController", KalabController, PageContext.PAGE_SCOPE);
+        }
+      }
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
  
-    if(session.getAttribute("username")==null){ 
-      out.write("\r\n");
-      out.write("<div class=\"alert alert-danger alert-dismissible bg-danger text-white border-0 fade show\" role=\"alert\">\r\n");
-      out.write("    <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\r\n");
-      out.write("    <strong>Error - </strong> Silahkan login terlebih dahulu!\r\n");
-      out.write("</div>\r\n");
- response.sendRedirect("login.jsp");
+    if(session.getAttribute("username")==null){
+     response.sendRedirect("login.jsp");
     } else {
-    database db = new database();
-    db.connection();
-    ResultSet rs = null;
-    String sql = "select count(*) from tbl_peminjaman where level between 2 and 3";
-    String sql2 = "select count(*) from tbl_lab where id_kalab=1";
-    String sql3 = "select count(*) from tbl_peminjaman where status_peminjaman='Disetujui' and level between 2 and 3";
-    String sql4 = "select count(*) from tbl_peminjaman where status_peminjaman='Ditolak' and level between 2 and 3";
-
-    rs = db.getData(sql);
-    int total_peminjaman = 0;
-    while (rs.next()) {
-    total_peminjaman = rs.getInt(1);
+        int id_kalab = (Integer) session.getAttribute("id");
+        
+    DashboardModel[] dataDashboard = KalabController.getDataDashboard(id_kalab);
+    
+    for(int i=0; i<dataDashboard.length; i++){
+        Dashboard = dataDashboard[i];
     }
 
-    rs = db.getData(sql2);
-    int total_lab = 0;
-    while (rs.next()) {
-    total_lab = rs.getInt(1);
-    }
-
-    rs = db.getData(sql3);
-    int total_disetujui = 0;
-    while (rs.next()) {
-    total_disetujui = rs.getInt(1);
-    }
-
-    rs = db.getData(sql4);
-    int total_ditolak = 0;
-    while (rs.next()) {
-    total_ditolak = rs.getInt(1);
-    }
-
+      out.write("\r\n");
+      out.write("\r\n");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Dashboard"), "total_peminjaman",
+Dashboard.getTotal_peminjaman());
+      out.write('\r');
+      out.write('\n');
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Dashboard"), "total_lab",
+ Dashboard.getTotal_lab());
+      out.write('\r');
+      out.write('\n');
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Dashboard"), "total_disetujui",
+ Dashboard.getTotal_disetujui());
+      out.write('\r');
+      out.write('\n');
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("Dashboard"), "total_ditolak",
+ Dashboard.getTotal_ditolak());
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -215,7 +228,9 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <img src=\"http://localhost:8080/SIMPEL_Ganjil/assets/images/users/avatar-2.jpg\" alt=\"user-image\" class=\"rounded-circle\">\r\n");
       out.write("                    </span>\r\n");
       out.write("                    <span>\r\n");
-      out.write("                        <span class=\"account-user-name\">Kelompok 2</span>\r\n");
+      out.write("                        <span class=\"account-user-name\">Kepala Lab ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.id }", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</span>\r\n");
       out.write("                        <span class=\"account-position\">");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.username }", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</span>\r\n");
@@ -265,11 +280,11 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        <div class=\"card widget-flat\">\r\n");
       out.write("                                            <div class=\"card-body\">\r\n");
       out.write("                                                <div class=\"float-end\">\r\n");
-      out.write("                                                    <i class=\"mdi mdi-account-multiple widget-icon\"></i>\r\n");
+      out.write("                                                    <i class=\"mdi mdi-clipboard-multiple widget-icon\"></i>\r\n");
       out.write("                                                </div>\r\n");
       out.write("                                                <h4 class=\"text-muted fw-normal mt-0\" title=\"Total Peminjaman\">Total Peminjaman</h4>\r\n");
       out.write("                                                <h2 class=\"mt-3 mb-3\">");
-      out.print(total_peminjaman);
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.DashboardModel)_jspx_page_context.findAttribute("Dashboard")).getTotal_peminjaman())));
       out.write("</h2>\r\n");
       out.write("                                            </div> <!-- end card-body-->\r\n");
       out.write("                                        </div> <!-- end card-->\r\n");
@@ -279,11 +294,11 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        <div class=\"card widget-flat\">\r\n");
       out.write("                                            <div class=\"card-body\">\r\n");
       out.write("                                                <div class=\"float-end\">\r\n");
-      out.write("                                                    <i class=\"mdi mdi-cart-plus widget-icon\"></i>\r\n");
+      out.write("                                                    <i class=\"mdi mdi-desktop-tower-monitor widget-icon\"></i>\r\n");
       out.write("                                                </div>\r\n");
       out.write("                                                <h4 class=\"text-muted fw-normal mt-0\" title=\"Total Lab\">Total Lab</h4>\r\n");
       out.write("                                                <h2 class=\"mt-3 mb-3\">");
-      out.print(total_lab);
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.DashboardModel)_jspx_page_context.findAttribute("Dashboard")).getTotal_lab())));
       out.write("</h2>\r\n");
       out.write("                                            </div> <!-- end card-body-->\r\n");
       out.write("                                        </div> <!-- end card-->\r\n");
@@ -295,11 +310,11 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        <div class=\"card widget-flat\">\r\n");
       out.write("                                            <div class=\"card-body\">\r\n");
       out.write("                                                <div class=\"float-end\">\r\n");
-      out.write("                                                    <i class=\"mdi mdi-currency-usd widget-icon\"></i>\r\n");
+      out.write("                                                    <i class=\"mdi mdi-clipboard-check-multiple widget-icon\"></i>\r\n");
       out.write("                                                </div>\r\n");
       out.write("                                                <h4 class=\"text-muted fw-normal mt-0\" title=\"Average Revenue\">Peminjaman disetujui</h4>\r\n");
       out.write("                                                <h2 class=\"mt-3 mb-3\">");
-      out.print(total_disetujui);
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.DashboardModel)_jspx_page_context.findAttribute("Dashboard")).getTotal_disetujui())));
       out.write("</h2>\r\n");
       out.write("                                            </div> <!-- end card-body-->\r\n");
       out.write("                                        </div> <!-- end card-->\r\n");
@@ -309,11 +324,11 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        <div class=\"card widget-flat\">\r\n");
       out.write("                                            <div class=\"card-body\">\r\n");
       out.write("                                                <div class=\"float-end\">\r\n");
-      out.write("                                                    <i class=\"mdi mdi-pulse widget-icon\"></i>\r\n");
+      out.write("                                                    <i class=\"mdi mdi-clipboard-off widget-icon\"></i>\r\n");
       out.write("                                                </div>\r\n");
       out.write("                                                <h4 class=\"text-muted fw-normal mt-0\" title=\"Growth\">Peminjaman ditolak</h4>\r\n");
       out.write("                                                <h2 class=\"mt-3 mb-3\">");
-      out.print(total_ditolak);
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((models.kalab.DashboardModel)_jspx_page_context.findAttribute("Dashboard")).getTotal_ditolak())));
       out.write("</h2>\r\n");
       out.write("                                            </div> <!-- end card-body-->\r\n");
       out.write("                                        </div> <!-- end card-->\r\n");
@@ -389,7 +404,6 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <!-- demo app -->\r\n");
       out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.datatable-init.js\"></script>\r\n");
       out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.dashboard.js\"></script>\r\n");
-      out.write("        <script src=\"http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.chartjs.js\"></script>\r\n");
       out.write("        <!-- end demo js-->\r\n");
       out.write("\r\n");
       out.write("        <script>\r\n");
@@ -420,22 +434,89 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"rightbar-overlay\"></div>\r\n");
       out.write("        <!-- /End-bar -->\r\n");
       out.write("\r\n");
+      out.write("        ");
+
+            Gson gson = new Gson();
+            String data_bulan=null;
+
+            database db = new database();
+            db.connection();
+            int yVal [] = new int[12];
+            ResultSet rs = null;
+            int total= Dashboard.getTotal_peminjaman();
+                    
+            try{    
+                    String sql = "select monthname(tgl_peminjaman) as bulan from tbl_peminjaman where level between 2 and 3";
+                    rs = db.getData(sql);
+                    
+                    for(int i=1; i<total; i++){
+                        while(rs.next()){
+                                if(rs.getString("bulan").equals("January")){
+                                    yVal[0]=yVal[0]+1;
+                                } else if(rs.getString("bulan").equals("February")){
+                                    yVal[1]=yVal[1]+1;
+                                } else if(rs.getString("bulan").equals("March")){
+                                    yVal[2]=yVal[2]+1;
+                                } else if(rs.getString("bulan").equals("April")){
+                                    yVal[3]=yVal[3]+1;
+                                } else if(rs.getString("bulan").equals("May")){
+                                    yVal[4]=yVal[4]+1;
+                                } else if(rs.getString("bulan").equals("June")){
+                                    yVal[5]=yVal[5]+1;
+                                } else if(rs.getString("bulan").equals("July")){
+                                    yVal[6]=yVal[6]+1;
+                                } else if(rs.getString("bulan").equals("August")){
+                                    yVal[7]=yVal[7]+1;
+                                } else if(rs.getString("bulan").equals("September")){
+                                    yVal[8]=yVal[8]+1;
+                                } else if(rs.getString("bulan").equals("October")){
+                                    yVal[9]=yVal[9]+1;
+                                } else if(rs.getString("bulan").equals("November")){
+                                    yVal[10]=yVal[10]+1;
+                                } else if(rs.getString("bulan").equals("December")){
+                                    yVal[11]=yVal[11]+1;
+                                }
+                        }
+                    }
+                    data_bulan = gson.toJson(yVal);
+                    db.disconnect(rs);
+            }
+            catch(SQLException e){
+                    out.println("<div  style='width: 50%; margin-left: auto; margin-right: auto; margin-top: 200px;'>Could not connect to the database. Please check if you have mySQL Connector installed on the machine - if not, try installing the same.</div>");
+            }
+        
+      out.write("\r\n");
       out.write("        <script>\r\n");
       out.write("            const ctx = document.getElementById('dashboard_chart');\r\n");
       out.write("            const myChart = new Chart(ctx, {\r\n");
       out.write("                type: 'bar',\r\n");
       out.write("                data: {\r\n");
-      out.write("                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],\r\n");
+      out.write("                    labels: [\r\n");
+      out.write("                        \"Jan\",\r\n");
+      out.write("                        \"Feb\",\r\n");
+      out.write("                        \"Mar\",\r\n");
+      out.write("                        \"Apr\",\r\n");
+      out.write("                        \"Mei\",\r\n");
+      out.write("                        \"Jun\",\r\n");
+      out.write("                        \"Jul\",\r\n");
+      out.write("                        \"Agu\",\r\n");
+      out.write("                        \"Sep\",\r\n");
+      out.write("                        \"Okt\",\r\n");
+      out.write("                        \"Nov\",\r\n");
+      out.write("                        \"Des\",\r\n");
+      out.write("                    ],\r\n");
       out.write("                    datasets: [{\r\n");
-      out.write("                            label: '# of Votes',\r\n");
-      out.write("                            data: [12, 19, 3, 5, 2, 3],\r\n");
+      out.write("                            label: 'Data Peminjaman tiap bulan',\r\n");
+      out.write("                            data: ");
+      out.print( data_bulan );
+      out.write(",\r\n");
       out.write("                            backgroundColor: [\r\n");
-      out.write("                                'rgba(255, 99, 132, 0.2)',\r\n");
-      out.write("                                'rgba(54, 162, 235, 0.2)',\r\n");
-      out.write("                                'rgba(255, 206, 86, 0.2)',\r\n");
-      out.write("                                'rgba(75, 192, 192, 0.2)',\r\n");
-      out.write("                                'rgba(153, 102, 255, 0.2)',\r\n");
-      out.write("                                'rgba(255, 159, 64, 0.2)'\r\n");
+      out.write("                                'rgba(255, 99, 132, 0.7)',\r\n");
+      out.write("                                'rgba(54, 162, 235, 0.7)',\r\n");
+      out.write("                                'rgba(255, 206, 86, 0.7)',\r\n");
+      out.write("                                'rgba(75, 192, 192, 0.7)',\r\n");
+      out.write("                                'rgba(153, 102, 255, 0.7)',\r\n");
+      out.write("                                'rgba(255, 159, 64, 0.7)'\r\n");
       out.write("                            ],\r\n");
       out.write("                            borderColor: [\r\n");
       out.write("                                'rgba(255, 99, 132, 1)',\r\n");
@@ -451,8 +532,16 @@ public final class dashboard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                },\r\n");
       out.write("                options: {\r\n");
       out.write("                    scales: {\r\n");
+      out.write("                        x: {\r\n");
+      out.write("                            grid: {\r\n");
+      out.write("                                display: false\r\n");
+      out.write("                            }\r\n");
+      out.write("                        },\r\n");
       out.write("                        y: {\r\n");
-      out.write("                            beginAtZero: true\r\n");
+      out.write("                            beginAtZero: true,\r\n");
+      out.write("                            grid: {\r\n");
+      out.write("                                display: false\r\n");
+      out.write("                            }\r\n");
       out.write("                        }\r\n");
       out.write("                    }\r\n");
       out.write("                }\r\n");

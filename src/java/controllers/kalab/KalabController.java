@@ -26,8 +26,9 @@ public class KalabController {
         db.connection();
         ResultSet rs = null;
         String sql = "select p.id_peminjaman, l.no_lab, p.level, p.tgl_peminjaman, p.tgl_mulai, "
-                + "p.tgl_berakhir, p.keterangan, m.nama_mhs, p.ketua_kegiatan, p.kontak_ketua, p.status_peminjaman "
-                + "from tbl_peminjaman p, tbl_lab l, tbl_mahasiswa m where p.id_lab = l.id_lab and p.id_mhs = m.id_mhs";
+                + "p.tgl_berakhir, p.keterangan, m.nim, m.nama_mhs, m.kontak_mhs, p.status_peminjaman "
+                + "from tbl_peminjaman p, tbl_lab l, tbl_mahasiswa m where p.id_lab = l.id_lab and p.id_mhs = m.id_mhs and "
+                + "level between 2 and 3 and status_peminjaman != 'Diajukan'";
         try {
             rs = db.getData(sql);
             while (rs.next()) {
@@ -40,8 +41,8 @@ public class KalabController {
                 tempPeminjaman.setTgl_berakhir(rs.getString("tgl_berakhir"));
                 tempPeminjaman.setKeterangan(rs.getString("keterangan"));
                 tempPeminjaman.setNim_mhs(rs.getString("nim"));
-                tempPeminjaman.setKetua_kegiatan(rs.getString("ketua_kegiatan"));
-                tempPeminjaman.setKontak_ketua(rs.getString("kontak_ketua"));
+                tempPeminjaman.setKetua_kegiatan(rs.getString("nama_mhs"));
+                tempPeminjaman.setKontak_ketua(rs.getString("kontak_mhs"));
                 tempPeminjaman.setStatus_peminjaman(rs.getString("status_peminjaman"));
                 listPeminjaman.add(tempPeminjaman);
             }
@@ -63,9 +64,9 @@ public class KalabController {
         db.connection();
         ResultSet rs = null;
         String sql = "select p.id_peminjaman, l.no_lab, p.level, p.tgl_peminjaman, p.tgl_mulai, "
-                + "p.tgl_berakhir, p.keterangan, m.nim, p.ketua_kegiatan, p.kontak_ketua, p.status_peminjaman "
+                + "p.tgl_berakhir, p.keterangan, m.nama_mhs, m.kontak_mhs, p.status_peminjaman "
                 + "from tbl_peminjaman p, tbl_lab l, tbl_mahasiswa m where p.id_lab = l.id_lab and p.id_mhs = m.id_mhs and "
-                + "level between 2 and 3 and status_peminjaman in ('Diajukan','Menunggu')";
+                + "level between 2 and 3 and status_peminjaman ='Menunggu'";
         try {
             rs = db.getData(sql);
             while (rs.next()) {
@@ -77,9 +78,8 @@ public class KalabController {
                 tempPeminjaman.setTgl_mulai(rs.getString("tgl_mulai"));
                 tempPeminjaman.setTgl_berakhir(rs.getString("tgl_berakhir"));
                 tempPeminjaman.setKeterangan(rs.getString("keterangan"));
-                tempPeminjaman.setNim_mhs(rs.getString("nim"));
-                tempPeminjaman.setKetua_kegiatan(rs.getString("ketua_kegiatan"));
-                tempPeminjaman.setKontak_ketua(rs.getString("kontak_ketua"));
+                tempPeminjaman.setKetua_kegiatan(rs.getString("nama_mhs"));
+                tempPeminjaman.setKontak_ketua(rs.getString("kontak_mhs"));
                 tempPeminjaman.setStatus_peminjaman(rs.getString("status_peminjaman"));
                 listPeminjaman.add(tempPeminjaman);
             }
@@ -101,7 +101,7 @@ public class KalabController {
         db.connection();
         ResultSet rs2 = null;
         String sql2 = "select p.id_peminjaman, l.no_lab, p.level, p.tgl_peminjaman, p.tgl_mulai, "
-                + "p.tgl_berakhir, p.keterangan, m.nim, p.ketua_kegiatan, p.kontak_ketua, p.status_peminjaman "
+                + "p.tgl_berakhir, p.keterangan, m.nama_mhs, m.kontak_mhs, p.status_peminjaman "
                 + "from tbl_peminjaman p, tbl_lab l, tbl_mahasiswa m where p.id_lab = l.id_lab and p.id_mhs = m.id_mhs and "
                 + "level between 2 and 3 and status_peminjaman in ('Selesai','Dibatalkan','Disetujui','Ditolak')";
         try {
@@ -115,9 +115,8 @@ public class KalabController {
                 tempPeminjaman2.setTgl_mulai(rs2.getString("tgl_mulai"));
                 tempPeminjaman2.setTgl_berakhir(rs2.getString("tgl_berakhir"));
                 tempPeminjaman2.setKeterangan(rs2.getString("keterangan"));
-                tempPeminjaman2.setNim_mhs(rs2.getString("nim"));
-                tempPeminjaman2.setKetua_kegiatan(rs2.getString("ketua_kegiatan"));
-                tempPeminjaman2.setKontak_ketua(rs2.getString("kontak_ketua"));
+                tempPeminjaman2.setKetua_kegiatan(rs2.getString("nama_mhs"));
+                tempPeminjaman2.setKontak_ketua(rs2.getString("kontak_mhs"));
                 tempPeminjaman2.setStatus_peminjaman(rs2.getString("status_peminjaman"));
                 listPeminjaman2.add(tempPeminjaman2);
             }
@@ -137,7 +136,7 @@ public class KalabController {
         database db = new database();
         db.connection();
         String sql = "select p.id_peminjaman, l.no_lab, p.level, p.tgl_peminjaman, p.tgl_mulai, "
-                + "p.tgl_berakhir, p.keterangan, m.nim, p.ketua_kegiatan, p.kontak_ketua, p.status_peminjaman "
+                + "p.tgl_berakhir, p.keterangan, m.nim, m.nama_mhs, m.kontak_mhs, p.status_peminjaman "
                 + "from tbl_peminjaman p, tbl_lab l, tbl_mahasiswa m where p.id_lab=l.id_lab and p.id_mhs=m.id_mhs and p.id_peminjaman='" + id_peminjaman + "'";
         try {
             rs = db.getData(sql);
@@ -151,8 +150,8 @@ public class KalabController {
                 Peminjaman.setTgl_berakhir(rs.getString("tgl_berakhir"));
                 Peminjaman.setKeterangan(rs.getString("keterangan"));
                 Peminjaman.setNim_mhs(rs.getString("nim"));
-                Peminjaman.setKetua_kegiatan(rs.getString("ketua_kegiatan"));
-                Peminjaman.setKontak_ketua(rs.getString("kontak_ketua"));
+                Peminjaman.setKetua_kegiatan(rs.getString("nama_mhs"));
+                Peminjaman.setKontak_ketua(rs.getString("kontak_mhs"));
                 Peminjaman.setStatus_peminjaman(rs.getString("status_peminjaman"));
             }
         } catch (SQLException e) {
