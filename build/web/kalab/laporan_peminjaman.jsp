@@ -74,53 +74,96 @@
                             String status_peminjaman=null;
                             String jumlah_status=null;
                             
+                            ArrayList ar=new ArrayList();
+                            ArrayList ar2 = new ArrayList();
+                            ArrayList ar3 = new ArrayList();
+                            ArrayList ar4 = new ArrayList();
+                            ArrayList ar5 = new ArrayList();
+                            ArrayList ar6 = new ArrayList();
+                            ArrayList ar7 = new ArrayList();
+                            ArrayList ar8 = new ArrayList();
+                            ArrayList ar9 = new ArrayList();
+                            ArrayList ar10 = new ArrayList();
+                            
                             database db = new database();
                             db.connection();
                             ResultSet rs = null;
-                            int total= Dashboard.getTotal_peminjaman();
-                            int id_kalab = (Integer) session.getAttribute("id");
                     
                             try{
-                                String sql = "select l.no_lab from tbl_lab l, tbl_kepala_lab k where "
-                                            + "l.id_kalab=k.id_kalab and l.id_kalab='"+id_kalab+"'";
+                                String sql = "select count(*) as jml_pinjam, no_lab from tbl_peminjaman p, tbl_lab l where p.id_lab=l.id_lab group by l.id_lab";
                                 
-                                String sql2 = "select count(*) as jml_pinjam from tbl_peminjaman p, tbl_lab l where level between 2 and 3 "
-                                            + "and p.id_lab=l.id_lab group by id_peminjaman";
+                                String sql2 = "select count(*) as jml_lab, nama_lab from tbl_peminjaman p, tbl_lab l where p.id_lab=l.id_lab group by l.id_lab";
                                 
-                                String sql3 = "select distinct l.nama_lab from tbl_lab l, tbl_kepala_lab k where "
-                                            + "l.id_kalab=k.id_kalab and l.id_kalab='"+id_kalab+"'";
+                                String sql3 = "select count(*) as jml_level, level from tbl_peminjaman group by level";
                                 
-                                String sql4 = "select count(nama_lab) as jml_lab from tbl_lab l where "
-                                            + "l.id_lab=l.id_lab group by nama_lab";
+                                String sql4 = "select count(year(tgl_peminjaman)) as jml_thn, year(tgl_peminjaman) as thn from tbl_peminjaman group by thn";
                                 
-                                String sql5 = "select count(*) as jml_pinjam, no_lab from tbl_peminjaman p, tbl_lab l where level between 2 and 3 "
-                                            + "and p.id_lab=l.id_lab group by id_peminjaman";
+                                String sql5 = "select count(status_peminjaman) as jml_status, status_peminjaman from tbl_peminjaman group by status_peminjaman";
+                                
                                 rs = db.getData(sql);
-                                
-                                ArrayList ar=new ArrayList();
-                                ArrayList ar2 = new ArrayList();
-
                                 while(rs.next())
                                 {
                                     no_lab = rs.getString("no_lab");
-                                    ar.add(no_lab);
-                                }
-                                
-                                rs = db.getData(sql2);
-                                
-                                while(rs.next())
-                                {
                                     jumlah_nolab = rs.getString("jml_pinjam");
+                                    ar.add(no_lab);
                                     ar2.add(jumlah_nolab);
                                 }
                                 
-                                no_lab = gson.toJson(ar);
-                                jumlah_nolab = gson.toJson(ar2);
+                                rs = db.getData(sql2);
+                                while(rs.next())
+                                {
+                                    nama_lab = rs.getString("nama_lab");
+                                    jumlah_lab = rs.getString("jml_lab");
+                                    ar3.add(nama_lab);
+                                    ar4.add(jumlah_lab);
+                                }
+                                
+                                rs = db.getData(sql3);
+                                while(rs.next())
+                                {
+                                    level = rs.getString("level");
+                                    jumlah_level = rs.getString("jml_level");
+                                    ar5.add(level);
+                                    ar6.add(jumlah_level);
+                                }
+                                
+                                rs = db.getData(sql4);
+                                while(rs.next())
+                                {
+                                    thn_peminjaman = rs.getString("thn");
+                                    jumlah_thn = rs.getString("jml_thn");
+                                    ar7.add(thn_peminjaman);
+                                    ar8.add(jumlah_thn);
+                                }
+                                
+                                rs = db.getData(sql5);
+                                while(rs.next())
+                                {
+                                    status_peminjaman = rs.getString("status_peminjaman");
+                                    jumlah_status = rs.getString("jml_status");
+                                    ar9.add(status_peminjaman);
+                                    ar10.add(jumlah_status);
+                                }
                                 
                             }
                             catch(SQLException e){
                                     out.println("<div  style='width: 50%; margin-left: auto; margin-right: auto; margin-top: 200px;'>Could not connect to the database. Please check if you have mySQL Connector installed on the machine - if not, try installing the same.</div>");
                             }
+                            
+                                no_lab = gson.toJson(ar);
+                                jumlah_nolab = gson.toJson(ar2);
+                                
+                                nama_lab = gson.toJson(ar3);
+                                jumlah_lab = gson.toJson(ar4);
+                                
+                                level = gson.toJson(ar5);
+                                jumlah_level = gson.toJson(ar6);
+                                
+                                thn_peminjaman = gson.toJson(ar7);
+                                jumlah_thn = gson.toJson(ar8);
+                                
+                                status_peminjaman = gson.toJson(ar9);
+                                jumlah_status = gson.toJson(ar10);
                         %>
 
                         <div class="row">
@@ -169,12 +212,12 @@
                                             <div class="col-xl-3">
                                                 <h4>Tampilkan berdasarkan</h4>
                                                 <div class="col-7">
-                                                    <select class="form-select" id="filter">
-                                                        <option value="<%= jumlah_nolab %>">No Lab</option>
-                                                        <option value="5, 19, 3, 1, 2, 3">Nama Lab</option>
-                                                        <option value="7, 14, 2, 5, 2, 3">Level</option>
-                                                        <option value="9, 19, 3, 5, 2, 3">Tahun Peminjaman</option>
-                                                        <option value="13, 19, 5, 5, 2, 3">Status Peminjaman</option>
+                                                    <select class="form-select" id="filter" onchange="updateData(this)">
+                                                        <option value="no_lab">No Lab</option>
+                                                        <option value="nama_lab">Nama Lab</option>
+                                                        <option value="level">Level</option>
+                                                        <option value="tahun_peminjaman">Tahun Peminjaman</option>
+                                                        <option value="status">Status Peminjaman</option>
                                                     </select>
                                                 </div>
                                             </div><!-- end col-->
@@ -210,49 +253,94 @@
         <!-- /End-bar -->
 
         <script>
-            const ctx = document.getElementById('myChart').getContext('2d');
-            const myChart = new Chart(ctx, {
+            const no_lab = <%= jumlah_nolab %>;
+            const nama_lab = <%= jumlah_lab %>;
+            const level = <%= jumlah_level %>;
+            const tahun_peminjaman = <%= jumlah_thn %>;
+            const status = <%= jumlah_status %>;
+
+            const label_no = <%= no_lab %>;
+            const label_nama = <%= nama_lab %>;
+            const label_level = <%= level %>;
+            const label_thn = <%= thn_peminjaman %>;
+            const label_status = <%= status_peminjaman %>;
+            //setup
+            const data = {
+                labels: <%= no_lab %>,
+                datasets: [{
+                        label: 'No Lab',
+                        data: no_lab,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1,
+                        barPercentage: 0.5
+                    }]
+            };
+
+            //config
+            const config = {
                 type: 'bar',
-                data: {
-                    labels: <%= no_lab %>,
-                    datasets: [{
-                            label: 'No Lab',
-                            data: <%= jumlah_nolab %>,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                },
+                data,
                 options: {
                     scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+                        yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
                     }
                 }
-            });
+            };
+
+            //render
+            const myChart = new Chart(
+                    document.getElementById('myChart'),
+                    config
+                    );
 
             const filter = document.getElementById('filter');
-            filter.addEventListener('change', Tracker);
 
-            function Tracker() {
+            function updateData(data) {
                 const label = filter.options[filter.selectedIndex].text;
-                myChart.data.datasets[0].label = label;
-                myChart.data.datasets[0].data = filter.value;
+                if (data.value === 'no_lab') {
+                    myChart.config.data.datasets[0].data = no_lab;
+                    myChart.config.data.datasets[0].label = label;
+                    myChart.config.data.labels = label_no;
+                }
+                if (data.value === 'nama_lab') {
+                    myChart.config.data.datasets[0].data = nama_lab;
+                    myChart.config.data.datasets[0].label = label;
+                    myChart.config.data.labels = label_nama;
+                }
+                if (data.value === 'level') {
+                    myChart.config.data.datasets[0].data = level;
+                    myChart.config.data.datasets[0].label = label;
+                    myChart.config.data.labels = label_level;
+                }
+                if (data.value === 'tahun_peminjaman') {
+                    myChart.config.data.datasets[0].data = tahun_peminjaman;
+                    myChart.config.data.datasets[0].label = label;
+                    myChart.config.data.labels = label_thn;
+                }
+                if (data.value === 'status') {
+                    myChart.config.data.datasets[0].data = status;
+                    myChart.config.data.datasets[0].label = label;
+                    myChart.config.data.labels = label_status;
+                }
                 myChart.update();
             }
 

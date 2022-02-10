@@ -39,7 +39,6 @@
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/buttons.print.min.js"></script>
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.keyTable.min.js"></script>
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/dataTables.select.min.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/apexcharts.min.js"></script>
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor/Chart.bundle.min.js"></script>
@@ -47,7 +46,6 @@
 
         <!-- demo app -->
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.datatable-init.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/pages/demo.dashboard.js"></script>
         <!-- end demo js-->
 
         <script>
