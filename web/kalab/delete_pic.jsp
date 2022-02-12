@@ -13,5 +13,6 @@
     int id_pic=Integer.parseInt(request.getParameter("id_pic"));
 
         KalabController.DeletePic(id_pic);
-        response.sendRedirect("data_pic.jsp");
+        request.setAttribute("delete", "berhasil");
+        response.sendRedirect("data_pic.jsp?delete="+request.getAttribute("delete"));
 %>

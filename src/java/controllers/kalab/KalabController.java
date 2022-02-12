@@ -348,31 +348,38 @@ public class KalabController {
         }
     }
     
-    public static void UpdateStatus(PeminjamanModel p) {
+    public static boolean UpdateStatus(PeminjamanModel p) {
+        boolean status=false;
         database db = new database();
         db.connection();
         String sql = "update tbl_peminjaman set status_peminjaman='" + p.getStatus_peminjaman() + "' "
                 + "where id_peminjaman='" + p.getId_peminjaman() + "'";
         try {
             db.saveData(sql);
+            status = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return status;
     }
 
-    public static void SavePic(PicModel p) {
+    public static boolean SavePic(PicModel p) {
+        boolean status=false;
         database db = new database();
         db.connection();
         String sql = "insert into tbl_pic_lab(nama_pic, email_pic, pass_pic, kontak_pic, ruangan_pic, foto_pic) "
                 + "values('" + p.getNama_pic() + "','" + p.getEmail_pic() + "','" + p.getPass_pic() + "','" + p.getKontak_pic() + "','" + p.getRuangan_pic() + "','" + p.getFoto_pic() + "')";
         try {
             db.saveData(sql);
+            status = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return status;
     }
 
-    public static void UpdatePic(PicModel p) {
+    public static boolean UpdatePic(PicModel p) {
+        boolean status=false;
         database db = new database();
         db.connection();
         String sql = "update tbl_pic_lab set nama_pic='" + p.getNama_pic() + "', email_pic='" + p.getEmail_pic() + "', "
@@ -380,9 +387,11 @@ public class KalabController {
                 + "where id_pic='" + p.getId_pic() + "'";
         try {
             db.saveData(sql);
+            status = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return status;
     }
 
     public static void DeletePic(int id_pic) {

@@ -51,6 +51,42 @@
                                         </ol>
                                     </div>
                                     <h4 class="page-title">Data PIC Lab SIMPEL</h4>
+                                    <%
+                                        if("berhasil".equals(request.getParameter("input"))){ %>
+                                    <br>
+                                    <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <strong>Sukses - </strong> Data PIC berhasil ditambahkan!
+                                    </div>
+                                    <% } else if("gagal".equals(request.getParameter("input"))) { %>
+                                    <br>
+                                    <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <strong>Gagal - </strong> Data PIC gagal ditambahkan!
+                                    </div>
+                                    <% } %>
+                                    <%
+                                        if("berhasil".equals(request.getParameter("edit"))){ %>
+                                    <br>
+                                    <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <strong>Sukses - </strong> Data PIC berhasil diubah!
+                                    </div>
+                                    <% } else if("gagal".equals(request.getParameter("edit"))) { %>
+                                    <br>
+                                    <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <strong>Gagal - </strong> Data PIC gagal diubah!
+                                    </div>
+                                    <% } %>
+                                    <%
+                                        if("berhasil".equals(request.getParameter("delete"))){ %>
+                                    <br>
+                                    <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <strong>Sukses - </strong> Data PIC berhasil dihapus!
+                                    </div>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
@@ -97,12 +133,29 @@
                                                     <td><jsp:getProperty name="Pic" property="email_pic" /></td>
                                                     <td><jsp:getProperty name="Pic" property="pass_pic" /></td>
                                                     <td><a href="edit_pic.jsp?id_pic=<jsp:getProperty name="Pic" property="id_pic" />" class="btn btn-primary mb-2"><i class="mdi mdi-account-edit"></i>&nbsp;Edit</a>&nbsp;&nbsp;
-                                                        <a href="delete_pic.jsp?id_pic=<jsp:getProperty name="Pic" property="id_pic" />" class="btn btn-danger mb-2"><i class="mdi mdi-account-remove"></i>&nbsp;Hapus</a>
+                                                        <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#btnDelete"><i class="mdi mdi-account-remove"></i>&nbsp;Hapus</button>
                                                     </td>
                                                 </tr>
                                                 <%}%>
                                             </tbody>
                                         </table>
+                                        <div class="modal fade" id="btnDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" id="myModalLabel">Hapus Data PIC</h4>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Apakah anda yakin ingin menghapus data ini? data yang dihapus tidak dapat dikembalikan
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batalkan</button>
+                                                        <a href="delete_pic.jsp?id_pic=<jsp:getProperty name="Pic" property="id_pic" />" class="btn btn-danger">Hapus</a>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
                                     </div> <!-- end card -->
                                 </div><!-- end col-->
                             </div>

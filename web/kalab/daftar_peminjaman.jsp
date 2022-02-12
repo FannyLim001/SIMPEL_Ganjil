@@ -61,6 +61,20 @@
                                         </ol>
                                     </div>
                                     <h4 class="page-title">Daftar Peminjaman</h4>
+                                    <%
+                                        if("berhasil".equals(request.getParameter("edit"))){ %>
+                                    <br>
+                                    <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <strong>Sukses - </strong> Status peminjaman berhasil diubah!
+                                    </div>
+                                    <% } else if("gagal".equals(request.getParameter("edit"))) { %>
+                                    <br>
+                                    <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <strong>Gagal - </strong> Status peminjaman gagal diubah!
+                                    </div>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>

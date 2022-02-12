@@ -38,21 +38,25 @@
         
         Paragraph head = new Paragraph();
         Font title = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD, BaseColor.BLACK);
-        head.add(new Phrase ("Laporan Peminjaman Lab", title));
+        Font sub_title = new Font(Font.FontFamily.HELVETICA, 14, Font.NORMAL, BaseColor.BLACK);
+        head.add(new Phrase ("Laporan Peminjaman Lab JTI", title));
         head.setAlignment(Element.ALIGN_CENTER);
+        head.add(new Phrase(Chunk.NEWLINE));
+        head.add(new Phrase(Chunk.NEWLINE));
+        head.add(new Phrase ("Politeknik Caltex Riau", sub_title));
         head.add(new Phrase(Chunk.NEWLINE));
         head.add(new Phrase(Chunk.NEWLINE));
         doc.add(head);
         
         float [] pointColumnWidths = {90F, 90F, 185F, 170F, 170F, 170F, 160F};
         PdfPTable table = new PdfPTable(pointColumnWidths);
-        PdfPCell kol1 = new PdfPCell(new Paragraph("No Lab", FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
-        PdfPCell kol2 = new PdfPCell(new Paragraph("Level", FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
-        PdfPCell kol3 = new PdfPCell(new Paragraph("Tanggal Peminjaman", FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
-        PdfPCell kol4 = new PdfPCell(new Paragraph("Tanggal Mulai", FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
-        PdfPCell kol5 = new PdfPCell(new Paragraph("Tanggal Berakhir", FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
-        PdfPCell kol6 = new PdfPCell(new Paragraph("Keterangan", FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
-        PdfPCell kol7 = new PdfPCell(new Paragraph("Status", FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
+        PdfPCell kol1 = new PdfPCell(new Paragraph("No Lab", FontFactory.getFont("Helvetica", 12, Font.BOLD, BaseColor.BLACK)));
+        PdfPCell kol2 = new PdfPCell(new Paragraph("Level", FontFactory.getFont("Helvetica", 12, Font.BOLD, BaseColor.BLACK)));
+        PdfPCell kol3 = new PdfPCell(new Paragraph("Tanggal Peminjaman", FontFactory.getFont("Helvetica", 12, Font.BOLD, BaseColor.BLACK)));
+        PdfPCell kol4 = new PdfPCell(new Paragraph("Tanggal Mulai", FontFactory.getFont("Helvetica", 12, Font.BOLD, BaseColor.BLACK)));
+        PdfPCell kol5 = new PdfPCell(new Paragraph("Tanggal Berakhir", FontFactory.getFont("Helvetica", 12, Font.BOLD, BaseColor.BLACK)));
+        PdfPCell kol6 = new PdfPCell(new Paragraph("Keterangan", FontFactory.getFont("Helvetica", 12, Font.BOLD, BaseColor.BLACK)));
+        PdfPCell kol7 = new PdfPCell(new Paragraph("Status", FontFactory.getFont("Helvetica", 12, Font.BOLD, BaseColor.BLACK)));
         
         table.addCell(kol1);
         table.addCell(kol2);

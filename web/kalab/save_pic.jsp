@@ -22,6 +22,13 @@
     Pic.setPass_pic(pass_pic);
     Pic.setKontak_pic(kontak_pic);
 
-        KalabController.SavePic(Pic);
-        response.sendRedirect("data_pic.jsp");
+    request.setAttribute("input", "kosong");
+    
+        boolean status = KalabController.SavePic(Pic);
+        if(status){
+            request.setAttribute("input", "berhasil");
+        } else {
+            request.setAttribute("input", "gagal");
+        }
+        response.sendRedirect("data_pic.jsp?input="+request.getAttribute("input"));
 %>

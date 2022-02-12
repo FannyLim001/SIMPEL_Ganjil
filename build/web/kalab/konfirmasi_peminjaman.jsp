@@ -16,6 +16,11 @@
     Peminjaman.setId_peminjaman(id_peminjaman);
     Peminjaman.setStatus_peminjaman(status_peminjaman);
 
-        KalabController.UpdateStatus(Peminjaman);
-        response.sendRedirect("daftar_peminjaman.jsp");
+    boolean status = KalabController.UpdateStatus(Peminjaman);
+        if(status){
+            request.setAttribute("edit", "berhasil");
+        } else {
+            request.setAttribute("edit", "gagal");
+        }
+        response.sendRedirect("daftar_peminjaman.jsp?edit="+request.getAttribute("edit"));
 %>
