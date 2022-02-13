@@ -12,7 +12,7 @@ public final class CekLoginPic_jsp extends org.apache.jasper.runtime.HttpJspBase
 
 
     String email, pass;
-    String dbEmail, dbPass, dbNama_pic, kondisi_login;
+    String dbEmail, dbPass, dbNama_pic;
     int dbId_pic;
 
     public Boolean validateLogin(String paramEmail, String paramPass){

@@ -178,6 +178,7 @@
                                                     int id_lab = p.getId_lab();
                                                     String tgl_berakhir = p.getTgl_berakhir();
                                                     Logbook log = new PicController().getLogbookByPeminjaman(id_lab, tgl_berakhir);
+                                                    if (log != null) {
                                             %>
                                             
                                         <div class="text-center">
@@ -231,7 +232,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <% } %>
+                                        <%  
+                                                }
+                                            }
+                                        %>
                                     </div>
                                 </div>
                             </div> <!-- end col -->

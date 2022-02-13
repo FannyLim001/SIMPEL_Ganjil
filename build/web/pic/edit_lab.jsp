@@ -7,7 +7,7 @@
 
 <%@page import="controllers.pic.PicController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="models.pic.InformasiLab"%>
+<%@page import="models.pic.*"%>
 <%@page import="javax.servlet.http.HttpSession" %>
 
 <%
@@ -125,7 +125,7 @@
                                                                 <div class="col-md-6">
                                                                     <div class="mb-3">
                                                                         <label for="kapasitas_lab" class="form-label">Kapasitas <span class="text-danger">*</span></label>
-                                                                        <input class="form-control" type="text" id="kapasitas_lab" name="kapasitas_lab" value="<%= daftar.getKapasitas() %>">
+                                                                        <input class="form-control" type="text" id="kapasitas_lab" name="kapasitas_lab" value="<%= daftar.getKapasitasLab()%>">
                                                                     </div>
                                                                 </div>
                                                             </div> <!-- end row -->
@@ -134,10 +134,16 @@
                                                                 <div class="col-12">
                                                                     <div class="mb-3">
                                                                         <label class="form-label">PIC</label>
-                                                                        <select data-toggle="select2" title="id_pic" name="id_pic" value="<%= daftar.getId_pic() %>">
-                                                                            <option value="0">Pilih Pic Lab</option>
-                                                                            <option value="1">Harumin</option>
-                                                                            <option value="2">Susiyanti</option>                           
+                                                                        <select data-toggle="select2" title="id_pic" name="id_pic">
+                                                                            <option value="<%= daftar.getId_pic() %>" ><%= daftar.getPic_lab()%></option>
+                                                                            <%
+                                                                                ModelPic[] pic = new PicController().getAllDataPic();
+                                                                                for (int i = 0; i < pic.length; i++) {
+                                                                            %>
+                                                                            <option value="<%= pic[i].getId_pic() %>"><%= pic[i].getNama_pic() %></option>
+                                                                            <%
+                                                                                }
+                                                                            %>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -148,9 +154,15 @@
                                                                     <div class="mb-3">
                                                                         <label class="form-label">Kepala Lab</label>
                                                                         <select data-toggle="select2" title="id_kalab" name="id_kalab" value="<%= daftar.getId_kalab() %>">
-                                                                            <option value="0">Pilih Kepala Lab</option>
-                                                                            <option value="1">Wenda Novayani</option>
-                                                                            <option value="2">Shumaya</option>                           
+                                                                            <option value="<%= daftar.getId_kalab()%>" ><%= daftar.getKetua_lab()%></option>
+                                                                            <%
+                                                                                ModelKalab[] kalab = new PicController().getAllDataKalab();
+                                                                                for (int i = 0; i < kalab.length; i++) {
+                                                                            %>
+                                                                            <option value="<%= kalab[i].getId_kalab()%>"><%= kalab[i].getNama_kalab()%></option>
+                                                                            <%
+                                                                                }
+                                                                            %>                       
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -160,6 +172,7 @@
                                                                 <div class="col-12">
                                                                     <div class="mb-3">
                                                                         <label for="foto_lab" class="form-label">Gambar</label>
+                                                                        <input type="text" hidden="" id="foto_lab" name="foto_lab" class="form-control" value="<%= daftar.getFoto_lab() %>">
                                                                         <input type="file" id="foto_lab" name="foto_lab" class="form-control" value="<%= daftar.getFoto_lab() %>">
                                                                     </div>
                                                                 </div>
