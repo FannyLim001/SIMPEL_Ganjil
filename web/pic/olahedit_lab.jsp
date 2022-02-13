@@ -39,6 +39,11 @@
 //    out.print(Lab.getFoto_lab()+ "<br>");
 //    out.print(Lab.getStatus()+ "<br>");
     
-    PicController.updateDataLab(Lab);
-    response.sendRedirect("daftar_lab.jsp");
+    int update = PicController.updateDataLab(Lab);
+    if (update > 0) {
+        request.setAttribute("proses_lab", "berhasil");
+    }else{
+        request.setAttribute("proses_lab", "gagal");
+    }
+    request.getRequestDispatcher("/pic/daftar_lab.jsp").forward(request, response);
 %>

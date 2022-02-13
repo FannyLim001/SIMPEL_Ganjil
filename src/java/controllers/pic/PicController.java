@@ -162,7 +162,8 @@ public class PicController {
         }
     }
 
-    public void konfirmasiPeminjaman(int id, String aksi) {
+    public int konfirmasiPeminjaman(int id, String aksi) {
+        int rowAffected = 0;
         database db = new database();
         String status = null;
         if (aksi.equalsIgnoreCase("disetujui")) {
@@ -174,25 +175,29 @@ public class PicController {
             String sql = "UPDATE tbl_peminjaman \n"
                     + "SET status_peminjaman = '" + status + "' \n"
                     + "WHERE id_peminjaman = " + id + "";
-            db.saveData(sql);
+            rowAffected = db.saveData(sql);
         } catch (Exception ex) {
             System.out.println("Error: " + ex);
         }
+        return rowAffected;
     }
 
     /* Akses models InformasiLab */
-    public static void insertDataLab(InformasiLab l) {
+    public static int insertDataLab(InformasiLab l) {
+        int rowAffected = 0;
         database db = new database();
         try {
             String Sql = "INSERT INTO tbl_lab(id_pic, id_kalab, no_lab, nama_lab, kapasitas_lab, foto_lab, status_lab)"
-                    + "VALUES('" + l.getId_pic() + "','" + l.getId_kalab() + "','" + l.getNo_lab() + "','" + l.getNama_lab() + "','" + l.getKapasitas() + "','" + l.getFoto_lab() + "','" + l.getStatus() + "')";
-            db.saveData(Sql);
+                    + "VALUES('" + l.getId_pic() + "','" + l.getId_kalab() + "','" + l.getNo_lab() + "','" + l.getNama_lab() + "','" + l.getKapasitasLab()+ "','" + l.getFoto_lab() + "','" + l.getStatus() + "')";
+            rowAffected = db.saveData(Sql);
         } catch (Exception ex) {
             System.out.println("Terjadi Kesalahan Saat menyimpan data lab" + ex);
         }
+        return rowAffected;
     }
 
-    public static void updateDataLab(InformasiLab l) {
+    public static int updateDataLab(InformasiLab l) {
+        int rowAffected = 0;
         database db = new database();
         try {
             String Sql = "UPDATE tbl_lab SET\n"
@@ -204,20 +209,23 @@ public class PicController {
                     + "foto_lab = \""+l.getFoto_lab()+"\",\n"
                     + "status_lab = \""+l.getStatus()+"\"\n"
                     + "WHERE id_lab = '"+l.getId_lab()+"'";
-            db.saveData(Sql);
+            rowAffected = db.saveData(Sql);
         } catch (Exception ex) {
             System.out.println("Terjadi Kesalahan Saat menyimpan data lab" + ex);
         }
+        return rowAffected;
     }
 
-    public static void hapusDataLab(InformasiLab l) {
+    public static int hapusDataLab(InformasiLab l) {
+        int rowAffected = 0;
         database db = new database();
         try {
             String Sql = "DELETE FROM tbl_lab WHERE id_lab='" + l.getId_lab() + "'";
-            db.saveData(Sql);
+            rowAffected = db.saveData(Sql);
         } catch (Exception ex) {
             System.out.println("Terjadi Kesalahan Saat menghapus data lab" + ex);
         }
+        return rowAffected;
     }
 
     public InformasiLab[] getDataLab() {
@@ -241,7 +249,7 @@ public class PicController {
                 temp.setKetua_lab(rs.getString("nama_kalab"));
                 temp.setNo_lab(rs.getInt("no_lab"));
                 temp.setNama_lab(rs.getString("nama_lab"));
-                temp.setKapasitas(rs.getInt("kapasitas_lab"));
+                temp.setKapasitasLab(rs.getInt("kapasitas_lab"));
                 temp.setFoto_lab(rs.getString("foto_lab"));
                 temp.setStatus(rs.getString("status_lab"));
                 daftar.add(temp);
@@ -295,7 +303,7 @@ public class PicController {
                 info = new InformasiLab();
                 info.setNo_lab(rs.getInt("no_lab"));
                 info.setNama_lab(rs.getString("nama_lab"));
-                info.setKapasitas(rs.getInt("kapasitas_lab"));
+                info.setKapasitasLab(rs.getInt("kapasitas_lab"));
                 info.setKetua_lab(rs.getString("nama_kalab"));
                 info.setPic_lab(rs.getString("nama_pic"));
                 info.setFoto_lab(rs.getString("foto_lab"));

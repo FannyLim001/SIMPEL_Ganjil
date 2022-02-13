@@ -110,15 +110,14 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <%
-                                                            InformasiLab[] daftar = new PicController().getDataLab();
+                                                        <%                                                            InformasiLab[] daftar = new PicController().getDataLab();
                                                             for (int i = 0; i < daftar.length; i++) {
                                                         %>
                                                         <tr>
                                                             <td class="table-user"><%= daftar[i].getFoto_lab()%></td>
                                                             <td><%= daftar[i].getNo_lab()%></td>
                                                             <td><%= daftar[i].getNama_lab()%></td>
-                                                            <td><%= daftar[i].getKapasitas()%></td>
+                                                            <td><%= daftar[i].getKapasitasLab()%></td>
                                                             <td><%= daftar[i].getPic_lab()%></td>
                                                             <td><%= daftar[i].getKetua_lab()%></td>
                                                             <td class="text-center">
@@ -132,8 +131,8 @@
                                                                 %>
                                                             </td>
                                                             <td class="table-action">
-                                                                <a href="edit_lab.jsp?id_lab=<%= daftar[i].getId_lab() %>" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                                                <a href="hapus_lab.jsp?id_lab=<%= daftar[i].getId_lab() %>"  class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                                <a href="edit_lab.jsp?id_lab=<%= daftar[i].getId_lab()%>" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                                                <a href="hapus_lab.jsp?id_lab=<%= daftar[i].getId_lab()%>"  class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                                             </td>
                                                         </tr>
                                                         <% }%>
@@ -154,7 +153,36 @@
                     <!-- end Footer -->
 
                 </div>
-
+                
+                <%
+                    String pesan = "";
+                    if (request.getAttribute("proses_lab") != null) {
+                        if (request.getAttribute("proses_lab").equals("berhasil")) {
+                            pesan = "Proses berhasil dieksekusi!";
+                        }else{
+                            pesan = "Terjadi kesalahan, proses gagal dieksekusi!";
+                        }
+                %>
+                <!-- Modal -->
+                <div class="modal fade" id="notifikasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <%= pesan %>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%
+                    }
+                %>
                 <!-- ============================================================== -->
                 <!-- End Page content -->
                 <!-- ============================================================== -->
@@ -194,10 +222,12 @@
                     $('table.display').DataTable({
                         "scrollX": true
                     });
+                    $('#notifikasi').modal('show');
+                    window.history.replaceState(null, document.title, sanitizedURL);
                 });
             </script>
             <%
-                }else{
+                } else {
                     request.setAttribute("kondisi_login", "belum");
                     request.getRequestDispatcher("/pic/login_pic.jsp").include(request, response);
                 }

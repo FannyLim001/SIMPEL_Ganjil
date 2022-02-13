@@ -68,14 +68,14 @@ public class database {
         return rs;
     }
 
-    public void saveData(String sql) {
+    public int saveData(String sql) {
+        int rowAffected = 0;
         try {
             connection();
-            st.executeUpdate(sql);
+            rowAffected = st.executeUpdate(sql);
         } catch (Exception x) {
             System.out.println("Terjadi kesalahan simpan data : " + x);
         }
+        return rowAffected;
     }
-
-
 }

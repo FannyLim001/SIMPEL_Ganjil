@@ -12,7 +12,12 @@
 <%
     int id_lab = Integer.parseInt(request.getParameter("id_lab"));
     Lab.setId_lab(id_lab);
-    PicController.hapusDataLab(Lab);
-    response.sendRedirect("daftar_lab.jsp");
+    int delete = PicController.hapusDataLab(Lab);
+    if (delete > 0) {
+        request.setAttribute("proses_lab", "berhasil");
+    }else{
+        request.setAttribute("proses_lab", "gagal");
+    }
+    request.getRequestDispatcher("/pic/daftar_lab.jsp").forward(request, response);
 %>
 

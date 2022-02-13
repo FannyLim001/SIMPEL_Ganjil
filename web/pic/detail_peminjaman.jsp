@@ -257,7 +257,7 @@
                                                         </p>
                                                         <p class="mb-3">
                                                             <span class="fw-bold me-2">Kapasitas Lab:</span>
-                                                            <%= info.getKapasitas()%>
+                                                            <%= info.getKapasitasLab()%>
                                                         </p>
                                                         <p class="mb-2">
                                                             <span class="fw-bold me-2">Ketua Lab:</span>

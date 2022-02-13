@@ -10,7 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%!
     String email, pass;
-    String dbEmail, dbPass, dbNama_pic, kondisi_login;
+    String dbEmail, dbPass, dbNama_pic;
     int dbId_pic;
 
     public Boolean validateLogin(String paramEmail, String paramPass){

@@ -48,7 +48,24 @@
                         <!-- title-->
                         <h4 class="mt-0">Sign In</h4>
                         <p class="text-muted mb-4">Enter your email address and password to access account.</p>
-
+                        <%
+                            if (request.getAttribute("kondisi_login") != null && request.getAttribute("kondisi_login").equals("gagal")) {
+                        %>
+                        <!-- Start Alert -->
+                        <div class="alert alert-danger" role="alert">
+                            Email atau password yang dimasukkan salah!
+                        </div>
+                        <!-- End Alert -->
+                        <% 
+                            }else if (request.getAttribute("kondisi_login") != null && request.getAttribute("kondisi_login").equals("belum")) {
+                        %>
+                        <!-- Start Alert -->
+                        <div class="alert alert-danger" role="alert">
+                            Login terlebih dahulu sebelum akses halaman!
+                        </div>
+                        <!-- End Alert -->
+                        <% } %>
+                        
                         <!-- form -->
                         <form action="CekLoginPic.jsp" method="POST">
                             <div class="mb-3">
@@ -120,20 +137,7 @@
 
         <!-- bundle -->
         <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/vendor.min.js"></script>
-        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/app.min.js"></script>        
-        <%
-            if (request.getAttribute("kondisi_login") != null && request.getAttribute("kondisi_login").equals("gagal")) {
-        %>
-        <script>
-            alert("Login Gagal, Coba Lagi!");
-        </script>
-        <% 
-            }else if (request.getAttribute("kondisi_login") != null && request.getAttribute("kondisi_login").equals("belum")) {
-        %>
-        <script>
-            alert("Login Terlebih Dahulu!");
-        </script>
-        <% } %>
+        <script src="http://localhost:8080/SIMPEL_Ganjil/assets/js/app.min.js"></script>
     </body>
 
 </html>

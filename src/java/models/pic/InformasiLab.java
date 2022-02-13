@@ -4,7 +4,7 @@ import config.database;
 
 public class InformasiLab {
     database db = null;
-    int id_lab, jml_lab, lab_tersedia, id_pic, id_kalab, kapasitas, no_lab, kapasitas_lab;
+    int id_lab, jml_lab, lab_tersedia, id_pic, id_kalab, no_lab, kapasitas_lab;
     String nama_lab, ketua_lab, pic_lab, foto_lab, status;
     
     public InformasiLab(){
@@ -57,14 +57,6 @@ public class InformasiLab {
 
     public void setNama_lab(String nama_lab) {
         this.nama_lab = nama_lab;
-    }
-
-    public int getKapasitas() {
-        return kapasitas;
-    }
-
-    public void setKapasitas(int kapasitas) {
-        this.kapasitas = kapasitas;
     }
 
     public int getKapasitasLab() {

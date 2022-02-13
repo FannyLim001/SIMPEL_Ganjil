@@ -9,7 +9,12 @@
     String aksi = request.getParameter("aksi");
     
     PicController pc = new PicController();
-    pc.konfirmasiPeminjaman(id, aksi);
+    int doConfirm = pc.konfirmasiPeminjaman(id, aksi);
+    if (doConfirm > 0) {
+        request.setAttribute("save_data", "berhasil");
+    }else{
+        request.setAttribute("save_data", "gagal");
+    }
     
-    response.sendRedirect("mengkonfirmasi_peminjaman.jsp");
+    request.getRequestDispatcher("/pic/mengkonfirmasi_peminjaman.jsp").forward(request, response);
 %>

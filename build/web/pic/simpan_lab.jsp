@@ -26,7 +26,12 @@
     Lab.setId_kalab(id_kalab);
     Lab.setFoto_lab(foto_lab);
     Lab.setStatus(status_lab);
-    PicController.insertDataLab(Lab);
-    response.sendRedirect("daftar_lab.jsp");
+    int insert = PicController.insertDataLab(Lab);
+    if (insert > 0) {
+        request.setAttribute("proses_lab", "berhasil");
+    }else{
+        request.setAttribute("proses_lab", "gagal");
+    }
+    request.getRequestDispatcher("/pic/daftar_lab.jsp").forward(request, response);
 %>
 
